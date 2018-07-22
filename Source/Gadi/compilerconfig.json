@@ -1,0 +1,14 @@
+﻿[
+ {
+    "outputFile": "Content/css/BootstrapOverrides.css",
+    "inputFile": "Content/less/BootstrapOverrides.less"
+  },
+  {
+    "outputFile": "Content/css/Colors.css",
+    "inputFile": "Content/less/Colors.less"
+  },
+  {
+    "outputFile": "Content/css/Site.css",
+    "inputFile": "Content/less/Site.less"
+  }
+]

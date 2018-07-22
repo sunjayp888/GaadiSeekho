@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-controller="HomeController as model">
+    @*<ng-map zoom="13" center="1600 pennsylvania ave, washington DC">
+        <custom-marker ng-repeat="cm in model.customMarkers" position="{{cm.address}}"
+                       on-mouseover="mouseover()" on-mouseout="mouseout()"
+                       on-click="click()">
+            <div class="{{cm.class}}"><div> Custom Marker {{cm.class}}</div> </div>
+        </custom-marker>
+    </ng-map>*@
+    <!-- Basic Example -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        BASIC EXAMPLE
+                    </h2>
+                </div>
+                <div class="body">
+                    <div id="gmap_basic_example" class="gmap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

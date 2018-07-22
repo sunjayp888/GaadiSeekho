@@ -1,0 +1,5 @@
+G:\GadiWorkArea\Gadi\Gadi.Common\bin\Debug\Gadi.Common.dll
+G:\GadiWorkArea\Gadi\Gadi.Common\bin\Debug\Gadi.Common.pdb
+G:\GadiWorkArea\Gadi\Gadi.Common\obj\Debug\Gadi.Common.dll
+G:\GadiWorkArea\Gadi\Gadi.Common\obj\Debug\Gadi.Common.pdb
+G:\GadiWorkArea\Gadi\Gadi.Common\obj\Debug\Gadi.Common.csprojResolveAssemblyReference.cache
