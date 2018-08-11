@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>1bdd552c-085e-43d2-895a-013492a31cb1</ProjectGuid>
+    <ProjectGuid>{1BDD552C-085E-43D2-895A-013492A31CB1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gadi.Data</RootNamespace>
@@ -30,24 +30,82 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Entities\Alert.cs" />
+    <Compile Include="Entities\AspNetRole.cs" />
+    <Compile Include="Entities\AspNetUser.cs" />
+    <Compile Include="Entities\AspNetUserClaim.cs" />
+    <Compile Include="Entities\AspNetUserLogin.cs" />
+    <Compile Include="Entities\AspNetUserRole.cs" />
+    <Compile Include="Entities\AspNetUsersAlertSchedule.cs" />
+    <Compile Include="Entities\Car.cs" />
+    <Compile Include="Entities\CarType.cs" />
+    <Compile Include="Entities\Document.cs" />
+    <Compile Include="Entities\DocumentType.cs" />
+    <Compile Include="Entities\Driver.cs" />
+    <Compile Include="Entities\DriverFeedback.cs" />
+    <Compile Include="Entities\DrivingSchool.cs" />
+    <Compile Include="Entities\DrivingSchoolCar.cs" />
+    <Compile Include="Entities\Organisation.cs" />
+    <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\Template.cs" />
+    <Compile Include="Extensions\Ordering.cs" />
+    <Compile Include="Extensions\Pagination.cs" />
+    <Compile Include="GadiDatabase.cs" />
+    <Compile Include="Interfaces\ICarDataService.cs" />
+    <Compile Include="Interfaces\IDatabaseFactory.cs" />
+    <Compile Include="Interfaces\IDocumentDataService.cs" />
+    <Compile Include="Interfaces\IDocumentTypeDataService.cs" />
+    <Compile Include="Interfaces\IDriverDataService.cs" />
+    <Compile Include="Interfaces\IDriverFeedbackDataService.cs" />
+    <Compile Include="Interfaces\IDrivingSchoolCarDataService.cs" />
+    <Compile Include="Interfaces\IDrivingSchoolDataService.cs" />
+    <Compile Include="Interfaces\IGadiDataService.cs" />
+    <Compile Include="Interfaces\IGenericDataService.cs" />
+    <Compile Include="Interfaces\IStudentDataService.cs" />
+    <Compile Include="Interfaces\ITemplateDataService.cs" />
+    <Compile Include="Models\GadiDatabaseFactory.cs" />
+    <Compile Include="Partials\GadiDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EntityFrameworkGenericDataService.cs" />
+    <Compile Include="Services\GadiDataService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gadi.Common\Gadi.Common.csproj">
+      <Project>{D018C9A6-D233-4B2A-B550-4A4B0D9F5474}</Project>
+      <Name>Gadi.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -57,5 +115,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
