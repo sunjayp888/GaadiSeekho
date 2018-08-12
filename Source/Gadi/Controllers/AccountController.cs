@@ -5,28 +5,31 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Configuration.Interface;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Gadi.Models;
+using Gadi.Models.Identity;
 
 namespace Gadi.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IConfigurationManager configurationManager) : base(configurationManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
 
         public ApplicationSignInManager SignInManager
         {

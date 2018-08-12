@@ -4,8 +4,19 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 using Microsoft.Practices.Unity.InterceptionExtension;
+using Gadi.Business;
+using Gadi.Business.Interfaces;
+using Gadi.Data;
+using Gadi.Data.Interfaces;
+using Gadi.Data.Models;
+using Gadi.Data.Services;
+using Configuration.Interface;
+using Configuration.Core;
+using Microsoft.AspNet.Identity;
+using Gadi.Models.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Gadi.Controllers;
 
 namespace Gadi.App_Start
 {
@@ -55,18 +66,25 @@ namespace Gadi.App_Start
             };
 
             container.RegisterTypes(
-              AllClasses.FromLoadedAssemblies().Where(tt => conventionBasedMappings.Any(n => n == tt.Namespace)),
-              WithMappings.FromMatchingInterface,
-              WithName.Default
-              );
+                AllClasses.FromLoadedAssemblies().Where(tt => conventionBasedMappings.Any(n => n == tt.Namespace)),
+                WithMappings.FromMatchingInterface,
+                WithName.Default
+            );
 
-            //container.RegisterType<IDatabaseFactory<GadiDatabase>, GadiDatabaseFactory>(
-            //    new InjectionConstructor(
-            //        new InjectionParameter<string>(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString())
-            //     ));
+            container.RegisterType<IDatabaseFactory<GadiDatabase>, GadiDatabaseFactory>(
+                new InjectionConstructor(
+                    new InjectionParameter<string>(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString())
+                 ));
 
+            container.RegisterType<DbContext, GadiDatabase>();
+            container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<IGenericDataService<DbContext>, EntityFrameworkGenericDataService>();
+            container.RegisterType<ICacheProvider, MemoryCacheProvider>();
+            container.RegisterType<IConfigurationManager, ConfigurationManagerAdapter>();
 
-            //container.RegisterInstance(MappingsConfig.Initialize(), new ContainerControlledLifetimeManager());
+            container.RegisterInstance(MappingsConfig.Initialize(), new ContainerControlledLifetimeManager());
             ////  container.RegisterInstance(LoggingConfig.Initialize(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString(), ConfigurationManager.AppSettings["serilog:write-to:MSSqlServer.tableName"]), new ContainerControlledLifetimeManager());
             //container.RegisterType<DbContext, GadiDatabase>();
             //container.RegisterType<IGenericDataService<DbContext>, EntityFrameworkGenericDataService>();
@@ -126,7 +144,7 @@ namespace Gadi.App_Start
 
 
 
-            //container.RegisterType<ICurrentUserResolver, OwinUserResolver>();
+            container.RegisterType<ICurrentUserResolver, OwinUserResolver>();
 
             // SignalR Hubs
             //container.RegisterType<ISummaryHub, SummaryHub>(new ContainerControlledLifetimeManager());

@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -82,9 +82,5 @@ namespace Gadi.Data.Entity
         [Required]
         [StringLength(256)]
         public string Email { get; set; }
-
-        public int OrganisationId { get; set; }
-
-        public virtual Organisation Organisation { get; set; }
     }
 }

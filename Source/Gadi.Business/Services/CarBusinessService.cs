@@ -9,7 +9,7 @@ using Gadi.Business.Interfaces;
 using Gadi.Business.Models;
 using Gadi.Common.Dto;
 using Gadi.Data.Interfaces;
-using LinqKit;
+
 
 namespace Gadi.Business.Services
 {
@@ -29,7 +29,7 @@ namespace Gadi.Business.Services
             ValidationResult<Models.Car> validationResult = new ValidationResult<Models.Car>();
             try
             {
-                var carData = _mapper.Map<Data.Entity.Car>(car);
+                var carData = _mapper.Map<Data.Entities.Car>(car);
                 await _dataService.CreateAsync(carData);
                 validationResult.Entity = car;
                 validationResult.Succeeded = true;
@@ -45,8 +45,8 @@ namespace Gadi.Business.Services
 
         public async Task<Models.Car> RetrieveCar(int carId)
         {
-            var result = await _dataService.RetrieveAsync<Data.Entity.Car>(a => a.CarId == carId);
-            var mobile = _mapper.MapToList<Models.Car>(result);
+            var result = await _dataService.RetrieveAsync<Data.Entities.Car>(a => a.CarId == carId);
+            var mobile = _mapper.MapToList<Car>(result);
             return mobile.FirstOrDefault();
         }
 

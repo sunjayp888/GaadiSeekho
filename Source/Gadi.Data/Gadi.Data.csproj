@@ -58,10 +58,13 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Entities\Alert.cs" />
+    <Compile Include="Entities\AspNetPermission.cs" />
     <Compile Include="Entities\AspNetRole.cs" />
+    <Compile Include="Entities\AspNetRolePermission.cs" />
     <Compile Include="Entities\AspNetUser.cs" />
     <Compile Include="Entities\AspNetUserClaim.cs" />
     <Compile Include="Entities\AspNetUserLogin.cs" />
+    <Compile Include="Entities\AspNetUserPermission.cs" />
     <Compile Include="Entities\AspNetUserRole.cs" />
     <Compile Include="Entities\AspNetUsersAlertSchedule.cs" />
     <Compile Include="Entities\Car.cs" />
@@ -72,12 +75,12 @@
     <Compile Include="Entities\DriverFeedback.cs" />
     <Compile Include="Entities\DrivingSchool.cs" />
     <Compile Include="Entities\DrivingSchoolCar.cs" />
-    <Compile Include="Entities\Organisation.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Extensions\Ordering.cs" />
     <Compile Include="Extensions\Pagination.cs" />
     <Compile Include="GadiDatabase.cs" />
+    <Compile Include="Interfaces\IAuthorizationDataService.cs" />
     <Compile Include="Interfaces\ICarDataService.cs" />
     <Compile Include="Interfaces\IDatabaseFactory.cs" />
     <Compile Include="Interfaces\IDocumentDataService.cs" />
@@ -93,8 +96,13 @@
     <Compile Include="Models\GadiDatabaseFactory.cs" />
     <Compile Include="Partials\GadiDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AuthorizationDataService.cs" />
+    <Compile Include="Services\StudentDataService.cs" />
+    <Compile Include="Services\DrivingSchoolCarDataService.cs" />
+    <Compile Include="Services\CarDataService.cs" />
     <Compile Include="Services\EntityFrameworkGenericDataService.cs" />
     <Compile Include="Services\GadiDataService.cs" />
+    <Compile Include="Services\DrivingSchoolDataService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

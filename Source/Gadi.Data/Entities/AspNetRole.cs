@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +8,12 @@ namespace Gadi.Data.Entity
 
     public partial class AspNetRole
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AspNetRole()
+        {
+            AspNetPermissions = new HashSet<AspNetPermission>();
+        }
+
         public string Id { get; set; }
 
         [Required]
@@ -18,8 +24,7 @@ namespace Gadi.Data.Entity
         [StringLength(128)]
         public string Discriminator { get; set; }
 
-        public int OrganisationId { get; set; }
-
-        public virtual Organisation Organisation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetPermission> AspNetPermissions { get; set; }
     }
 }

@@ -13,7 +13,7 @@
         'wt.responsive',
         'ngBootbox',
         'moment-module',
-        'angular-img-cropper',
+        //'angular-img-cropper',
         'daterangepicker',
         'ui.select',
         'checklist-model',

@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -24,8 +24,6 @@ namespace Gadi.Data.Entity
         [Required]
         [StringLength(1000)]
         public string BasePath { get; set; }
-
-        public int OrganisationId { get; set; }
 
         public bool IsEnquiry { get; set; }
 

@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -50,10 +50,6 @@ namespace Gadi.Data.Entity
 
         [StringLength(100)]
         public string CargoVolume { get; set; }
-
-        public int OrganisationId { get; set; }
-
-        public virtual Organisation Organisation { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }

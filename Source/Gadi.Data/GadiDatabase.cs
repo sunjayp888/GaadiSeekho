@@ -1,4 +1,5 @@
-﻿using Gadi.Data.Entity;
+﻿using Gadi.Data.Entities;
+
 
 namespace Gadi.Data
 {
@@ -23,10 +24,12 @@ namespace Gadi.Data
         public virtual DbSet<DriverFeedback> DriverFeedbacks { get; set; }
         public virtual DbSet<DrivingSchool> DrivingSchools { get; set; }
         public virtual DbSet<DrivingSchoolCar> DrivingSchoolCars { get; set; }
-        public virtual DbSet<Organisation> Organisations { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Template> Templates { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetPermission> AspNetPermissions { get; set; }
+        public virtual DbSet<AspNetRolePermission> AspNetRolePermissions { get; set; }
+        public virtual DbSet<AspNetUserPermission> AspNetUserPermissions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -34,6 +37,20 @@ namespace Gadi.Data
                 .HasMany(e => e.AspNetUsersAlertSchedules)
                 .WithRequired(e => e.Alert)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetPermission>()
+                .HasMany(e => e.AspNetRoles)
+                .WithMany(e => e.AspNetPermissions)
+                .Map(m => m.ToTable("AspNetRolePermissions").MapLeftKey("PermissionId").MapRightKey("RoleId"));
+
+            modelBuilder.Entity<AspNetPermission>()
+                .HasMany(e => e.AspNetUsers)
+                .WithMany(e => e.AspNetPermissions)
+                .Map(m => m.ToTable("AspNetUserPermissions").MapLeftKey("PermissionId").MapRightKey("UserId"));
+
+            modelBuilder.Entity<AspNetUser>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Car>()
                 .Property(e => e.Name)
@@ -162,9 +179,9 @@ namespace Gadi.Data
                 .Property(e => e.Comment)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<DriverFeedback>()
-            //    .HasOptional(e => e.DriverFeedback1)
-            //    .WithRequired(e => e.DriverFeedback2);
+            modelBuilder.Entity<DriverFeedback>()
+                .HasOptional(e => e.DriverFeedback1)
+                .WithRequired(e => e.DriverFeedback2);
 
             modelBuilder.Entity<DrivingSchool>()
                 .Property(e => e.Name)
@@ -197,46 +214,6 @@ namespace Gadi.Data
             modelBuilder.Entity<DrivingSchool>()
                 .HasMany(e => e.DrivingSchoolCars)
                 .WithRequired(e => e.DrivingSchool)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.AspNetRoles)
-                .WithRequired(e => e.Organisation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.Cars)
-                .WithRequired(e => e.Organisation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.CarTypes)
-                .WithRequired(e => e.Organisation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.Documents)
-                .WithRequired(e => e.Organisation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.DriverFeedbacks)
-                .WithRequired(e => e.Organisation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.DrivingSchools)
-                .WithRequired(e => e.Organisation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.DrivingSchoolCars)
-                .WithRequired(e => e.Organisation)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Organisation>()
-                .HasMany(e => e.Students)
-                .WithRequired(e => e.Organisation)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Student>()

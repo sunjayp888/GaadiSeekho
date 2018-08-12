@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -22,7 +22,5 @@ namespace Gadi.Data.Entity
         [Required]
         [StringLength(20)]
         public string Type { get; set; }
-
-        public int OrganisationId { get; set; }
     }
 }

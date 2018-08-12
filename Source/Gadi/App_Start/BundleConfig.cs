@@ -23,7 +23,7 @@ namespace Gadi
                 "~/bower_components/angular-responsive-tables/release/angular-responsive-tables.min.js",
                 "~/bower_components/angular-ui-select/dist/select.min.js",
                 "~/bower_components/angular-ui-uploader/dist/uploader.min.js",
-                "~/bower_components/angular-img-cropper/dist/angular-img-cropper.min.js",
+                //"~/bower_components/angular-img-cropper/dist/angular-img-cropper.min.js",
                 "~/bower_components/angular-ui-mask/dist/mask.min.js",
                 "~/bower_components/Chart.js/dist/Chart.min.js",
                 "~/bower_components/bootbox/bootbox.js",
@@ -34,7 +34,9 @@ namespace Gadi
                 "~/bower_components/pnotify/dist/pnotify.js",
                 "~/bower_components/pnotify/dist/pnotify.buttons.js",
                 "~/bower_components/pnotify/dist/pnotify.mobile.js",
-                "~/bower_components/pnotify/dist/pnotify.desktop.js"
+                "~/bower_components/pnotify/dist/pnotify.desktop.js",
+                "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.min.js"
+          
                 ));
 
             //bundles.Add(new ScriptBundle("~/Scripts/SignalR").Include(
@@ -64,14 +66,42 @@ namespace Gadi
                  "~/bower_components/cookieconsent/build/cookieconsent.min.css",
                  "~/bower_components/pnotify/dist/pnotify.css",
                  "~/bower_components/pnotify/dist/pnotify.buttons.css",
-                 "~/bower_components/pnotify/dist/pnotify.mobile.css"
+                 "~/bower_components/pnotify/dist/pnotify.mobile.css",
+                 "~/bower_components/adminbsb-materialdesign/css/materialize.css"
                  ));
 
 
             bundles.Add(new StyleBundle("~/Content/Styles").Include(
                 "~/Content/css/*.min.css",
-                "~/Content/bootstrap.min.css"
+                "~/Content/bootstrap.min.css",
+                "~/Content/fonts/css/font-awesome.css"
                 ));
+
+            // slimScroll
+            bundles.Add(new ScriptBundle("~/plugins/slimScroll").Include(
+                "~/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"));
+
+            // Custom
+            bundles.Add(new ScriptBundle("~/plugins/Custom").Include(
+                "~/Scripts/plugins/Custom/admin.js"
+                ));
+
+            // bootstrap-select
+            bundles.Add(new ScriptBundle("~/plugins/bootstrap-select").Include(
+                "~/Scripts/plugins/bootstrap-select/bootstrap-select.min.js"
+            ));
+
+            //node - waves
+            bundles.Add(new ScriptBundle("~/plugins/node-waves").Include(
+                "~/Scripts/plugins/node-waves/waves.min.js"
+            ));
+
+            //node - waves
+            bundles.Add(new ScriptBundle("~/plugins/jquery-countto").Include(
+                "~/Scripts/plugins/jquery-countto/jquery-countto.js"
+            ));
+
+           
 
             //BundleTable.EnableOptimizations = true;
         }

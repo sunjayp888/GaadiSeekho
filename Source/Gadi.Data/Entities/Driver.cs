@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -56,10 +56,6 @@ namespace Gadi.Data.Entity
 
         [Column(TypeName = "date")]
         public DateTime CreatedDate { get; set; }
-
-        public int OrganisationId { get; set; }
-
-        public virtual Organisation Organisation { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DriverFeedback> DriverFeedbacks { get; set; }

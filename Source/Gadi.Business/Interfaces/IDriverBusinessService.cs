@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Gadi.Common.Dto;
 using Gadi.Business.Models;
-using Gadi.Data.Entity;
+using Gadi.Data.Entities;
 
 namespace Gadi.Business.Interfaces
 {

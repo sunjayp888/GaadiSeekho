@@ -48,6 +48,7 @@
     <Compile Include="Dto\OrderBy.cs" />
     <Compile Include="Dto\PagedResult.cs" />
     <Compile Include="Dto\Paging.cs" />
+    <Compile Include="Enum\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

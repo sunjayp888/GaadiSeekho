@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -36,12 +36,6 @@ namespace Gadi.Data.Entity
 
         public DateTime? DownloadedDateTime { get; set; }
 
-        public int OrganisationId { get; set; }
-
-        public int? CentreId { get; set; }
-
         public virtual DocumentType DocumentType { get; set; }
-
-        public virtual Organisation Organisation { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace Gadi.Data.Entity
+namespace Gadi.Data.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -17,12 +17,8 @@ namespace Gadi.Data.Entity
 
         public int CarId { get; set; }
 
-        public int OrganisationId { get; set; }
-
         public virtual Car Car { get; set; }
 
         public virtual DrivingSchool DrivingSchool { get; set; }
-
-        public virtual Organisation Organisation { get; set; }
     }
 }

@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using Gadi.Common.Dto;
 using Gadi.Business.Models;
-using Gadi.Data.Entity;
+
 
 namespace Gadi.Business.Interfaces
 {
     public interface IDrivingSchoolBusinessService
     {
         //Create
-        Task<ValidationResult<DrivingSchool>> CreateDrivingSchool(DrivingSchool drivingSchool);
+        Task<ValidationResult<Models.DrivingSchool>> CreateDrivingSchool(DrivingSchool drivingSchool);
 
         //Retrieve
         Task<DrivingSchool> RetrieveDrivingSchool(int drivingSchoolId);
