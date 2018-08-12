@@ -16,4 +16,5 @@
 obj/
 [Rr]elease*/
 _ReSharper*/
-
+obj/Debug/
+/bower_components
