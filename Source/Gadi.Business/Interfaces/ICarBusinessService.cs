@@ -10,6 +10,9 @@ namespace Gadi.Business.Interfaces
         //Create
         Task<ValidationResult<Car>> CreateCar(Car car);
 
+        //Update
+        Task<ValidationResult<Car>> UpdateCar(Car car);
+
         //Retrieve
         Task<Car> RetrieveCar(int carId);
         Task<PagedResult<Car>> RetrieveCars(List<OrderBy> orderBy = null, Paging paging = null);

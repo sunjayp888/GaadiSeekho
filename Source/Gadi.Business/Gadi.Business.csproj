@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Enum\DocumentCategory.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
@@ -71,10 +70,15 @@
     <Compile Include="MemoryCacheProvider.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\DocumentCategory.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\DriverFeedback.cs" />
     <Compile Include="Models\DrivingSchool.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\ValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorizationBusinessService.cs" />
+    <Compile Include="Services\DriverBusinessService.cs" />
+    <Compile Include="Services\DriverFeedbackBusinessService.cs" />
     <Compile Include="Services\DrivingSchoolBusinessService.cs" />
     <Compile Include="Services\CarBusinessService.cs" />
     <Compile Include="Services\DocumentBusinessService.cs" />

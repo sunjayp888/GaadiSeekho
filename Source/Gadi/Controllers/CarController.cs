@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Configuration.Interface;
 using Gadi.Business.Interfaces;
@@ -12,15 +14,15 @@ using Microsoft.Owin.Security.Authorization;
 namespace Gadi.Controllers
 {
     [RoutePrefix("DrivingSchool")]
-    public class DrivingSchoolController : BaseController
+    public class CarController : BaseController
     {
-        private readonly IDrivingSchoolBusinessService _drivingSchoolBusinessService;
-        public DrivingSchoolController(IDrivingSchoolBusinessService drivingSchoolBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
+        private readonly ICarBusinessService _carBusinessService;
+        public CarController(ICarBusinessService carBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
         {
-            _drivingSchoolBusinessService = drivingSchoolBusinessService;
+            _carBusinessService = carBusinessService;
         }
-        
-        // GET: School
+
+        // GET: Car
         [Route("")]
         public ActionResult Index()
         {
@@ -28,30 +30,30 @@ namespace Gadi.Controllers
         }
 
         [HttpGet]
-        [Route("{drivingSchoolId:int}/Edit")]
-        public async Task<ActionResult> Edit(int drivingSchoolId)
+        [Route("{carId:int}/Edit")]
+        public async Task<ActionResult> Edit(int carId)
         {
-            var drivingSchool = await _drivingSchoolBusinessService.RetrieveDrivingSchool(drivingSchoolId);
-            if (drivingSchool == null)
+            var car = await _carBusinessService.RetrieveCar(carId);
+            if (car == null)
             {
                 return HttpNotFound();
             }
-            var viewModel = new DrivingSchoolViewModel()
+            var viewModel = new CarViewModel()
             {
-                DrivingSchool = drivingSchool
+                Car = car
             };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{drivingSchoolId:int}/Edit")]
-        public async Task<ActionResult> Edit(int drivingSchoolId, DrivingSchoolViewModel drivingSchoolViewModel)
+        [Route("{carId:int}/Edit")]
+        public async Task<ActionResult> Edit(int carId, CarViewModel carViewModel)
         {
             if (ModelState.IsValid)
             {
-                drivingSchoolViewModel.DrivingSchool.DrivingSchoolId = drivingSchoolId;
-                var result = await _drivingSchoolBusinessService.UpdateDrivingSchool(drivingSchoolViewModel.DrivingSchool);
+                carViewModel.Car.CarId = carId;
+                var result = await _carBusinessService.UpdateCar(carViewModel.Car);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index");
@@ -62,7 +64,7 @@ namespace Gadi.Controllers
                     ModelState.AddModelError("", error);
                 }
             }
-            return View(drivingSchoolViewModel);
+            return View(carViewModel);
         }
 
         [HttpPost]
@@ -71,7 +73,7 @@ namespace Gadi.Controllers
         {
             try
             {
-                var data = await _drivingSchoolBusinessService.RetrieveDrivingSchools(orderBy, paging);
+                var data = await _carBusinessService.RetrieveCars(orderBy, paging);
                 return this.JsonNet(data);
             }
             catch (Exception ex)
@@ -84,7 +86,7 @@ namespace Gadi.Controllers
         //[Route("Search")]
         //public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
         //{
-        //    return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
+        //    return this.JsonNet(await _carBusinessService.Search(searchKeyword, orderBy, paging));
         //}
     }
 }

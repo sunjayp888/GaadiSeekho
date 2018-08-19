@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Configuration.Interface;
 using Gadi.Business.Interfaces;
@@ -11,16 +13,16 @@ using Microsoft.Owin.Security.Authorization;
 
 namespace Gadi.Controllers
 {
-    [RoutePrefix("DrivingSchool")]
-    public class DrivingSchoolController : BaseController
+    [RoutePrefix("Student")]
+    public class StudentController : BaseController
     {
-        private readonly IDrivingSchoolBusinessService _drivingSchoolBusinessService;
-        public DrivingSchoolController(IDrivingSchoolBusinessService drivingSchoolBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
+        private readonly IStudentBusinessService _studentBusinessService;
+        public StudentController(IStudentBusinessService studentBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
         {
-            _drivingSchoolBusinessService = drivingSchoolBusinessService;
+            _studentBusinessService = studentBusinessService;
         }
-        
-        // GET: School
+
+        // GET: Student
         [Route("")]
         public ActionResult Index()
         {
@@ -28,30 +30,30 @@ namespace Gadi.Controllers
         }
 
         [HttpGet]
-        [Route("{drivingSchoolId:int}/Edit")]
-        public async Task<ActionResult> Edit(int drivingSchoolId)
+        [Route("{studentId:int}/Edit")]
+        public async Task<ActionResult> Edit(int studentId)
         {
-            var drivingSchool = await _drivingSchoolBusinessService.RetrieveDrivingSchool(drivingSchoolId);
-            if (drivingSchool == null)
+            var student = await _studentBusinessService.RetrieveStudent(studentId);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            var viewModel = new DrivingSchoolViewModel()
+            var viewModel = new StudentViewModel()
             {
-                DrivingSchool = drivingSchool
+                Student = student
             };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{drivingSchoolId:int}/Edit")]
-        public async Task<ActionResult> Edit(int drivingSchoolId, DrivingSchoolViewModel drivingSchoolViewModel)
+        [Route("{studentId:int}/Edit")]
+        public async Task<ActionResult> Edit(int studentId, StudentViewModel studentViewModel)
         {
             if (ModelState.IsValid)
             {
-                drivingSchoolViewModel.DrivingSchool.DrivingSchoolId = drivingSchoolId;
-                var result = await _drivingSchoolBusinessService.UpdateDrivingSchool(drivingSchoolViewModel.DrivingSchool);
+                studentViewModel.Student.StudentId = studentId;
+                var result = await _studentBusinessService.UpdateStudent(studentViewModel.Student);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index");
@@ -62,7 +64,7 @@ namespace Gadi.Controllers
                     ModelState.AddModelError("", error);
                 }
             }
-            return View(drivingSchoolViewModel);
+            return View(studentViewModel);
         }
 
         [HttpPost]
@@ -71,7 +73,7 @@ namespace Gadi.Controllers
         {
             try
             {
-                var data = await _drivingSchoolBusinessService.RetrieveDrivingSchools(orderBy, paging);
+                var data = await _studentBusinessService.RetrieveStudents(orderBy, paging);
                 return this.JsonNet(data);
             }
             catch (Exception ex)
@@ -84,7 +86,7 @@ namespace Gadi.Controllers
         //[Route("Search")]
         //public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
         //{
-        //    return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
+        //    return this.JsonNet(await _studentBusinessService.Search(searchKeyword, orderBy, paging));
         //}
     }
 }

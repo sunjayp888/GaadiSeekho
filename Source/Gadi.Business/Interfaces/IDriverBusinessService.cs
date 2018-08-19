@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Gadi.Common.Dto;
 using Gadi.Business.Models;
-using Gadi.Data.Entities;
 
 namespace Gadi.Business.Interfaces
 {
@@ -10,6 +9,9 @@ namespace Gadi.Business.Interfaces
     {
         //Create
         Task<ValidationResult<Driver>> CreateDriver(Driver driver);
+
+        //Update
+        Task<ValidationResult<Driver>> UpdateDriver(Driver driver);
 
         //Retrieve
         Task<Driver> RetrieveDriver(int driverId);
