@@ -96,6 +96,8 @@
     <Compile Include="Partials\GadiDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorizationDataService.cs" />
+    <Compile Include="Services\DriverDataService.cs" />
+    <Compile Include="Services\DriverFeedbackDataService.cs" />
     <Compile Include="Services\StudentDataService.cs" />
     <Compile Include="Services\DrivingSchoolCarDataService.cs" />
     <Compile Include="Services\CarDataService.cs" />

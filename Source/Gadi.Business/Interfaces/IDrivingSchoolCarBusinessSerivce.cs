@@ -11,6 +11,8 @@ namespace Gadi.Business.Interfaces
         //Create
         Task<ValidationResult<DrivingSchoolCar>> CreateDrivingSchoolCar(DrivingSchoolCar drivingSchoolCar);
 
+        //Update
+        Task<ValidationResult<DrivingSchoolCar>> UpdateDrivingSchoolCar(DrivingSchoolCar drivingSchoolCar);
         //Retrieve
         Task<DrivingSchoolCar> RetrieveDrivingSchoolCar(int drivingSchoolCarId);
         Task<PagedResult<DrivingSchoolCar>> RetrieveDrivingSchoolCars(List<OrderBy> orderBy = null, Paging paging = null);

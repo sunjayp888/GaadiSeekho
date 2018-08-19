@@ -11,6 +11,9 @@ namespace Gadi.Business.Interfaces
         //Create
         Task<ValidationResult<Student>> CreateStudent(Student student);
 
+        //Update
+        Task<ValidationResult<Student>> UpdateStudent(Student student);
+
         //Retrieve
         Task<Student> RetrieveStudent(int studentId);
         Task<PagedResult<Student>> RetrieveStudents(List<OrderBy> orderBy = null, Paging paging = null);
