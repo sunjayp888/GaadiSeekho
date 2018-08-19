@@ -22,13 +22,3 @@ _ReSharper*/
 .*pdb
 .*cache
 .*exe
-Source/Gadi.Common/bin*/
-Source/Gadi.Common/bin/Debug/Gadi.Common.dll
-Source/Gadi.Common/bin/Debug/Gadi.Common.pdb
-Source/Gadi.Common/obj/Debug/Gadi.Common.dll
-Source/Gadi.Common/obj/Debug/Gadi.Common.pdb
-Source/Gadi.Data/bin/Debug/Gadi.Data.dll
-Source/Gadi.Data/bin/Debug/Gadi.Data.pdb
-Source/Gadi.Data/obj/Debug/Gadi.Data.csprojResolveAssemblyReference.cache
-Source/Gadi.Data/obj/Debug/Gadi.Data.dll
-Source/Gadi.Data/obj/Debug/Gadi.Data.pdb
