@@ -3,3 +3,9 @@ G:\GadiWorkArea\Gadi\Gadi.Common\bin\Debug\Gadi.Common.pdb
 G:\GadiWorkArea\Gadi\Gadi.Common\obj\Debug\Gadi.Common.dll
 G:\GadiWorkArea\Gadi\Gadi.Common\obj\Debug\Gadi.Common.pdb
 G:\GadiWorkArea\Gadi\Gadi.Common\obj\Debug\Gadi.Common.csprojResolveAssemblyReference.cache
+G:\GadiWorkArea\GaadiSeekho\Source\Gadi.Common\bin\Debug\Gadi.Common.dll
+G:\GadiWorkArea\GaadiSeekho\Source\Gadi.Common\bin\Debug\Gadi.Common.pdb
+G:\GadiWorkArea\GaadiSeekho\Source\Gadi.Common\bin\Debug\Newtonsoft.Json.dll
+G:\GadiWorkArea\GaadiSeekho\Source\Gadi.Common\bin\Debug\Newtonsoft.Json.xml
+G:\GadiWorkArea\GaadiSeekho\Source\Gadi.Common\obj\Debug\Gadi.Common.dll
+G:\GadiWorkArea\GaadiSeekho\Source\Gadi.Common\obj\Debug\Gadi.Common.pdb

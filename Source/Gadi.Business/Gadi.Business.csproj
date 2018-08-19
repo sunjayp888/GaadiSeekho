@@ -80,6 +80,9 @@
     <Compile Include="Services\DocumentBusinessService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Gadi.Common\Gadi.Common.csproj">
       <Project>{d018c9a6-d233-4b2a-b550-4a4b0d9f5474}</Project>
       <Name>Gadi.Common</Name>
@@ -89,10 +92,6 @@
       <Name>Gadi.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
