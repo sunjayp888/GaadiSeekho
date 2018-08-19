@@ -1,5 +1,0 @@
-G:\GadiWorkArea\Gadi\Gadi.Business\bin\Debug\Gadi.Business.dll
-G:\GadiWorkArea\Gadi\Gadi.Business\bin\Debug\Gadi.Business.pdb
-G:\GadiWorkArea\Gadi\Gadi.Business\obj\Debug\Gadi.Business.dll
-G:\GadiWorkArea\Gadi\Gadi.Business\obj\Debug\Gadi.Business.pdb
-G:\GadiWorkArea\Gadi\Gadi.Business\obj\Debug\Gadi.Business.csprojResolveAssemblyReference.cache

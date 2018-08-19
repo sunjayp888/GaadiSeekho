@@ -16,5 +16,10 @@
 obj/
 [Rr]elease*/
 _ReSharper*/
-obj/Debug/
-/bower_components
+*bower_components
+*packages
+.*dll
+.*pdb
+.*cache
+.*exe
+Source/Gadi.Data/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Entities\Alert.cs" />
     <Compile Include="Entities\AspNetPermission.cs" />
     <Compile Include="Entities\AspNetRole.cs" />
@@ -104,7 +103,6 @@
     <Compile Include="Services\GadiDataService.cs" />
     <Compile Include="Services\DrivingSchoolDataService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
