@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="g1r2dd7w9aTw3CRto-8ZYFlvHVpYJtfbxjpeFRzxLSI" />
+    <title>GadiSeekho | @ViewBag.Title</title>
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)
+}
+
+
+    <!-- Primary Mumbile style -->
+    @*@Styles.Render("~/font-awesome/Styles")
+        @Styles.Render("~/Content/Styles")
+        @Styles.Render("~/Content/bower")*@
+
+    <!-- Bootstrap Core Css -->
+    <link href="~/Scripts/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="~/Scripts/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/Scripts/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="~/Scripts/plugins/morrisjs/morris.css" rel="stylesheet" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+
+
+    @Styles.Render("~/Content/Styles")
+    @Styles.Render("~/Content/bower")
+   
+    
+
+
+    @*@Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")*@
+
+</head>
+<body class="top-navigation">
+
+    <!-- Skin configuration box -->
+    <!-- Wrapper-->
+    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    <div id="wrapper" ng-app="Gadi">
+
+        <!-- Navigation -->
+        @*@Html.Partial("_Navigation")*@
+
+        <!-- Page wraper -->
+        <div id="page-wrapper">
+
+            <!-- Top Navbar -->
+            @Html.Partial("_AdminTopNavbar")
+
+
+            @Html.Partial("_LeftSideBar")
+
+            <!-- Main view -->
+
+            @RenderBody()
+            <br />
+            <br />
+            <!-- Footer -->
+            @Html.Partial("_Footer")
+        </div>
+    </div>
+
+
+    <!-- End wrapper-->
+    <!-- Section for main scripts render -->
+    @*@Scripts.Render("~/Scripts/bower")
+        @Scripts.Render("~/Scripts/Application")
+        @Scripts.Render("~/plugins/bootstrap-select")
+        @Scripts.Render("~/plugins/node-waves")
+        @Scripts.Render("~/plugins/slimScroll")
+        @Scripts.Render("~/plugins/jquery-countto")*@
+
+    @Scripts.Render("~/Scripts/bower")
+    @*<!-- Jquery Core Js -->
+        <script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core Js -->
+        <script src="~/Scripts/plugins/bootstrap/js/bootstrap.js"></script>*@
+
+
+
+    @*@Scripts.Render("~/Scripts/bower")
+
+        @Scripts.Render("~/plugins/bootstrap-select")
+        @Scripts.Render("~/plugins/node-waves")
+        @Scripts.Render("~/plugins/slimScroll")
+        @Scripts.Render("~/plugins/jquery-countto")*@
+    @Scripts.Render("~/Scripts/Application")
+    <!-- Custom Js -->
+    @Scripts.Render("~/plugins/Custom")
+
+    <!-- Handler for local scripts -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
