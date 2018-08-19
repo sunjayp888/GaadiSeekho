@@ -78,6 +78,8 @@
     <Compile Include="Services\DrivingSchoolBusinessService.cs" />
     <Compile Include="Services\CarBusinessService.cs" />
     <Compile Include="Services\DocumentBusinessService.cs" />
+    <Compile Include="Services\DrivingSchoolCarBusinessService.cs" />
+    <Compile Include="Services\StudentBusinessService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Common\Gadi.Common.csproj">
