@@ -18,3 +18,7 @@ obj/
 _ReSharper*/
 *bower_components
 *packages
+.*dll
+.*pdb
+.*cache
+.*exe
