@@ -318,6 +318,9 @@
     <Content Include="Content\Less\BootstrapOverrides.less" />
     <Content Include="Content\Less\Site.less" />
     <Content Include="Scripts\Angular\app.js" />
+    <Content Include="Scripts\Angular\Controllers\CarController.js" />
+    <Content Include="Scripts\Angular\Controllers\DriverController.js" />
+    <Content Include="Scripts\Angular\Controllers\DriverFeedbackController.js" />
     <Content Include="Scripts\Angular\Controllers\HomeController.js" />
     <Content Include="Scripts\Angular\Controllers\DrivingSchoolController.js" />
     <Content Include="Scripts\Angular\Controllers\RegisterController.js" />
@@ -342,6 +345,9 @@
     <Content Include="Scripts\Angular\Services\BrandService.js" />
     <Content Include="Scripts\Angular\Helpers\ng-map-pool.js" />
     <Content Include="Scripts\Angular\Helpers\ng-map.js" />
+    <Content Include="Scripts\Angular\Services\CarService.js" />
+    <Content Include="Scripts\Angular\Services\DriverFeedbackService.js" />
+    <Content Include="Scripts\Angular\Services\DriverService.js" />
     <Content Include="Scripts\Angular\Services\OrderService.js" />
     <Content Include="Scripts\Angular\Services\DrivingSchoolService.js" />
     <Content Include="Scripts\Angular\Services\StudentService.js" />
@@ -3428,9 +3434,6 @@
     <Folder Include="Scripts\Filters\" />
     <Folder Include="Scripts\Prototypes\" />
     <Folder Include="Scripts\Services\" />
-    <Folder Include="Views\Car\" />
-    <Folder Include="Views\DriverFeedback\" />
-    <Folder Include="Views\Driver\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -3571,6 +3574,9 @@
     <Content Include="Views\Shared\Pagination\_pageSize.cshtml" />
     <Content Include="Views\Shared\Pagination\_pagination.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Car\Index.cshtml" />
+    <Content Include="Views\DriverFeedback\Index.cshtml" />
+    <Content Include="Views\Driver\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

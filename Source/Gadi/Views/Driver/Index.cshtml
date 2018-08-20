@@ -12,20 +12,20 @@
                     <div class="header">
                         <div class="row clearfix">
                             <div class="col-xs-12 col-sm-6">
-                                <h2>Students</h2>
+                                <h2>Drivers</h2>
                             </div>
                             <div class="col-xs-12 col-sm-6 align-right">
                                 <div class="switch panel-switch-btn">
-                                    <input type="text" ng-model="searchField" ng-keyup="$event.keyCode == 13 && model.searchStudent(searchField)" class="form-control" placeholder="Search for Student...">
+                                    <input type="text" ng-model="searchField" ng-keyup="$event.keyCode == 13 && model.searchDriver(searchField)" class="form-control" placeholder="Search for Driver...">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" ng-click="model.searchStudent(searchField)" type="button">Go!</button>
-                                    </span> 
+                                        <button class="btn btn-default" ng-click="model.searchDriver(searchField)" type="button">Go!</button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-content">
-                        <div ng-controller="StudentController as model" ng-init="model.initialise()">
+                        <div ng-controller="DriverController as model" ng-init="model.initialise()">
                             <div class="">
                                 <div class="">
                                     @if (User.IsSuperAdmin())
@@ -42,7 +42,7 @@
                                 <div class="">
                                     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
                                         <div class="input-group">
-                                       
+
                                         </div>
                                     </div>
                                 </div>
@@ -51,12 +51,12 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="">
-                                   
+
                                         <div class="">
                                             <p class="text-muted font-13 m-b-30">
                                             </p>
                                             <div id="datatable_wrapper" class="dataTables_wrapper form-inline">
-                                                <div ng-if="model.students.length !=0">
+                                                <div ng-if="model.drivers.length !=0">
                                                     <div class="row">
                                                         <div class="col-xs-12">
                                                             @Html.Partial("Pagination/_pageSize")
@@ -68,50 +68,38 @@
                                                             <div class="col-xs-12">
                                                                 <table wt-responsive-table class="table table-striped table-bordered table-hover dataTable" role="grid" aria-describedby="datatable-fixed-header_info">
                                                                     <thead>
-                                                                    <tr role="row">
-                                                                        <th ng-click="model.order('Forenames')" ng-class="model.orderClass('Forenames')">Name</th>
-                                                                        <th ng-click="model.order('DOB')" ng-class="model.orderClass('DOB')">DOB</th>
-                                                                        <th ng-click="model.order('Email')" ng-class="model.orderClass('Email')">Email</th>
-                                                                        <th>Actions</th>
-                                                                    </tr>
+                                                                        <tr role="row">
+                                                                            <th ng-click="model.order('Name')" ng-class="model.orderClass('Name')">Name</th>
+                                                                            <th ng-click="model.order('Mobile')" ng-class="model.orderClass('Mobile')">Mobile</th>
+                                                                            <th ng-click="model.order('DrivingLicenceNumber')" ng-class="model.orderClass('DrivingLicenceNumber')">Driving Licence No.</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <tr ng-repeat="student in model.students" class="" ng-click="$event.originalEvent.ngClickHandled || model.viewStudent(student.StudentId)">
-                                                                        <td><span ng-bind="student.Title"></span> <span ng-bind="student.Forenames"></span> <span ng-bind="student.Surname"></span></td>
-                                                                        <td><span ng-bind="student.DOB"></span></td>
-                                                                        <td><span ng-bind="student.Email"></span></td>
-                                                                        <td>
-                                                                            <div class="btn-group pull-right">
-                                                                                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-click="$event.originalEvent.ngClickHandled = true">
-                                                                                    <i class="fa fa-chevron-down"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li>
-                                                                                        <a style="cursor: pointer;" ng-click="model.viewPersonnelProfile(person.PersonnelId)">
-                                                                                            View Profile
-                                                                                        </a>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <a style="cursor: pointer;" ng-href="/Student/{{student.StudentId}}/Edit">
-                                                                                            Edit Student
-                                                                                        </a>
-                                                                                    </li>
-                                                                                    @if (User.IsInAnyRoles("SuperUser"))
-                                                                                    {
+                                                                        <tr ng-repeat="driver in model.drivers" class="" ng-click="$event.originalEvent.ngClickHandled || model.viewDriver(driver.DriverId)">
+                                                                            <td><span ng-bind="driver.Name"></span> <span ng-bind="student.Forenames"></span> <span ng-bind="student.Surname"></span></td>
+                                                                            <td><span ng-bind="driver.Mobile"></span></td>
+                                                                            <td><span ng-bind="driver.DrivingLicenceNumber"></span></td>
+                                                                            <td>
+                                                                                <div class="btn-group pull-right">
+                                                                                    <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-click="$event.originalEvent.ngClickHandled = true">
+                                                                                        <i class="fa fa-chevron-down"></i>
+                                                                                    </a>
+                                                                                    <ul class="dropdown-menu">
                                                                                         <li>
-                                                                                            <a style="cursor: pointer;" ng-href="/Personnel/{{person.PersonnelId}}/Edit">
-                                                                                                Edit Profile
+                                                                                            <a style="cursor: pointer;" ng-href="/Driver/{{driver.DriverId}}/Edit">
+                                                                                                Edit Driver
                                                                                             </a>
                                                                                         </li>
-                                                                                    }
-                                                                                </ul>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                     @Html.Partial("Pagination/_pagination")
                                                     <div class="row">
