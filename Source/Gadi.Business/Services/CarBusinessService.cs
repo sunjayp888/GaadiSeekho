@@ -8,7 +8,9 @@ using Gadi.Business.Extensions;
 using Gadi.Business.Interfaces;
 using Gadi.Business.Models;
 using Gadi.Common.Dto;
+using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
+using Car = Gadi.Business.Models.Car;
 
 
 namespace Gadi.Business.Services
@@ -24,9 +26,9 @@ namespace Gadi.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<ValidationResult<Models.Car>> CreateCar(Models.Car car)
+        public async Task<ValidationResult<Car>> CreateCar(Car car)
         {
-            ValidationResult<Models.Car> validationResult = new ValidationResult<Models.Car>();
+            ValidationResult<Car> validationResult = new ValidationResult<Car>();
             try
             {
                 var carData = _mapper.Map<Data.Entities.Car>(car);
@@ -43,7 +45,25 @@ namespace Gadi.Business.Services
             return validationResult;
         }
 
-        public async Task<Models.Car> RetrieveCar(int carId)
+        public async Task<ValidationResult<Car>> UpdateCar(Car car)
+        {
+            ValidationResult<Car> validationResult = new ValidationResult<Car>();
+            try
+            {
+                await _dataService.UpdateAsync(car);
+                validationResult.Entity = car;
+                validationResult.Succeeded = true;
+            }
+            catch (Exception ex)
+            {
+                validationResult.Succeeded = false;
+                validationResult.Errors = new List<string> { ex.InnerMessage() };
+                validationResult.Exception = ex;
+            }
+            return validationResult;
+        }
+
+        public async Task<Car> RetrieveCar(int carId)
         {
             var result = await _dataService.RetrieveAsync<Data.Entities.Car>(a => a.CarId == carId);
             var mobile = _mapper.MapToList<Car>(result);
@@ -55,5 +75,12 @@ namespace Gadi.Business.Services
             var cars = await _dataService.RetrievePagedResultAsync<Car>(a => true, orderBy, paging);
             return cars;
         }
+
+        //public async Task<PagedResult<CarGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
+        //{
+        //    if (string.IsNullOrEmpty(term))
+        //        return await _dataService.RetrievePagedResultAsync<CarGrid>(a => true, orderBy, paging);
+        //    return await _dataService.RetrievePagedResultAsync<CarGrid>(a => a.SearchField.ToLower().Contains(term.ToLower()), orderBy, paging);
+        //}
     }
 }

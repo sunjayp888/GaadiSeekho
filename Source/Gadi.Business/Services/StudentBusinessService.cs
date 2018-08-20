@@ -10,7 +10,7 @@ using Gadi.Business.Models;
 using Gadi.Common.Dto;
 using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
-using Car = Gadi.Business.Models.Car;
+using Student = Gadi.Business.Models.Student;
 
 namespace Gadi.Business.Services
 {
