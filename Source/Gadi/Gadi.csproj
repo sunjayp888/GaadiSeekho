@@ -3577,6 +3577,8 @@
     <Content Include="Views\Car\Index.cshtml" />
     <Content Include="Views\DriverFeedback\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
+    <Content Include="Views\Student\_Student.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

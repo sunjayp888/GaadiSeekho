@@ -70,8 +70,8 @@ namespace Gadi.Business.Services
 
         public async Task<PagedResult<Student>> RetrieveStudents(List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var students = await _dataService.RetrievePagedResultAsync<Student>(a => true, orderBy, paging);
-            return students;
+            var students = await _dataService.RetrievePagedResultAsync<Data.Entities.Student>(a => true, orderBy, paging);
+            return _mapper.MapToPagedResult<Student>(students);
         }
 
         //public async Task<PagedResult<StudentGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
