@@ -22,9 +22,10 @@
         vm.searchMessage = "";
         vm.retrieveStudents = retrieveStudents;
         vm.initialise = initialise;
+        vm.editStudent = editStudent;
 
         function initialise() {
-            order("Name");
+            order("Forenames");
         }
 
         function retrieveStudents() {
@@ -71,6 +72,10 @@
 
         function viewPersonnelProfile(studentId) {
             $window.location.href = "/Student/View/" + studentId;
+        }
+
+        function editStudent(studentId) {
+            $window.location.href = "/Student/"+studentId+"/Edit";
         }
 
     }

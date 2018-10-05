@@ -78,7 +78,7 @@
                                                                     <tbody>
                                                                     <tr ng-repeat="student in model.students" class="" ng-click="$event.originalEvent.ngClickHandled || model.viewStudent(student.StudentId)">
                                                                         <td><span ng-bind="student.Title"></span> <span ng-bind="student.Forenames"></span> <span ng-bind="student.Surname"></span></td>
-                                                                        <td><span ng-bind="student.DOB"></span></td>
+                                                                        <td><span ng-bind="student.DOB|date : format : shortDate"></span></td>
                                                                         <td><span ng-bind="student.Email"></span></td>
                                                                         <td>
                                                                             <div class="btn-group pull-right">
@@ -86,13 +86,13 @@
                                                                                     <i class="fa fa-chevron-down"></i>
                                                                                 </a>
                                                                                 <ul class="dropdown-menu">
-                                                                                    <li>
+                                                                                    @*<li>
                                                                                         <a style="cursor: pointer;" ng-click="model.viewPersonnelProfile(person.PersonnelId)">
                                                                                             View Profile
                                                                                         </a>
-                                                                                    </li>
+                                                                                    </li>*@
                                                                                     <li>
-                                                                                        <a style="cursor: pointer;" ng-href="/Student/{{student.StudentId}}/Edit">
+                                                                                        <a style="cursor: pointer;" ng-click="model.editStudent(student.StudentId)">
                                                                                             Edit Student
                                                                                         </a>
                                                                                     </li>

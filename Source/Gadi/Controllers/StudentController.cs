@@ -42,6 +42,7 @@ namespace Gadi.Controllers
             {
                 Student = student
             };
+            viewModel.TitleList = new SelectList(viewModel.TitleType, "Value", "Name");
             return View(viewModel);
         }
 
