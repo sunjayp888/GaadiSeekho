@@ -11,10 +11,11 @@ using Gadi.Common.Dto;
 using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
 using Student = Gadi.Business.Models.Student;
+using LinqKit;
 
 namespace Gadi.Business.Services
 {
-    public partial class StudentBusinessService:IStudentBusinessService
+    public partial class StudentBusinessService : IStudentBusinessService
     {
         protected IStudentDataService _dataService;
         protected IMapper _mapper;
@@ -29,7 +30,7 @@ namespace Gadi.Business.Services
             ValidationResult<Student> validationResult = new ValidationResult<Student>();
             try
             {
-                var studentData = _mapper.Map<Student>(student);
+                var studentData = _mapper.Map<Data.Entities.Student>(student);
                 await _dataService.CreateAsync(studentData);
                 validationResult.Entity = student;
                 validationResult.Succeeded = true;
@@ -48,7 +49,8 @@ namespace Gadi.Business.Services
             ValidationResult<Student> validationResult = new ValidationResult<Student>();
             try
             {
-                await _dataService.UpdateAsync(student);
+                var studentEntity = _mapper.Map<Data.Entities.Student>(student);
+                await _dataService.UpdateAsync(studentEntity);
                 validationResult.Entity = student;
                 validationResult.Succeeded = true;
             }
@@ -63,7 +65,7 @@ namespace Gadi.Business.Services
 
         public async Task<Student> RetrieveStudent(int studentId)
         {
-            var result = await _dataService.RetrieveAsync<Student>(a => a.StudentId == studentId);
+            var result = await _dataService.RetrieveAsync<Data.Entities.Student>(a => a.StudentId == studentId);
             var student = _mapper.MapToList<Student>(result);
             return student.FirstOrDefault();
         }
@@ -74,11 +76,13 @@ namespace Gadi.Business.Services
             return _mapper.MapToPagedResult<Student>(students);
         }
 
-        //public async Task<PagedResult<StudentGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
-        //{
-        //    if (string.IsNullOrEmpty(term))
-        //        return await _dataService.RetrievePagedResultAsync<StudentGrid>(a => true, orderBy, paging);
-        //    return await _dataService.RetrievePagedResultAsync<StudentGrid>(a => a.SearchField.ToLower().Contains(term.ToLower()), orderBy, paging);
-        //}
+        public async Task<PagedResult<Models.StudentGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
+        {
+            var predicate = PredicateBuilder.New<Data.Entities.StudentGrid>(true);
+            if (!string.IsNullOrEmpty(term))
+                predicate = predicate.And(a => a.SearchField.ToLower().Contains(term.ToLower()));
+            var students = await _dataService.RetrievePagedResultAsync<Data.Entities.StudentGrid>(predicate, orderBy, paging);
+            return _mapper.MapToPagedResult<Models.StudentGrid>(students);
+        }
     }
 }

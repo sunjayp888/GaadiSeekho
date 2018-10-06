@@ -16,6 +16,6 @@ namespace Gadi.Business.Interfaces
         //Retrieve
         Task<Car> RetrieveCar(int carId);
         Task<PagedResult<Car>> RetrieveCars(List<OrderBy> orderBy = null, Paging paging = null);
-        //Task<PagedResult<CarGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
+        Task<PagedResult<CarGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
     }
 }

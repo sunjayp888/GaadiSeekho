@@ -16,6 +16,6 @@ namespace Gadi.Business.Interfaces
         //Retrieve
         Task<Driver> RetrieveDriver(int driverId);
         Task<PagedResult<Driver>> RetrieveDrivers(List<OrderBy> orderBy = null, Paging paging = null);
-        //Task<PagedResult<DriverGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
+        Task<PagedResult<DriverGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
     }
 }

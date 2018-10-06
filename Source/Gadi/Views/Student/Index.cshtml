@@ -5,7 +5,7 @@
 }
 
 <section class="content">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="StudentController as model" ng-init="model.initialise()">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
@@ -16,16 +16,16 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 align-right">
                                 <div class="switch panel-switch-btn">
-                                    <input type="text" ng-model="searchField" ng-keyup="$event.keyCode == 13 && model.searchStudent(searchField)" class="form-control" placeholder="Search for Student...">
+                                    <input type="text" ng-model="searchField" ng-keyup="$event.keyCode == 13 && model.searchStudents(searchField)" class="form-control" placeholder="Search for Student...">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" ng-click="model.searchStudent(searchField)" type="button">Go!</button>
+                                        <button class="btn btn-default" ng-click="model.searchStudents(searchField)" type="button">Go!</button>
                                     </span> 
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-content">
-                        <div ng-controller="StudentController as model" ng-init="model.initialise()">
+                        <div>
                             <div class="">
                                 <div class="">
                                     @if (User.IsSuperAdmin())

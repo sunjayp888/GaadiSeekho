@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gadi.Business.Models
 {
-    public class Student
+    public class StudentGrid
     {
         public int StudentId { get; set; }
         public string Title { get; set; }
@@ -32,5 +32,6 @@ namespace Gadi.Business.Models
         public string BankTelephone { get; set; }
         public string Email { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string SearchField { get; set; }
     }
 }
