@@ -80,11 +80,11 @@ namespace Gadi.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("Search")]
-        //public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
-        //{
-        //    return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
-        //}
+        [HttpPost]
+        [Route("Search")]
+        public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
+        {
+            return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
+        }
     }
 }

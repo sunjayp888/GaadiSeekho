@@ -30,7 +30,7 @@ namespace Gadi.Business.Services
             ValidationResult<DriverFeedback> validationResult = new ValidationResult<DriverFeedback>();
             try
             {
-                var driverFeedbackData = _mapper.Map<DriverFeedback>(driverFeedback);
+                var driverFeedbackData = _mapper.Map<Data.Entities.DriverFeedback>(driverFeedback);
                 await _dataService.CreateAsync(driverFeedbackData);
                 validationResult.Entity = driverFeedback;
                 validationResult.Succeeded = true;
@@ -49,7 +49,8 @@ namespace Gadi.Business.Services
             ValidationResult<DriverFeedback> validationResult = new ValidationResult<DriverFeedback>();
             try
             {
-                await _dataService.UpdateAsync(driverFeedback);
+                var driverFeedbackData = _mapper.Map<Data.Entities.DriverFeedback>(driverFeedback);
+                await _dataService.UpdateAsync(driverFeedbackData);
                 validationResult.Entity = driverFeedback;
                 validationResult.Succeeded = true;
             }
@@ -64,15 +65,15 @@ namespace Gadi.Business.Services
 
         public async Task<DriverFeedback> RetrieveDriverFeedback(int driverFeedbackId)
         {
-            var result = await _dataService.RetrieveAsync<DriverFeedback>(a => a.DriverFeedBackId == driverFeedbackId);
+            var result = await _dataService.RetrieveAsync<Data.Entities.DriverFeedback>(a => a.DriverFeedBackId == driverFeedbackId);
             var driverFeedback = _mapper.MapToList<DriverFeedback>(result);
             return driverFeedback.FirstOrDefault();
         }
 
         public async Task<PagedResult<DriverFeedback>> RetrieveDriverFeedbacks(List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var driverFeedbacks = await _dataService.RetrievePagedResultAsync<DriverFeedback>(a => true, orderBy, paging);
-            return driverFeedbacks;
+            var driverFeedbacks = await _dataService.RetrievePagedResultAsync<Data.Entities.DriverFeedback>(a => true, orderBy, paging);
+            return _mapper.MapToPagedResult<DriverFeedback>(driverFeedbacks);
         }
 
         //public async Task<PagedResult<DriverFeedbackGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)

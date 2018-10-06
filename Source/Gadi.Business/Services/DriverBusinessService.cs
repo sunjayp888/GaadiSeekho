@@ -10,6 +10,7 @@ using Gadi.Business.Models;
 using Gadi.Common.Dto;
 using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
+using LinqKit;
 using Driver = Gadi.Business.Models.Driver;
 
 namespace Gadi.Business.Services
@@ -30,9 +31,9 @@ namespace Gadi.Business.Services
             ValidationResult<Driver> validationResult = new ValidationResult<Driver>();
             try
             {
-                var driverData = _mapper.Map<Driver>(driver);
+                var driverData = _mapper.Map<Data.Entities.Driver>(driver);
                 await _dataService.CreateAsync(driverData);
-                validationResult.Entity = driverData;
+                validationResult.Entity = driver;
                 validationResult.Succeeded = true;
             }
             catch (Exception ex)
@@ -49,7 +50,8 @@ namespace Gadi.Business.Services
             ValidationResult<Driver> validationResult = new ValidationResult<Driver>();
             try
             {
-                await _dataService.UpdateAsync(driver);
+                var driverData = _mapper.Map<Data.Entities.Driver>(driver);
+                await _dataService.UpdateAsync(driverData);
                 validationResult.Entity = driver;
                 validationResult.Succeeded = true;
             }
@@ -64,22 +66,24 @@ namespace Gadi.Business.Services
 
         public async Task<Driver> RetrieveDriver(int driverId)
         {
-            var result = await _dataService.RetrieveAsync<Driver>(a => a.DriverId == driverId);
+            var result = await _dataService.RetrieveAsync<Data.Entities.Driver>(a => a.DriverId == driverId);
             var driver = _mapper.MapToList<Driver>(result);
             return driver.FirstOrDefault();
         }
 
         public async Task<PagedResult<Driver>> RetrieveDrivers(List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var drivers = await _dataService.RetrievePagedResultAsync<Driver>(a => true, orderBy, paging);
-            return drivers;
+            var drivers = await _dataService.RetrievePagedResultAsync<Data.Entities.Driver>(a => true, orderBy, paging);
+            return _mapper.MapToPagedResult<Driver>(drivers);
         }
 
-        //public async Task<PagedResult<DriverGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
-        //{
-        //    if (string.IsNullOrEmpty(term))
-        //        return await _dataService.RetrievePagedResultAsync<DriverGrid>(a => true, orderBy, paging);
-        //    return await _dataService.RetrievePagedResultAsync<DriverGrid>(a => a.SearchField.ToLower().Contains(term.ToLower()), orderBy, paging);
-        //}
+        public async Task<PagedResult<Models.DriverGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
+        {
+            var predicate = PredicateBuilder.New<Data.Entities.DriverGrid>(true);
+            if (!string.IsNullOrEmpty(term))
+                predicate = predicate.And(a => a.SearchField.ToLower().Contains(term.ToLower()));
+            var drivers = await _dataService.RetrievePagedResultAsync<Data.Entities.DriverGrid>(predicate, orderBy, paging);
+            return _mapper.MapToPagedResult<Models.DriverGrid>(drivers);
+        }
     }
 }
