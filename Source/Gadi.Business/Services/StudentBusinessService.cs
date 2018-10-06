@@ -63,7 +63,7 @@ namespace Gadi.Business.Services
 
         public async Task<Student> RetrieveStudent(int studentId)
         {
-            var result = await _dataService.RetrieveAsync<Student>(a => a.StudentId == studentId);
+            var result = await _dataService.RetrieveAsync<Data.Entities.Student>(a => a.StudentId == studentId);
             var student = _mapper.MapToList<Student>(result);
             return student.FirstOrDefault();
         }

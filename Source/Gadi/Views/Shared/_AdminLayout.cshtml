@@ -10,7 +10,7 @@
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
     {@RenderSection("Styles", required: false)
-}
+    }
 
 
     <!-- Primary Mumbile style -->
@@ -19,17 +19,17 @@
         @Styles.Render("~/Content/bower")*@
 
     <!-- Bootstrap Core Css -->
-    <link href="~/Scripts/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    @*<link href="~/Scripts/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">*@
 
     <!-- Waves Effect Css -->
-    <link href="~/Scripts/plugins/node-waves/waves.css" rel="stylesheet" />
+    @*<link href="~/Scripts/plugins/node-waves/waves.css" rel="stylesheet" />*@
 
     <!-- Animation Css -->
-    <link href="~/Scripts/plugins/animate-css/animate.css" rel="stylesheet" />
+    @*<link href="~/Scripts/plugins/animate-css/animate.css" rel="stylesheet" />*@
 
     <!-- Morris Chart Css-->
-    <link href="~/Scripts/plugins/morrisjs/morris.css" rel="stylesheet" />
-    
+    @*<link href="~/Scripts/plugins/morrisjs/morris.css" rel="stylesheet" />*@
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -38,8 +38,8 @@
 
     @Styles.Render("~/Content/Styles")
     @Styles.Render("~/Content/bower")
-   
-    
+
+
 
 
     @*@Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")*@
@@ -65,8 +65,10 @@
             @Html.Partial("_LeftSideBar")
 
             <!-- Main view -->
+            <section class="content">
+                @RenderBody()
+            </section>
 
-            @RenderBody()
             <br />
             <br />
             <!-- Footer -->
@@ -107,4 +109,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-

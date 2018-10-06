@@ -35,8 +35,10 @@ namespace Gadi
                 "~/bower_components/pnotify/dist/pnotify.buttons.js",
                 "~/bower_components/pnotify/dist/pnotify.mobile.js",
                 "~/bower_components/pnotify/dist/pnotify.desktop.js",
+                "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.min.js",
+                "~/bower_components/adminbsb-materialdesign/js/admin.js",
+                "~/bower_components/adminbsb-materialdesign/plugins/js/materialize.min.js",
                 "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.min.js"
-          
                 ));
 
             //bundles.Add(new ScriptBundle("~/Scripts/SignalR").Include(
@@ -63,6 +65,7 @@ namespace Gadi
                  "~/bower_components/less-space/dist/less-space.min.css",
                  "~/bower_components/bootstrap-side-navbar/source/assets/stylesheets/navbar-fixed-side.css",
                  "~/bower_components/bootstrap-daterangepicker/daterangepicker.css",
+                 "~/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css",
                  "~/bower_components/cookieconsent/build/cookieconsent.min.css",
                  "~/bower_components/pnotify/dist/pnotify.css",
                  "~/bower_components/pnotify/dist/pnotify.buttons.css",
@@ -92,16 +95,16 @@ namespace Gadi
             ));
 
             //node - waves
-            bundles.Add(new ScriptBundle("~/plugins/node-waves").Include(
-                "~/Scripts/plugins/node-waves/waves.min.js"
-            ));
+            //bundles.Add(new ScriptBundle("~/plugins/node-waves").Include(
+            //    "~/Scripts/plugins/node-waves/waves.min.js"
+            //));
 
             //node - waves
             bundles.Add(new ScriptBundle("~/plugins/jquery-countto").Include(
                 "~/Scripts/plugins/jquery-countto/jquery-countto.js"
             ));
 
-           
+
 
             //BundleTable.EnableOptimizations = true;
         }

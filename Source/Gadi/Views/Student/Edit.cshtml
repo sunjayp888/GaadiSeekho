@@ -2,30 +2,30 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
                 <h2>@Model.Student.Forenames<small>Edit Student</small></h2>
-                <div class="clearfix"></div>
             </div>
-            <div class="x_content">
+            <div class="body">
                 @using (Html.BeginForm())
-                {
+            {
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
                         @if (ViewContext.ViewData.ModelState.Any(x => x.Key == ""))
-                        {
+                    {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
                                     @Html.ValidationSummary(false, null, new { @class = "row alert alert-error" })
                                 </div>
                             </div>
-                        }
+                    }
                         @Html.HiddenFor(model => Model.Student.StudentId)
+
                         @Html.Partial("_Student", Model)
                         <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
                             <div class="form-group">
@@ -35,13 +35,61 @@
                             </div>
                         </div>
                     </div>
-                }
+            }
             </div>
         </div>
     </div>
 </div>
-<div>
-    <a href="@Url.Action("Index")" class="btn btn-primary" role="button">
-        <span class="fa fa-chevron-left"></span>&nbsp;Back to list
-    </a>
-</div>
+    <div class="card">
+        <div class="header">
+            <h2>
+                HORIZONTAL LAYOUT
+            </h2>
+
+        </div>
+        <div class="body">
+            <form class="form-horizontal">
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="email_address_2">Email Address</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" id="email_address_2" class="form-control" placeholder="Enter your email address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="password_2">Password</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="password" id="password_2" class="form-control" placeholder="Enter your password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                        <input type="checkbox" id="remember_me_3" class="filled-in">
+                        <label for="remember_me_3">Remember Me</label>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                        <button type="button" class="btn btn-primary m-t-15 waves-effect">LOGIN</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Index")" class="btn btn-primary" role="button">
+            <span class="fa fa-chevron-left"></span>&nbsp;Back to list
+        </a>
+    </div>

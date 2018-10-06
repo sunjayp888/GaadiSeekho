@@ -1,5 +1,5 @@
 ﻿  <!-- Left Sidebar -->
-
+<section>
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
@@ -34,11 +34,17 @@
                         <span>Home</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="pages/typography.html">
-                        <i class="material-icons">text_fields</i>
-                        <span>Typography</span>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">person</i>
+                        <span>Students</span>
                     </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href='@Url.Action("Index", "Student")'>Students</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="pages/helper-classes.html">
@@ -373,5 +379,6 @@
         </div>
         <!-- #Footer -->
     </aside>
+</section>
 
 <!-- #END# Left Sidebar -->
