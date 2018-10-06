@@ -1,5 +1,6 @@
 ﻿@model Gadi.Models.StudentViewModel
-<div class="form-control-required-example"> = Required</div>
+@using Gadi.Business.Extensions
+@*<div class="form-control-required-example"> = Required</div>*@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
@@ -41,18 +42,16 @@
 <div class="form-group">
     @Html.LabelFor(model => model.Student.DOB, new { @class = "col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label" })
     <div class="col-md-6 col-sm-6 col-xs-12">
-        @Html.TextBoxFor(model => model.Student.DOB, new { @class = "form-control col-md-7 col-xs-12" })
+        <daterange-picker value="@Model.Student.DOB.Formatted()" name="Student.DOB" id="Student_DOB" model="model.DOB"></daterange-picker>
         @Html.ValidationMessageFor(model => model.Student.DOB, "", new { @class = "error" })
     </div>
 </div>
 
-@*<div class="form-group">
         @Html.LabelFor(model => model.Student.DOB, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
         <div class="col-md-4 col-sm-3 col-xs-12">
             <daterange-picker value="@Model.Student.DOB.Formatted()" name="Personnel.DOB" id="Personnel_DOB" model="model.DOB"></daterange-picker>
         </div>
     </div>*@
-
 <div class="form-group">
     @Html.LabelFor(model => model.Student.Address1, new { @class = "col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label" })
     <div class="col-md-6 col-sm-6 col-xs-12">

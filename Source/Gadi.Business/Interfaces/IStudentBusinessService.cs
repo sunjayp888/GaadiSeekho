@@ -16,6 +16,6 @@ namespace Gadi.Business.Interfaces
         //Retrieve
         Task<Student> RetrieveStudent(int studentId);
         Task<PagedResult<Student>> RetrieveStudents(List<OrderBy> orderBy = null, Paging paging = null);
-        //Task<PagedResult<StudentGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
+        Task<PagedResult<StudentGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
     }
 }

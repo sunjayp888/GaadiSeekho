@@ -6,32 +6,34 @@ namespace Gadi.Data.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Student")]
-    public partial class Student
+    [Table("StudentGrid")]
+    public partial class StudentGrid
     {
-        public Student()
-        {
-            CreatedDate = DateTime.UtcNow;
-        }
-
+        [Key]
+        [Column(Order = 0)]
         public int StudentId { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 1)]
         [StringLength(50)]
         public string Title { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 2)]
         [StringLength(100)]
         public string Forenames { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 3)]
         [StringLength(50)]
         public string Surname { get; set; }
 
-        [Column(TypeName = "datetime2")]
+        [Key]
+        [Column(Order = 4, TypeName = "datetime2")]
         public DateTime DOB { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 5)]
         [StringLength(100)]
         public string Address1 { get; set; }
 
@@ -44,7 +46,8 @@ namespace Gadi.Data.Entities
         [StringLength(100)]
         public string Address4 { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 6)]
         [StringLength(12)]
         public string Postcode { get; set; }
 
@@ -84,11 +87,18 @@ namespace Gadi.Data.Entities
         [StringLength(15)]
         public string BankTelephone { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 7)]
         [StringLength(256)]
         public string Email { get; set; }
 
-        [Column(TypeName = "datetime2")]
+        [Key]
+        [Column(Order = 8, TypeName = "datetime2")]
         public DateTime CreatedDate { get; set; }
+
+        [Key]
+        [Column(Order = 9)]
+        [StringLength(638)]
+        public string SearchField { get; set; }
     }
 }
