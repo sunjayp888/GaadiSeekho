@@ -11,6 +11,7 @@ using Gadi.Common.Dto;
 using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
 using DriverFeedback = Gadi.Business.Models.DriverFeedback;
+using DriverFeedbackGrid = Gadi.Business.Models.DriverFeedbackGrid;
 
 namespace Gadi.Business.Services
 {
@@ -70,10 +71,10 @@ namespace Gadi.Business.Services
             return driverFeedback.FirstOrDefault();
         }
 
-        public async Task<PagedResult<DriverFeedback>> RetrieveDriverFeedbacks(List<OrderBy> orderBy = null, Paging paging = null)
+        public async Task<PagedResult<DriverFeedbackGrid>> RetrieveDriverFeedbacks(List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var driverFeedbacks = await _dataService.RetrievePagedResultAsync<Data.Entities.DriverFeedback>(a => true, orderBy, paging);
-            return _mapper.MapToPagedResult<DriverFeedback>(driverFeedbacks);
+            var driverFeedbacks = await _dataService.RetrievePagedResultAsync<Data.Entities.DriverFeedbackGrid>(a => true, orderBy, paging);
+            return _mapper.MapToPagedResult<DriverFeedbackGrid>(driverFeedbacks);
         }
 
         //public async Task<PagedResult<DriverFeedbackGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)

@@ -13,6 +13,7 @@ namespace Gadi.Data.Entities
         public Driver()
         {
             DriverFeedbacks = new HashSet<DriverFeedback>();
+            CreatedDate = DateTime.UtcNow.Date;
         }
 
         public int DriverId { get; set; }

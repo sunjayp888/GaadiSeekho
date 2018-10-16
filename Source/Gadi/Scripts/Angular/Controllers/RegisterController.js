@@ -21,7 +21,7 @@
         vm.isOtpCreated = false;
         vm.mobileNumber;
         vm.createLoginOtp = createLoginOtp;
-        vm.isSeller = false;
+        vm.isDrivingSchool = false;
         vm.otpMessage;
         vm.showMessage = false;
         vm.initialise = initialise;
@@ -29,17 +29,17 @@
         vm.OTP;
         vm.email;
         vm.errorMessages = [];
-        vm.onSellerChecked = onSellerChecked;
+        vm.onDrivingSchoolChecked = onDrivingSchoolChecked;
         vm.createForgetPasswordOtp = createForgetPasswordOtp;
         function addPincode() {
             geoLocation();
         }
 
-        function initialise(hasError, mobileNumber, email, isSeller) {
+        function initialise(hasError, mobileNumber, email, isDrivingSchool) {
             vm.errorMessages = [];
             vm.mobileNumber = mobileNumber;
             vm.email = email;
-            vm.isSeller = isSeller;
+            vm.isDrivingSchool = isDrivingSchool;
             //geoLocation();
             vm.isOtpCreated = hasError;
         }
@@ -157,7 +157,7 @@
             vm.showMessage = false;
             vm.errorMessages = [];
             if (!vm.mobileNumber) vm.errorMessages.push('Enter mobile number.');
-            if (!vm.email && vm.isSeller == true) vm.errorMessages.push('Enter email.');
+            if (!vm.email && vm.isDrivingSchool == true) vm.errorMessages.push('Enter email.');
             if (vm.errorMessages.length > 0) return;
 
             return OTPService.createLoginOtp(vm.mobileNumber).then(function (response) {
@@ -167,7 +167,7 @@
             });
         }
 
-        function onSellerChecked() {
+        function onDrivingSchoolChecked() {
 
         }
 

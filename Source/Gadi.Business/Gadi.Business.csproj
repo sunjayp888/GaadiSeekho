@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
@@ -66,9 +67,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\DocumentCategory.cs" />
+    <Compile Include="Enum\OtpReason.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\ValidationExtensions.cs" />
+    <Compile Include="Helpers\ConfigHelper.cs" />
+    <Compile Include="Helpers\GenerateOtpHelper.cs" />
     <Compile Include="Interfaces\IAuthorizationBusinessService.cs" />
     <Compile Include="Interfaces\ICacheProvider.cs" />
     <Compile Include="Interfaces\ICarBusinessService.cs" />
@@ -78,18 +83,30 @@
     <Compile Include="Interfaces\IDriverFeedbackBusinessService.cs" />
     <Compile Include="Interfaces\IDrivingSchoolBusinessService.cs" />
     <Compile Include="Interfaces\IDrivingSchoolCarBusinessSerivce.cs" />
+    <Compile Include="Interfaces\IOtpBusinessService.cs" />
+    <Compile Include="Interfaces\IPersonnelBusinessService.cs" />
     <Compile Include="Interfaces\ISchoolBusinessService.cs" />
+    <Compile Include="Interfaces\ISmsBusinessService.cs" />
     <Compile Include="Interfaces\IStudentBusinessService.cs" />
     <Compile Include="Interfaces\ITemplateBusinessService.cs" />
     <Compile Include="MemoryCacheProvider.cs" />
+    <Compile Include="Models\AspNetUserMobileOtp.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CarGrid.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\DocumentCategory.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\DriverFeedback.cs" />
+    <Compile Include="Models\DriverFeedbackGrid.cs" />
     <Compile Include="Models\DriverGrid.cs" />
     <Compile Include="Models\DrivingSchool.cs" />
+    <Compile Include="Models\DrivingSchoolCarGrid.cs" />
     <Compile Include="Models\DrivingSchoolGrid.cs" />
+    <Compile Include="Models\DrivingSchoolRatingAndReview.cs" />
+    <Compile Include="Models\HtmlEmail.cs" />
+    <Compile Include="Models\Personnel.cs" />
+    <Compile Include="Models\PersonnelCreatedEmail.cs" />
+    <Compile Include="Models\PersonnelDocument.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentGrid.cs" />
     <Compile Include="Models\ValidationResult.cs" />
@@ -101,6 +118,9 @@
     <Compile Include="Services\CarBusinessService.cs" />
     <Compile Include="Services\DocumentBusinessService.cs" />
     <Compile Include="Services\DrivingSchoolCarBusinessService.cs" />
+    <Compile Include="Services\OtpBusinessService.cs" />
+    <Compile Include="Services\PersonnelBusinessService.cs" />
+    <Compile Include="Services\SmsBusinessService.cs" />
     <Compile Include="Services\StudentBusinessService.cs" />
   </ItemGroup>
   <ItemGroup>

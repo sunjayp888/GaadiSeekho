@@ -16,7 +16,7 @@
         vm.orderBy = new OrderBy;
         vm.order = order;
         vm.orderClass = orderClass;
-        vm.viewPersonnelProfile = viewPersonnelProfile;
+        vm.editDriver = editDriver;
         vm.searchDrivers = searchDrivers;
         vm.searchKeyword = "";
         vm.searchMessage = "";
@@ -24,10 +24,14 @@
         vm.initialise = initialise;
 
         function initialise() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             order("Name");
         }
 
         function retrieveDrivers() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             return DriverService.retrieveDrivers(vm.paging, vm.orderBy)
                 .then(function (response) {
                     vm.drivers = response.data.Items;
@@ -39,6 +43,8 @@
         }
 
         function searchDrivers(searchKeyword) {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             vm.searchKeyword = searchKeyword;
             return DriverService.searchDriver(vm.searchKeyword, vm.paging, vm.orderBy)
                 .then(function (response) {
@@ -69,8 +75,8 @@
             return OrderService.orderClass(vm.orderBy, property);
         }
 
-        function viewPersonnelProfile(driverId) {
-            $window.location.href = "/Driver/View/" + driverId;
+        function editDriver(driverId) {
+            $window.location.href = "/Driver/" + driverId + "/Edit";
         }
 
     }

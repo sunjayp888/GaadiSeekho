@@ -13,6 +13,7 @@ namespace Gadi.Data.Entities
         public DrivingSchool()
         {
             DrivingSchoolCars = new HashSet<DrivingSchoolCar>();
+            DrivingSchoolRatingAndReviews = new HashSet<DrivingSchoolRatingAndReview>();
             CreatedDate = DateTime.UtcNow;
         }
 
@@ -48,7 +49,14 @@ namespace Gadi.Data.Entities
         [Column(TypeName = "datetime2")]
         public DateTime CreatedDate { get; set; }
 
+        public double? Latitude { get; set; }
+
+        public double? Longitude { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DrivingSchoolRatingAndReview> DrivingSchoolRatingAndReviews { get; set; }
     }
 }

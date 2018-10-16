@@ -28,11 +28,16 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active">
-                    <a href="index.html">
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href='@Url.Action("Index", "Home")'>Home</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li>
@@ -46,7 +51,51 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">person</i>
+                    <span>Driving Schools</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href='@Url.Action("Index", "DrivingSchool")'>Driving Schools</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">person</i>
+                    <span>Driver Feedbacks</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href='@Url.Action("Index", "DriverFeedback")'>Driver Feedbacks</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">person</i>
+                    <span>Drivers</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href='@Url.Action("Index", "Driver")'>Drivers</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">person</i>
+                    <span>Cars</span>
+                </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href='@Url.Action("Index", "Car")'>Cars</a>
+                    </li>
+                </ul>
+            </li>
+                @*<li>
                     <a href="pages/helper-classes.html">
                         <i class="material-icons">layers</i>
                         <span>Helper Classes</span>
@@ -364,7 +413,7 @@
                         <i class="material-icons col-light-blue">donut_large</i>
                         <span>Information</span>
                     </a>
-                </li>
+                </li>*@
             </ul>
         </div>
         <!-- #Menu -->

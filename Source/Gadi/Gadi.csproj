@@ -262,7 +262,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\DrivingSchoolController.cs" />
+    <Compile Include="Controllers\OTPController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\DataTableToExcel.cs" />
     <Compile Include="Extensions\FileExtensions.cs" />
@@ -5090,6 +5092,7 @@
     <Content Include="Content\css\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Content\Images\DrivingTrainingSchool.jpg" />
     <Content Include="Content\Images\imageedit_1_3018079433.png" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\css\font-awesome.css" />
@@ -5135,8 +5138,10 @@
     <Content Include="Scripts\Angular\Services\CarService.js" />
     <Content Include="Scripts\Angular\Services\DriverFeedbackService.js" />
     <Content Include="Scripts\Angular\Services\DriverService.js" />
+    <Content Include="Scripts\Angular\Services\GoogleService.js" />
     <Content Include="Scripts\Angular\Services\OrderService.js" />
     <Content Include="Scripts\Angular\Services\DrivingSchoolService.js" />
+    <Content Include="Scripts\Angular\Services\OTPService.js" />
     <Content Include="Scripts\Angular\Services\StudentService.js" />
     <Content Include="Scripts\Angular\Templates\PincodeModal.html" />
     <Content Include="Scripts\App\angular-daterangepicker.js" />
@@ -5192,6 +5197,8 @@
     <Folder Include="Scripts\Filters\" />
     <Folder Include="Scripts\Prototypes\" />
     <Folder Include="Scripts\Services\" />
+    <Folder Include="Views\OTPController\" />
+    <Folder Include="Views\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -5948,6 +5955,16 @@
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Student\_Student.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\DrivingSchool\_DrivingSchool.cshtml" />
+    <Content Include="Views\DrivingSchool\Edit.cshtml" />
+    <Content Include="Views\DriverFeedback\Edit.cshtml" />
+    <Content Include="Views\DriverFeedback\_DriverFeedback.cshtml" />
+    <Content Include="Views\Driver\_Driver.cshtml" />
+    <Content Include="Views\Driver\Edit.cshtml" />
+    <Content Include="Views\Car\_Car.cshtml" />
+    <Content Include="Views\Car\Edit.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\DrivingSchool\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

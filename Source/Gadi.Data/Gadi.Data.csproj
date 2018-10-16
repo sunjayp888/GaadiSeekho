@@ -63,6 +63,7 @@
     <Compile Include="Entities\AspNetUser.cs" />
     <Compile Include="Entities\AspNetUserClaim.cs" />
     <Compile Include="Entities\AspNetUserLogin.cs" />
+    <Compile Include="Entities\AspNetUserMobileOtp.cs" />
     <Compile Include="Entities\AspNetUserPermission.cs" />
     <Compile Include="Entities\AspNetUserRole.cs" />
     <Compile Include="Entities\AspNetUsersAlertSchedule.cs" />
@@ -73,10 +74,16 @@
     <Compile Include="Entities\DocumentType.cs" />
     <Compile Include="Entities\Driver.cs" />
     <Compile Include="Entities\DriverFeedback.cs" />
+    <Compile Include="Entities\DriverFeedbackGrid.cs" />
     <Compile Include="Entities\DriverGrid.cs" />
     <Compile Include="Entities\DrivingSchool.cs" />
     <Compile Include="Entities\DrivingSchoolCar.cs" />
+    <Compile Include="Entities\DrivingSchoolCarFee.cs" />
+    <Compile Include="Entities\DrivingSchoolCarGrid.cs" />
     <Compile Include="Entities\DrivingSchoolGrid.cs" />
+    <Compile Include="Entities\DrivingSchoolRatingAndReview.cs" />
+    <Compile Include="Entities\Personnel.cs" />
+    <Compile Include="Entities\PersonnelDocument.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\StudentGrid.cs" />
     <Compile Include="Entities\Template.cs" />
@@ -94,6 +101,8 @@
     <Compile Include="Interfaces\IDrivingSchoolDataService.cs" />
     <Compile Include="Interfaces\IGadiDataService.cs" />
     <Compile Include="Interfaces\IGenericDataService.cs" />
+    <Compile Include="Interfaces\IOtpDataService.cs" />
+    <Compile Include="Interfaces\IPersonnelDataService.cs" />
     <Compile Include="Interfaces\IStudentDataService.cs" />
     <Compile Include="Interfaces\ITemplateDataService.cs" />
     <Compile Include="Models\GadiDatabaseFactory.cs" />
@@ -102,6 +111,8 @@
     <Compile Include="Services\AuthorizationDataService.cs" />
     <Compile Include="Services\DriverDataService.cs" />
     <Compile Include="Services\DriverFeedbackDataService.cs" />
+    <Compile Include="Services\OtpDataService.cs" />
+    <Compile Include="Services\PersonnelDataService.cs" />
     <Compile Include="Services\StudentDataService.cs" />
     <Compile Include="Services\DrivingSchoolCarDataService.cs" />
     <Compile Include="Services\CarDataService.cs" />

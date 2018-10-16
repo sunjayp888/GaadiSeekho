@@ -25,10 +25,14 @@
         vm.editStudent = editStudent;
 
         function initialise() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             order("Forenames");
         }
 
         function retrieveStudents() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             return StudentService.retrieveStudents(vm.paging, vm.orderBy)
                 .then(function (response) {
                     vm.students = response.data.Items;
@@ -40,6 +44,8 @@
         }
 
         function searchStudents(searchKeyword) {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             vm.searchKeyword = searchKeyword;
             return StudentService.searchStudent(vm.searchKeyword, vm.paging, vm.orderBy)
                 .then(function (response) {

@@ -10,7 +10,7 @@
     function DrivingSchoolService($http) {
         var service = {
             retrieveDrivingSchools: retrieveDrivingSchools,
-            searchPersonnel: searchPersonnel
+            searchDrivingSchools: searchDrivingSchools
         };
 
         return service;
@@ -24,8 +24,8 @@
             return $http.post(url, data);
         }
 
-        function searchPersonnel(SearchKeyword, Paging, OrderBy) {
-            var url = "/Personnel/Search",
+        function searchDrivingSchools(SearchKeyword, Paging, OrderBy) {
+            var url = "/DrivingSchool/Search",
                 data = {
                     searchKeyword: SearchKeyword,
                     paging: Paging,
@@ -33,6 +33,6 @@
                 };
 
             return $http.post(url, data);
-        }
+        } 
     }
 })();

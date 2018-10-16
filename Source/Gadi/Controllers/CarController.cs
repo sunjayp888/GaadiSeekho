@@ -13,7 +13,7 @@ using Microsoft.Owin.Security.Authorization;
 
 namespace Gadi.Controllers
 {
-    [RoutePrefix("DrivingSchool")]
+    [RoutePrefix("Car")]
     public class CarController : BaseController
     {
         private readonly ICarBusinessService _carBusinessService;
@@ -78,15 +78,15 @@ namespace Gadi.Controllers
             }
             catch (Exception ex)
             {
-                return this.JsonNet(""); ;
+                return this.JsonNet("");
             }
         }
 
-        //[HttpPost]
-        //[Route("Search")]
-        //public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
-        //{
-        //    return this.JsonNet(await _carBusinessService.Search(searchKeyword, orderBy, paging));
-        //}
+        [HttpPost]
+        [Route("Search")]
+        public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
+        {
+            return this.JsonNet(await _carBusinessService.Search(searchKeyword, orderBy, paging));
+        }
     }
 }

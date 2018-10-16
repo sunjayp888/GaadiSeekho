@@ -1,41 +1,166 @@
 ﻿@model Gadi.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = null;
 }
 
-<h2>@ViewBag.Title.</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>GadiSeekho | Register</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+    <!-- Waves Effect Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.css" rel="stylesheet" />
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <!-- Animation Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="signup-page">
+    <div ng-cloak class="signup-box" ng-app="Gadi">
+        <div class="logo">
+            <a href="javascript:void(0);">GadiSeekho<b></b></a>
+            <small>@*Admin BootStrap Based - Material Design*@</small>
+        </div>
+        <div class="card" ng-controller="RegisterController as model" ng-init="model.initialise('@Model.HasError.ToString().ToLower()','@Model.MobileNumber','@Model.Email','@Model.IsDrivingSchool.ToString().ToLower()')">
+            <div class="body">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "sign_up" }))
+            {
+                    @Html.AntiForgeryToken()
+                    @*<div class="form-group alert alert-danger" ng-if="@Model.HasError.ToString().ToLower() && !model.errorMessages.length>0">
+                            @Html.ValidationSummary(false, null, new { @class = "" })
+                        </div>
+                        <div class="alert alert-danger alert-dismissable" ng-if="model.errorMessages.length>0">
+                            <ul>
+                                <li ng-repeat="message in model.errorMessages track by $index"><span ng-bind="message"></span></li>
+                            </ul>
+                        </div>*@
+                    <div class="msg">Register a new membership</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control", @placeholder = "Mobile Number", @ng_model = "model.mobileNumber" })
+                            @Html.ValidationMessageFor(m => m.MobileNumber, "", new { @class = "text-danger" })
+                            @*<input type="text" class="form-control" name="namesurname" placeholder="Name Surname" required autofocus>*@
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="model.isDrivingSchool==true">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @ng_model = "model.email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="model.isOtpCreated==true">
+                        <span class="input-group-addon">
+                            <i class="material-icons">textsms</i>
+                        </span>
+                        <div class="form-line">
+                            @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                            @Html.TextBoxFor(m => m.OTP, new { @class = "form-control", @placeholder = "OTP", @ng_model = "model.OTP" })
+                            @Html.ValidationMessageFor(m => m.OTP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="model.isOtpCreated==true">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            @*<input type="password" class="form-control" name="password" minlength="6" placeholder="Password" required>*@
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="model.isOtpCreated==true">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "ConfirmPassword" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                            @*<input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>*@
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="model.isDrivingSchool==true && model.isOtpCreated==true">
+                        <span class="input-group-addon">
+                            <i class="material-icons">location_on</i>
+                        </span>
+                        <div class="form-line">
+                            @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                            @Html.TextBoxFor(m => m.Pincode, new { @class = "form-control", @placeholder = "Pincode", ng_model = "model.pinCode" })
+                            @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">*@
+
+                    @*</div>*@
+                    <p class="text-muted text-left">
+                        <small>
+                            <a ng-if="model.isDrivingSchool==true && model.isOtpCreated==true" ng-click="model.addPincode();" id="findZipCode">&nbsp;&nbsp;&nbsp; Get pincode from current location</a>
+                        </small>
+                    </p>
+                    <p class="text-muted text-left">
+                        <a ng-if="model.isOtpCreated==true" ng-click="model.createLoginOtp(model.mobileNumber)">&nbsp;&nbsp;&nbsp; ReSend OTP</a>
+                    </p>
+                    <input type="checkbox" name="IsDrivingSchool" id="IsDrivingSchool" class="filled-in chk-col-pink" ng-change="model.onDrivingSchoolChecked()" , ng-model="model.isDrivingSchool">
+                    <label for="IsDrivingSchool">Driving School</label>
+                    <input name="IsDrivingSchool" type="hidden" value="false" />
+                    @*<div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">drive_eta</i>
+                            </span>
+                            @Html.CheckBoxFor(m => m.IsDrivingSchool, new { @class = "filled-in chk-col-orange", ng_change = "model.onDrivingSchoolChecked()", ng_model = "model.isDrivingSchool", name = "terms", id = "terms", type = "checkbox" })
+                            @Html.ValidationMessageFor(m => m.IsDrivingSchool, "", new { @class = "text-danger" })
+                            <label> Driving School</label>
+                        </div>*@
+                    <button ng-if="!(model.isOtpCreated==true)" type="button" ng-click="model.createLoginOtp(model.mobileNumber)" class="btn btn-block btn-lg bg-pink waves-effect">Next</button>
+                    <button ng-if="model.isOtpCreated==true" type="submit" class="btn btn-block btn-lg bg-pink waves-effect">Register</button>
+
+                    <p class="text-muted text-center">
+                        <small>Already have an account?</small>
+                    </p>
+                    <div class="m-t-25 m-b--5 align-center">
+                        @*<a href="sign-in.html">You already have a membership?</a>*@
+                        <a href="@Url.Action("Login", "Account")">You already have a membership?</a>
+                    </div>
+                    <input type="hidden" name="Latitude" value="{{model.latitude}}" />
+                    <input type="hidden" name="Longitude" value="{{model.longitude}}" />
+                    @*<button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>*@
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="~/bower_components/adminbsb-materialdesign/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="~/bower_components/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.js"></script>
+    <!-- Validation Plugin Js -->
+    <script src="~/bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Custom Js -->
+    <script src="~/bower_components/adminbsb-materialdesign/js/admin.js"></script>
+    <script src="~/bower_components/adminbsb-materialdesign/js/pages/examples/sign-in.js"></script>
+</body>
+
+</html>
+@Scripts.Render("~/Scripts/bower")
+@Scripts.Render("~/Scripts/Application")
