@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Google Maps | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Waves Effect Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/css/style.css" rel="stylesheet" />
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    @*<link href="../../css/themes/all-themes.css" rel="stylesheet" />*@
+</head>
+<body class="theme-red">
+    @*<div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            Google Maps
+            <div class="block-header">
+                <h2>
+                    GOOGLE MAPS
+                    <small>Taken from <a href="https://developers.google.com/maps/" target="_blank">developers.google.com/maps</a> & <a href="https://hpneo.github.io/gmaps/" target="_blank">hpneo.github.io/gmaps</a></small>
+                </h2>
+            </div>
+            <div class="alert alert-warning">
+                You need to get <b>Google Map API Key</b> for display maps with <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" class="alert-link" target="_blank">this link</a> (Also you can find documentation on same page).
+            </div>
+
+           
+        </div>
+    </div>*@
+    <section class="content">
+        <!-- Markers -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header bg-amber">
+                        <h2>
+                            Your Current Location
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div id="gmap_markers" class="gmap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Markers -->
+    </section>
+   
+
+            
+
+
+    <div class="row clearfix" ng-controller="HomeController as model" ng-init="model.retrieveDrivingSchools()">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools" ng-click="model.viewDrivingSchool(drivingSchool.DrivingSchoolId)">
+            <div class="card">
+                <div class="header">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6">
+                            <h2>{{drivingSchool.Name}}</h2><small>{{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} {{drivingSchool.Pincode}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="thumbnail">
+                                <img src="~/Content/Images/DrivingTrainingSchool.jpg" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-9">
+                            <div class="thumbnail">
+                                @*<img src="http://placehold.it/500x300">*@
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                                        text ever since the 1500s
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <button type="button" class="btn bg-amber btn-block btn-lg waves-effect">
+                                    With License
+                                    <br />
+                                    ₹ 1500/-
+                                </button>
+                            </div>
+                            <div class="col-sm-6 col-md-3 pull-right">
+                                <button type="button" class="btn bg-amber btn-block btn-lg waves-effect">
+                                    Without License
+                                    <br />
+                                    ₹ 1000/-
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<button type="button" class="btn bg-amber btn-block btn-lg waves-effect"> Show More </button>*@
+    </div>
+</body>
+</html>

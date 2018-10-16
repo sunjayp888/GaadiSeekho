@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gadi.Business.Models
 {
@@ -22,5 +19,6 @@ namespace Gadi.Business.Models
         public int Pincode { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public virtual ICollection<Data.Entities.DriverFeedback> DriverFeedbacks { get; set; }
     }
 }

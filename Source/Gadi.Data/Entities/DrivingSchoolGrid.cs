@@ -52,6 +52,10 @@ namespace Gadi.Data.Entities
         [Column(Order = 5, TypeName = "datetime2")]
         public DateTime CreatedDate { get; set; }
 
+        public double? Latitude { get; set; }
+
+        public double? Longitude { get; set; }
+
         [StringLength(1180)]
         public string SearchField { get; set; }
     }

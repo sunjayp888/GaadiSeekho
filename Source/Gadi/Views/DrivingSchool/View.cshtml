@@ -1,0 +1,106 @@
+﻿@model Gadi.Models.DrivingSchoolViewModel
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header bg-amber">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>@string.Format("{0} {1} {2} {3} {4} - {5}", Model.DrivingSchool.Name, Model.DrivingSchool.Address1, Model.DrivingSchool.Address2, Model.DrivingSchool.Address3, Model.DrivingSchool.Address4, Model.DrivingSchool.Pincode)</h2><small> </small>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="~/Content/Images/DrivingTrainingSchool.jpg" />
+                            @*<div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                                        text ever since the 1500s
+                                    </p>
+                                </div>*@
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-9">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>@string.Format("{0} {1} {2} {3} {4} - {5}", Model.DrivingSchool.Name, Model.DrivingSchool.Address1, Model.DrivingSchool.Address2, Model.DrivingSchool.Address3, Model.DrivingSchool.Address4, Model.DrivingSchool.Pincode)</h3>
+                                @Model.DrivingSchoolRatingAndReviewList.FirstOrDefault().Rating
+                                <p>Address : @string.Format("{0} {1} {2} {3} - {4}", Model.DrivingSchool.Address1, Model.DrivingSchool.Address2, Model.DrivingSchool.Address3, Model.DrivingSchool.Address4, Model.DrivingSchool.Pincode)</p>
+                                <p>Contact No. : @Model.DrivingSchool.Mobile</p>
+                                <p>Email : @Model.DrivingSchool.EmailId</p>
+                                <p>Number of Cars : @Model.DrivingSchoolCarGrid.Count</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header bg-amber">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>Cars</h2>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="body">
+                <div class="row">
+                    @foreach (var item in Model.DrivingSchoolCarGrid)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="header">
+                                    <div class="thumbnail">
+                                        <img src="~/Content/Images/DrivingTrainingSchool.jpg" />
+                                    </div>
+                                </div>
+                                <div class="body bg-amber">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>Car : @item.CarName</p>
+                                            <p>Transmission Type : @item.TransmissionType</p>
+                                            <br />
+                                            <div class="col-lg-6">
+                                                <button type="button" class="btn bg-white btn-block btn-lg waves-effect col-black">
+                                                    With License
+                                                    <br />
+                                                    ₹ @item.WithLicenseFee/-
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" class="btn bg-black btn-block btn-lg waves-effect">
+                                                    Without License
+                                                    <br />
+                                                    ₹ @item.WithoutLicenseFee/-
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <button type="button" class="btn bg-green btn-block btn-lg waves-effect">Join</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

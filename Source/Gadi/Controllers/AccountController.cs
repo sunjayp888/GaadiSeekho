@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,52 +7,60 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Configuration.Interface;
+using Gadi.Business.Enum;
+using Gadi.Business.Interfaces;
+using Gadi.Business.Models;
+using Gadi.Common.Enum;
+using Gadi.Extensions;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Gadi.Models;
 using Gadi.Models.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Gadi.Controllers
 {
     [Authorize]
     public class AccountController : BaseController
     {
-
-        public AccountController()
+        //private readonly IEmailBusinessService _emailBusinessService;
+        private readonly IOtpBusinessService _otpBusinessService;
+        private IPersonnelBusinessService PersonnelBusinessService { get; set; }
+        public AccountController(IConfigurationManager configurationManager, IOtpBusinessService otpBusinessService,IPersonnelBusinessService personnelBusinessService) : base(configurationManager)
         {
+            //UserManager = userManager;
+            //SignInManager = signInManager;
+            _otpBusinessService = otpBusinessService;
+            PersonnelBusinessService = personnelBusinessService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IConfigurationManager configurationManager) : base(configurationManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+
 
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
 
-        public ApplicationSignInManager SignInManager
+        private ApplicationSignInManager SignInManager
         {
             get
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
+            set 
             { 
                 _signInManager = value; 
             }
         }
 
-        public ApplicationUserManager UserManager
+        private ApplicationRoleManager RoleManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
             }
-            private set
+            set
             {
-                _userManager = value;
+                _roleManager = value;
             }
         }
 
@@ -71,27 +80,44 @@ namespace Gadi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
-            }
+                var user = await UserManager.FindAsync(model.UserName, model.Password);
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                if (model.UserName.IsValidEmail())
+                {
+                    var userByEmail = await UserManager.FindByEmailAsync(model.UserName);
+                    if (userByEmail == null)
+                    {
+                        ModelState.AddModelError("", "Invalid username or password.");
+                        return View(model);
+                    }
+                    model.UserName = userByEmail.UserName;
+                    user = await UserManager.FindAsync(userByEmail.UserName, model.Password);
+
+                }
+                if (user != null)
+                {
+
+                    var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            return RedirectToLocal(returnUrl);
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.RequiresVerification:
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Invalid login attempt.");
+                            return View(model);
+                    }
+
+                }
+                ModelState.AddModelError("", "Invalid username or password.");
             }
+            return View(model);
         }
 
         //
@@ -142,7 +168,7 @@ namespace Gadi.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return View(new RegisterViewModel());
         }
 
         //
@@ -152,27 +178,63 @@ namespace Gadi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            model.IsDrivingSchool = true;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                model.OtpCreated = true;
+                var otpValidationResult = await _otpBusinessService.IsValidOtp(Convert.ToInt32(model.OTP), Convert.ToDecimal(model.MobileNumber), (int)OtpReason.Login, DateTime.UtcNow);
+                if (!otpValidationResult.Succeeded)
+                {
+                    model.HasError = true;
+                    ModelState.AddModelError("", otpValidationResult.Message);
+                    return View(model);
+                }
+                var user = new ApplicationUser { UserName = model.MobileNumber, Email = model.Email };
+                var role = model.IsDrivingSchool? Role.DrivingSchool.ToString() : Role.Personnel.ToString();
+                var roleId = RoleManager.Roles.FirstOrDefault(r => r.Name == role).Id;
+                user.Roles.Add(new IdentityUserRole { UserId = user.Id, RoleId = roleId });
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    model.AspNetUserId = user.Id;
+                    var personnelResult = await CreatePersonnel(model);
+                    if (!personnelResult.Succeeded)
+                    {
+                        model.HasError = true;
+                        foreach (var error in personnelResult.Errors)
+                        {
+                            ModelState.AddModelError("", error);
+                        }
+                        return View(model);
+                    }
+                    model.PersonnelId = personnelResult.Entity.PersonnelId;
+                    user.PersonnelId = personnelResult.Entity.PersonnelId;
+                    await UserManager.UpdateAsync(user);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    //  await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    return RedirectToAction("Login", "Account");
                 }
+                model.HasError = true;
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private async Task<ValidationResult<Personnel>> CreatePersonnel(RegisterViewModel model)
+        {
+            var personnel = new Personnel()
+            {
+                Email = model.Email,
+                Forenames = model.FirstName,
+                Surname = model.LastName,
+                Postcode = model.Pincode,
+                UserId = model.AspNetUserId,
+                Mobile = model.MobileNumber
+            };
+            return await PersonnelBusinessService.CreatePersonnel(personnel);
         }
 
         //
@@ -184,8 +246,24 @@ namespace Gadi.Controllers
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            ApplicationUser user = this.UserManager.FindById(userId);
+            if (user == null)
+                return View("Error");
+
+            if (user.Id == userId)
+            {
+                user.EmailConfirmed = true;
+                await UserManager.UpdateAsync(user);
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Confirm", "Account", new { email = user.Email });
+        }
+
+        [AllowAnonymous]
+        public ActionResult Confirm(string email)
+        {
+            ViewBag.Email = email; return View();
         }
 
         //
@@ -214,10 +292,40 @@ namespace Gadi.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //---------------------------------------------------------------------
+                var validationResult = new ValidationResult();
+                var forgotEmail = new PersonnelCreatedEmail()
+                {
+                    FullName = user.Email,
+                    CallBackUrl = callbackUrl,
+                    Subject = "Confirm your account",
+                    TemplateName = "ForgotPassword",
+                    ToAddress = new List<string>() { model.Email },
+                    FromAddress = "sunjayp88@gmail.com"
+                };
+                try
+                {
+                    //await _personnelBusinessService.SendForgotMail(forgotEmail);
+                    validationResult.Succeeded = true;
+                    return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                }
+                catch (Exception ex)
+                {
+                    validationResult.Succeeded = false;
+                    //return validationResult;
+                }
+                //var userEmailData = new EmailData()
+                //{
+                //    BCCAddressList = new List<string> { "sunjayp88@gmail.com" },
+                //    Body = String.Format("To reset your password by clicking < a href =\"" + callbackUrl + "\">here</a>"),
+                //    Subject = "Reset Password (Mumbile.com)",
+                //    IsHtml = true,
+                //    ToAddressList = new List<string> { user.Email }
+                //};
+                //_emailBusinessService.SendEmail(userEmailData);
+                //return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -410,10 +518,10 @@ namespace Gadi.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (UserManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    UserManager.Dispose();
+                    UserManager = null;
                 }
 
                 if (_signInManager != null)
@@ -428,7 +536,7 @@ namespace Gadi.Controllers
 
         #region Helpers
         // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        private const string XsrfKey = "Inland12!";
 
         private IAuthenticationManager AuthenticationManager
         {

@@ -9,5 +9,7 @@ namespace Gadi.Models
     public class DrivingSchoolViewModel:BaseViewModel
     {
         public DrivingSchool DrivingSchool { get; set; }
+        public List<DrivingSchoolCarGrid> DrivingSchoolCarGrid { get; set; }
+        public List<DrivingSchoolRatingAndReview> DrivingSchoolRatingAndReviewList { get; set; }
     }
 }

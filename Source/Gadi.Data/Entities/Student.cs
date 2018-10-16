@@ -11,7 +11,7 @@ namespace Gadi.Data.Entities
     {
         public Student()
         {
-            CreatedDate = DateTime.UtcNow;
+            CreatedDate = DateTime.UtcNow.Date;
         }
 
         public int StudentId { get; set; }

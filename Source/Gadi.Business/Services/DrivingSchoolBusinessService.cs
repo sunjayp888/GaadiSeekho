@@ -66,7 +66,7 @@ namespace Gadi.Business.Services
 
         public async Task<DrivingSchool> RetrieveDrivingSchool(int drivingSchoolId)
         {
-            var result = await _dataService.RetrieveAsync<Data.Entities.DrivingSchool>(a =>a.DrivingSchoolId == drivingSchoolId);
+            var result = await _dataService.RetrieveAsync<Data.Entities.DrivingSchool>(a => a.DrivingSchoolId == drivingSchoolId);
             var driver = _mapper.MapToList<DrivingSchool>(result);
             return driver.FirstOrDefault();
         }
@@ -77,12 +77,26 @@ namespace Gadi.Business.Services
             return _mapper.MapToPagedResult<DrivingSchool>(data);
         }
 
+        public async Task<List<Models.DrivingSchoolCarGrid>> RetrieveDrivingSchoolCarGridsByDrivingSchoolId(int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null)
+        {
+            var data = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolCarGrid>(e => e.DrivingSchoolId == drivingSchoolId, orderBy, paging);
+            var result = data.Items.ToList();
+            return _mapper.MapToList<Models.DrivingSchoolCarGrid>(result);
+        }
+
+        public async Task<List<Models.DrivingSchoolRatingAndReview>> RetrieveDrivingSchoolRatingAndReviewByDrivingSchoolId(int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null)
+        {
+            var data = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolRatingAndReview>(e => e.DrivingSchoolId == drivingSchoolId, orderBy, paging);
+            var result = data.Items.ToList();
+            return _mapper.MapToList<Models.DrivingSchoolRatingAndReview>(result);
+        }
+
         public async Task<PagedResult<Models.DrivingSchoolGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
         {
             var predicate = PredicateBuilder.New<Data.Entities.DrivingSchoolGrid>(true);
             if (!string.IsNullOrEmpty(term))
                 predicate = predicate.And(a => a.SearchField.ToLower().Contains(term.ToLower()));
-            var drivingSchools= await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolGrid>(predicate, orderBy, paging);
+            var drivingSchools = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolGrid>(predicate, orderBy, paging);
             return _mapper.MapToPagedResult<Models.DrivingSchoolGrid>(drivingSchools);
         }
     }

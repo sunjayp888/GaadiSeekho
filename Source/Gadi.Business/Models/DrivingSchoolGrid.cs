@@ -15,6 +15,8 @@ namespace Gadi.Business.Models
         public string Telephone { get; set; }
         public string EmailId { get; set; }
         public DateTime CreatedDate { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
         public string SearchField { get; set; }
     }
 }

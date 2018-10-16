@@ -1,0 +1,109 @@
+﻿@using Gadi.Extensions
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" ng-controller="DriverFeedbackController as model" ng-init="model.initialise()">
+    <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="col-lg-1">
+                                <i class="material-icons">person</i>
+                            </div>
+                            <div class="col-lg-5">
+                                <h2><span> Driver Feedbacks</span> </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+
+                    @if (User.IsSuperAdmin())
+                    {
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a class="btn btn-primary btn-lg">
+                                    <i class="fa fa-user"></i> Create
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+                        <div class="input-group">
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p class="text-muted font-13 m-b-30">
+                            </p>
+                            <div id="datatable_wrapper" class="dataTables_wrapper form-inline">
+                                <div ng-if="model.driverFeedbacks.length !=0">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            @Html.Partial("Pagination/_pageSize")
+                                        </div>
+                                        @*<div class="col-xs-8 col-sm-6 align-right">
+                                            <input type="text" ng-model="searchField" ng-keyup="$event.keyCode == 13 && model.searchDriverFeedbacks(searchField)" class="form-control form-control-w-50" placeholder="Search for Driver Feedbacks...">
+                                            <button class="btn bg-amber waves-effect align-right" ng-click="model.searchDriverFeedbacks(searchField)" type="button">Go!</button>
+                                        </div>*@
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <table wt-responsive-table class="table table-striped table-bordered table-hover dataTable" role="grid" aria-describedby="datatable-fixed-header_info">
+                                                <thead>
+                                                <tr role="row">
+                                                    <th ng-click="model.order('DriverName')" ng-class="model.orderClass('DriverName')">Driver</th>
+                                                    <th ng-click="model.order('Comment')" ng-class="model.orderClass('Comment')">Comment</th>
+                                                    <th ng-click="model.order('Rating')" ng-class="model.orderClass('Rating')">Rating</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="student in model.students" class="" ng-click="$event.originalEvent.ngClickHandled">
+                                                    <td><span ng-bind="driverFeedback.DriverName"></span></td>
+                                                    <td><span ng-bind="driverFeedback.Comment"></span></td>
+                                                    <td><span ng-bind="driverFeedback.Rating"></span></td>
+                                                    <td>
+                                                        <div class="btn-group pull-right">
+                                                            <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-click="$event.originalEvent.ngClickHandled = true">
+                                                                <i class="fa fa-chevron-down font-15"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu pull-right">
+                                                                <li>
+                                                                    <a class="waves-effect waves-block" style="cursor: pointer;" ng-click="model.editDriverFeedback(driverFeedback.DriverFeedbackId)">
+                                                                        Edit Driver Feedback
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    @Html.Partial("Pagination/_pagination")
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label ng-bind="model.searchMessage"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,6 +17,7 @@ namespace Gadi.Business.Models
         public string Comment { get; set; }
         public int Rating { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int? CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
+        public virtual Driver Driver { get; set; }
     }
 }

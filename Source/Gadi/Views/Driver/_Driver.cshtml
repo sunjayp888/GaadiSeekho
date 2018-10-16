@@ -1,0 +1,153 @@
+﻿@using Gadi.Business.Extensions
+@model Gadi.Models.DriverViewModel
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.Name)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.Name, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.DrivingLicenceNumber)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.DrivingLicenceNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.DrivingLicenceNumber, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.IssuedDate)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-line">
+            <div class="form-group">
+                <daterange-picker value="@Model.Driver.IssuedDate.Formatted()" name="Driver.IssuedDate" id="Driver_IssuedDate" model="model.IssuedDate"></daterange-picker>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.ValidTill)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-line">
+            <div class="form-group">
+                <daterange-picker value="@Model.Driver.ValidTill.Formatted()" name="Driver.ValidTill" id="Driver_ValidTill" model="model.ValidTill"></daterange-picker>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.DateOfBirth)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-line">
+            <div class="form-group">
+                <daterange-picker value="@Model.Driver.DateOfBirth.Formatted()" name="Driver.DateOfBirth" id="Driver_DateOfBirth" model="model.DateOfBirth"></daterange-picker>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.Mobile)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.Mobile, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.Mobile, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.Address1)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.Address1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.Address1, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.Address2)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.Address2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.Address2, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.Address3)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.Address3, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.Address3, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.Address4)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.Address4, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.Address4, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Driver.Pincode)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Driver.Pincode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Driver.Pincode, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>

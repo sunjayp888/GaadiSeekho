@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Gadi.Business.Models;
-using Gadi.Data.Entities;
 using DocumentCategory = Gadi.Business.Models.DocumentCategory;
 
 

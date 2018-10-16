@@ -21,12 +21,17 @@
         vm.searchMessage = "";
         vm.retrieveCars = retrieveCars;
         vm.initialise = initialise;
+        vm.editCar = editCar;
 
         function initialise() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             order("Name");
         }
 
         function retrieveCars() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             return CarService.retrieveCars(vm.paging, vm.orderBy)
                 .then(function (response) {
                     vm.cars = response.data.Items;
@@ -38,6 +43,8 @@
         }
 
         function searchCars(searchKeyword) {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             vm.searchKeyword = searchKeyword;
             return CarService.searchCar(vm.searchKeyword, vm.paging, vm.orderBy)
                 .then(function (response) {
@@ -68,5 +75,8 @@
             return OrderService.orderClass(vm.orderBy, property);
         }
 
+        function editCar(carId) {
+            $window.location.href = "/Car/" + carId + "/Edit";
+        }
     }
 })();

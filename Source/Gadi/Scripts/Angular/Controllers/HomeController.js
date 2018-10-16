@@ -5,9 +5,9 @@
         .module('Gadi')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$window', 'Paging', 'OrderService', 'OrderBy', 'Order', '$uibModal'];
+    HomeController.$inject = ['$window', 'Paging', 'OrderService', 'DrivingSchoolService', 'OrderBy', 'Order', '$uibModal'];
 
-    function HomeController($window, Paging, OrderService, OrderBy, Order, $uibModal) {
+    function HomeController($window, Paging, OrderService, DrivingSchoolService, OrderBy, Order, $uibModal) {
         /* jshint validthis:true */
         var vm = this;
         var country, state, city, pinCode, map, latitude, longitude, count, pin;
@@ -33,6 +33,12 @@
         vm.createForgetPasswordOtp = createForgetPasswordOtp;
         vm.customMarkers = [];
         vm.getMarkers = getMarkers;
+        vm.initialise = initialise;
+        vm.retrieveDrivingSchools = retrieveDrivingSchools;
+        vm.drivingSchools = [];
+        vm.paging = new Paging;
+        vm.orderBy = new OrderBy;
+        vm.viewDrivingSchool = viewDrivingSchool;
         function addPincode() {
             geoLocation();
         }
@@ -193,6 +199,24 @@
             ];
 
 
+        }
+
+        function retrieveDrivingSchools() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
+            vm.orderBy.property = "Name";
+            return DrivingSchoolService.retrieveDrivingSchools(vm.paging, vm.orderBy)
+                .then(function (response) {
+                    vm.drivingSchools = response.data.Items;
+                    vm.paging.totalPages = response.data.TotalPages;
+                    vm.paging.totalResults = response.data.TotalResults;
+                    vm.searchMessage = vm.drivingSchools.length === 0 ? "No Records Found" : "";
+                    return vm.drivingSchools;
+                });
+        }
+
+        function viewDrivingSchool(drivingSchoolId) {
+            $window.location.href = "/DrivingSchool/" + drivingSchoolId + "/View";
         }
     }
 

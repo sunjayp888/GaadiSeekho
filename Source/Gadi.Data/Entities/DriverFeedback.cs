@@ -32,12 +32,8 @@ namespace Gadi.Data.Entities
         [Column(TypeName = "date")]
         public DateTime CreatedDate { get; set; }
 
-        public int? CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
 
         public virtual Driver Driver { get; set; }
-
-        public virtual DriverFeedback DriverFeedback1 { get; set; }
-
-        public virtual DriverFeedback DriverFeedback2 { get; set; }
     }
 }

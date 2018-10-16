@@ -9,7 +9,11 @@ namespace Gadi.Data.Entities
     [Table("DrivingSchoolCar")]
     public partial class DrivingSchoolCar
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public DrivingSchoolCar()
+        {
+            DrivingSchoolCarFees = new HashSet<DrivingSchoolCarFee>();
+        }
+
         public int DrivingSchoolCarId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,5 +24,8 @@ namespace Gadi.Data.Entities
         public virtual Car Car { get; set; }
 
         public virtual DrivingSchool DrivingSchool { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DrivingSchoolCarFee> DrivingSchoolCarFees { get; set; }
     }
 }

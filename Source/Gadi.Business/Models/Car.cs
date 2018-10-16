@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gadi.Data.Entities;
 
 namespace Gadi.Business.Models
 {
@@ -20,5 +21,6 @@ namespace Gadi.Business.Models
         public string EngineDescription { get; set; }
         public string TransmissionType { get; set; }
         public string CargoVolume { get; set; }
+        public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
     }
 }

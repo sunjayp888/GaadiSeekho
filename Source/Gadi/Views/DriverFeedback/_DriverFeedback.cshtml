@@ -1,0 +1,99 @@
+﻿@model Gadi.Models.DriverFeedbackViewModel
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DriverFeedback.DriverId)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.DropDownListFor(model => model.DriverFeedback.DriverId, Model.Drivers, "Select Driver", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverFeedback.DriverId, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DriverFeedback.HasYourDrivingInstructorEverBeenLateForALesson)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DriverFeedback.HasYourDrivingInstructorEverBeenLateForALesson, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverFeedback.HasYourDrivingInstructorEverBeenLateForALesson, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DriverFeedback.HasYourDrivingInstructorEverMadeYouFeelUncomfortable)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DriverFeedback.HasYourDrivingInstructorEverMadeYouFeelUncomfortable, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverFeedback.HasYourDrivingInstructorEverMadeYouFeelUncomfortable, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DriverFeedback.WouldYouRecommendThisDrivingSchoolToFriends)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DriverFeedback.WouldYouRecommendThisDrivingSchoolToFriends, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverFeedback.WouldYouRecommendThisDrivingSchoolToFriends, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DriverFeedback.DoYouThinkThisSyllabusWillMakeYouASaferDriver)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DriverFeedback.DoYouThinkThisSyllabusWillMakeYouASaferDriver, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverFeedback.DoYouThinkThisSyllabusWillMakeYouASaferDriver, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DriverFeedback.Comment)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DriverFeedback.Comment, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverFeedback.Comment, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DriverFeedback.Rating)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DriverFeedback.Rating, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverFeedback.Rating, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>

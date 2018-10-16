@@ -19,7 +19,7 @@ namespace Gadi.Controllers
         {
             _drivingSchoolBusinessService = drivingSchoolBusinessService;
         }
-        
+
         // GET: School
         [Route("")]
         public ActionResult Index()
@@ -65,6 +65,26 @@ namespace Gadi.Controllers
             return View(drivingSchoolViewModel);
         }
 
+        [HttpGet]
+        [Route("{drivingSchoolId:int}/View")]
+        public async Task<ActionResult> View(int drivingSchoolId)
+        {
+            var drivingSchool = await _drivingSchoolBusinessService.RetrieveDrivingSchool(drivingSchoolId);
+            var drivingSchoolCarGridData = await _drivingSchoolBusinessService.RetrieveDrivingSchoolCarGridsByDrivingSchoolId(drivingSchoolId);
+            var drivingSchoolRatingAndReviewList = await _drivingSchoolBusinessService.RetrieveDrivingSchoolRatingAndReviewByDrivingSchoolId(drivingSchoolId);
+            if (drivingSchool == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new DrivingSchoolViewModel()
+            {
+                DrivingSchool = drivingSchool,
+                DrivingSchoolCarGrid = drivingSchoolCarGridData,
+                DrivingSchoolRatingAndReviewList = drivingSchoolRatingAndReviewList
+            };
+            return View(viewModel);
+        }
+
         [HttpPost]
         [Route("List")]
         public async Task<ActionResult> List(Paging paging, List<OrderBy> orderBy)
@@ -76,7 +96,7 @@ namespace Gadi.Controllers
             }
             catch (Exception ex)
             {
-                return this.JsonNet(""); ;
+                return this.JsonNet("");
             }
         }
 

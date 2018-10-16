@@ -32,14 +32,14 @@ namespace Gadi.Extensions
             return principal.IsInRole(nameof(Role.Admin));
         }
 
-        public static bool IsMobileRepairAdmin(this IPrincipal principal)
+        public static bool IsDrivingSchool(this IPrincipal principal)
         {
-            return principal.IsInRole(nameof(Role.MobileRepairAdmin));
+            return principal.IsInRole(nameof(Role.DrivingSchool));
         }
 
-        public static bool IsSeller(this IPrincipal principal)
+        public static bool IsUser(this IPrincipal principal)
         {
-            return principal.IsInRole(nameof(Role.Seller));
+            return principal.IsInRole(nameof(Role.User));
         }
 
         public static bool IsSuperUserOrAdmin(this IPrincipal principal)
@@ -48,9 +48,9 @@ namespace Gadi.Extensions
             return roles.Any(r => principal.IsInRole(r));
         }
 
-        public static bool IsSuperUserOrAdminOrSeller(this IPrincipal principal)
+        public static bool IsSuperUserOrAdminOrDrivingSchool(this IPrincipal principal)
         {
-            var roles = new string[] { Role.SuperUser.ToString(), Role.Admin.ToString(), Role.Seller.ToString() };
+            var roles = new string[] { Role.SuperUser.ToString(), Role.Admin.ToString(), Role.DrivingSchool.ToString() };
             return roles.Any(r => principal.IsInRole(r));
         }
 

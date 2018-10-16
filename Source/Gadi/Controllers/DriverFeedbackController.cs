@@ -17,9 +17,11 @@ namespace Gadi.Controllers
     public class DriverFeedbackController : BaseController
     {
         private readonly IDriverFeedbackBusinessService _driverFeedbackBusinessService;
-        public DriverFeedbackController(IDriverFeedbackBusinessService driverFeedbackBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
+        private readonly IDriverBusinessService _driverBusinessService;
+        public DriverFeedbackController(IDriverFeedbackBusinessService driverFeedbackBusinessService,IDriverBusinessService driverBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
         {
             _driverFeedbackBusinessService = driverFeedbackBusinessService;
+            _driverBusinessService = driverBusinessService;
         }
 
         // GET: DriverFeedback
@@ -38,9 +40,12 @@ namespace Gadi.Controllers
             {
                 return HttpNotFound();
             }
+            var driverData = await _driverBusinessService.RetrieveDrivers();
+            var drivers = driverData.Items.ToList();
             var viewModel = new DriverFeedbackViewModel()
             {
-                DriverFeedback = driverFeedback
+                DriverFeedback = driverFeedback,
+                Drivers = new SelectList(drivers, "DriverId", "Name")
             };
             return View(viewModel);
         }
@@ -78,7 +83,7 @@ namespace Gadi.Controllers
             }
             catch (Exception ex)
             {
-                return this.JsonNet(""); ;
+                return this.JsonNet("");
             }
         }
 

@@ -77,9 +77,9 @@ namespace Gadi.App_Start
                  ));
 
             container.RegisterType<DbContext, GadiDatabase>();
-            container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
-            container.RegisterType<AccountController>(new InjectionConstructor());
+            //container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
+            //container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
+            //container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<IGenericDataService<DbContext>, EntityFrameworkGenericDataService>();
             container.RegisterType<ICacheProvider, MemoryCacheProvider>();
             container.RegisterType<IConfigurationManager, ConfigurationManagerAdapter>();

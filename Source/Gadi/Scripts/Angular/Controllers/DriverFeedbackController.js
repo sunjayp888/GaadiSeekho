@@ -20,13 +20,18 @@
         vm.searchKeyword = "";
         vm.searchMessage = "";
         vm.retrieveDriverFeedbacks = retrieveDriverFeedbacks;
+        vm.editDriverFeedback = editDriverFeedback;
         vm.initialise = initialise;
 
         function initialise() {
-            order("Name");
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
+            order("DriverFeedbackId");
         }
 
         function retrieveDriverFeedbacks() {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             return DriverFeedbackService.retrieveDriverFeedbacks(vm.paging, vm.orderBy)
                 .then(function (response) {
                     vm.driverFeedbacks = response.data.Items;
@@ -38,6 +43,8 @@
         }
 
         function searchDriverFeedbacks(searchKeyword) {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
             vm.searchKeyword = searchKeyword;
             return DriverFeedbackService.searchDriverFeedback(vm.searchKeyword, vm.paging, vm.orderBy)
                 .then(function (response) {
@@ -68,5 +75,8 @@
             return OrderService.orderClass(vm.orderBy, property);
         }
 
+        function editDriverFeedback(driverFeedbackId) {
+            $window.location.href = "/DriverFeedback/" + driverFeedbackId + "/Edit";
         }
+    }
 })();

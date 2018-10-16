@@ -78,7 +78,7 @@ namespace Gadi.Controllers
             }
             catch (Exception ex)
             {
-                return this.JsonNet(""); ;
+                return this.JsonNet("");
             }
         }
 
