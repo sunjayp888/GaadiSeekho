@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using Configuration.Interface;
 using Gadi.Business.Interfaces;
+using Gadi.Business.Models;
 using Gadi.Common.Dto;
 using Gadi.Extensions;
 using Gadi.Models;
@@ -27,6 +26,39 @@ namespace Gadi.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Route("Create")]
+        public async Task<ActionResult> Create()
+        {
+            var viewModel = new StudentViewModel()
+            {
+                Student = new Student()
+            };
+            viewModel.TitleList = new SelectList(viewModel.TitleType, "Value", "Name");
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Create")]
+        public async Task<ActionResult> Create(StudentViewModel studentViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _studentBusinessService.CreateStudent(studentViewModel.Student);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", result.Exception);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
+            return View(studentViewModel);
         }
 
         [HttpGet]
@@ -79,7 +111,7 @@ namespace Gadi.Controllers
             }
             catch (Exception ex)
             {
-                return this.JsonNet(""); ;
+                return this.JsonNet("");
             }
         }
 

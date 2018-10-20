@@ -21,6 +21,7 @@
         vm.searchMessage = "";
         vm.retrieveDrivingSchools = retrieveDrivingSchools;
         vm.editDrivingSchool = editDrivingSchool;
+        vm.viewDrivingSchool = viewDrivingSchool;
         vm.initialise = initialise;
 
         function initialise() {
@@ -77,6 +78,10 @@
 
         function editDrivingSchool(drivingSchoolId) {
             $window.location.href = "/DrivingSchool/" + drivingSchoolId + "/Edit";
+        }
+
+        function viewDrivingSchool(drivingSchoolId) {
+            $window.location.href = "/DrivingSchool/" + drivingSchoolId + "/Detail";
         }
     }
 })();

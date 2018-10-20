@@ -95,6 +95,7 @@
     <Compile Include="Models\CarGrid.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\DocumentCategory.cs" />
+    <Compile Include="Models\DocumentDetail.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\DriverFeedback.cs" />
     <Compile Include="Models\DriverFeedbackGrid.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Models\Personnel.cs" />
     <Compile Include="Models\PersonnelCreatedEmail.cs" />
     <Compile Include="Models\PersonnelDocument.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentGrid.cs" />
     <Compile Include="Models\ValidationResult.cs" />

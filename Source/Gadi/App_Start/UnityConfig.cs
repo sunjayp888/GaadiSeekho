@@ -13,6 +13,7 @@ using Gadi.Data.Models;
 using Gadi.Data.Services;
 using Configuration.Interface;
 using Configuration.Core;
+using Gadi.Business.Services;
 using Microsoft.AspNet.Identity;
 using Gadi.Models.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -94,12 +95,7 @@ namespace Gadi.App_Start
             //container.RegisterType<IAuthorizationPolicyProvider, DefaultAuthorizationPolicyProvider>();
             // container.RegisterType<IClientsAccessService, ClientsAccessService>();
             // API Clients
-            //container.RegisterType<IDocumentServiceRestClient, DocumentServiceRestClient>(
-            //    new InjectionConstructor(
-            //        new InjectionParameter<Uri>(new Uri(ConfigurationManager.AppSettings["DocumentRESTApiAddress"])),
-            //        new InjectionParameter<string>(ConfigurationManager.AppSettings["DocumentRESTUsername"]),
-            //        new InjectionParameter<string>(ConfigurationManager.AppSettings["DocumentRESTPassword"])
-            //    ));
+            container.RegisterType<IDocumentsBusinessService, DocumentBusinessService>();
             //container.RegisterType<ITemplateServiceRestClient, TemplateServiceRestClient>(
             //    new InjectionConstructor(
             //        new InjectionParameter<ICacheProvider>(container.Resolve<ICacheProvider>()),

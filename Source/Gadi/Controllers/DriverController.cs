@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Configuration.Interface;
 using Gadi.Business.Interfaces;
+using Gadi.Business.Models;
 using Gadi.Common.Dto;
 using Gadi.Extensions;
 using Gadi.Models;
@@ -27,6 +28,38 @@ namespace Gadi.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Route("Create")]
+        public async Task<ActionResult> Create()
+        {
+            var viewModel = new DriverViewModel()
+            {
+                Driver = new Driver()
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Create")]
+        public async Task<ActionResult> Create(DriverViewModel driverViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _driverBusinessService.CreateDriver(driverViewModel.Driver);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", result.Exception);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
+            return View(driverViewModel);
         }
 
         [HttpGet]

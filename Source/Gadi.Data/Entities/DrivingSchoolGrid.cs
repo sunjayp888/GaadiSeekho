@@ -56,6 +56,12 @@ namespace Gadi.Data.Entities
 
         public double? Longitude { get; set; }
 
+        public decimal? MinimumFeeWithLicense { get; set; }
+
+        public decimal? MinimumFeeWithOutLicense { get; set; }
+
+        public int? NumberOfCars { get; set; }
+
         [StringLength(1180)]
         public string SearchField { get; set; }
     }

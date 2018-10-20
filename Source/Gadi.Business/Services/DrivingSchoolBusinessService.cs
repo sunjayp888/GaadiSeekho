@@ -11,6 +11,7 @@ using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
 using LinqKit;
 using DrivingSchool = Gadi.Business.Models.DrivingSchool;
+using DrivingSchoolGrid = Gadi.Business.Models.DrivingSchoolGrid;
 
 
 namespace Gadi.Business.Services
@@ -71,10 +72,10 @@ namespace Gadi.Business.Services
             return driver.FirstOrDefault();
         }
 
-        public async Task<PagedResult<DrivingSchool>> RetrieveDrivingSchools(List<OrderBy> orderBy = null, Paging paging = null)
+        public async Task<PagedResult<DrivingSchoolGrid>> RetrieveDrivingSchools(List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var data = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchool>(e => true, orderBy, paging);
-            return _mapper.MapToPagedResult<DrivingSchool>(data);
+            var data = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolGrid>(e => true, orderBy, paging);
+            return _mapper.MapToPagedResult<DrivingSchoolGrid>(data);
         }
 
         public async Task<List<Models.DrivingSchoolCarGrid>> RetrieveDrivingSchoolCarGridsByDrivingSchoolId(int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null)
