@@ -1,15 +1,38 @@
 ﻿@model Gadi.Models.StudentViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Student";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>@string.Format("{0} {1}",Model.Student.Forenames,Model.Student.Surname)<small> Edit Student</small></h2>
+                <h2>
+                    Profile Detail<small></small>
+                </h2>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/500x300">
+                        <div class="caption">
+                            <h3>@Model.Student.Forenames @Model.Student.Surname</h3>
+                            @*<button type="button" class="btn bg-red waves-effect"><i class="material-icons">file_upload</i> Upload Picture</button>*@
+                            <button type="button" class="btn bg-amber waves-effect" data-toggle="modal" data-target="#profileModal"><i class="material-icons">file_upload</i> <span>UPLOAD PICTURE</span></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>@string.Format("{0} {1}", Model.Student.Forenames, Model.Student.Surname)<small> Edit Student</small>
+                </h2>
             </div>
             <div class="body">
                 @using (Html.BeginForm())
@@ -20,7 +43,7 @@
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                                    @Html.ValidationSummary(false, null, new { @class = "row alert alert-error" })
+                                    @Html.ValidationSummary(false, null, new {@class = "row alert alert-error"})
                                 </div>
                             </div>
                         }
@@ -30,7 +53,7 @@
                         <div class="row clearfix">
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group align-right">
-                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -44,4 +67,34 @@
     <a href="@Url.Action("Index")" class="btn btn-primary" role="button">
         <span class="fa fa-chevron-left"></span>&nbsp;Back to list
     </a>
+</div>
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="avatar-form" enctype="multipart/form-data" method="post">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" type="button">&times;</button>
+                    <h4 class="modal-title" id="profileModalLabel">Edit Profile Image</h4>
+                    <div ng-show="model.imageUploadError" class="validation-summary-errors alert alert-danger col-lg-12 col-xs-12 col-sm-10">
+                        <ul>
+                            <li ng-show="model.fileFormatError">Please Upload .jpg,.jpeg,.png,.gif,.bmp File</li>
+                            <li ng-show="model.fileError">Please Select File</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <canvas width="200" height="200" class="center-block" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="400" crop-height="400" keep-aspect="true" touch-radius="30" crop-area-bounds="0"></canvas>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="file" id="fileUpload" img-cropper-fileread image="cropper.sourceImage" class="form-control" accept=".jpg,.jpeg,.png,.gif,.bmp" />
+                    <br />
+                    <button class="btn btn-success waves-effect" type="button" ng-click="model.uploadPhoto(cropper.croppedImage)">UPLOAD</button>
+                    <button type="button" class="btn btn-primary waves-effect" data-dismiss="modal">CLOSE</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
 </div>

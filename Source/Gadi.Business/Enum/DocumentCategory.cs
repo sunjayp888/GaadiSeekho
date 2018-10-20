@@ -8,6 +8,8 @@ namespace Gadi.Business.Enum
 {
     public enum DocumentCategory
     {
-       
+        DrivingSchoolProfile=1,
+        DrivingStudentProfile,
+        DriverProfile
     }
 }

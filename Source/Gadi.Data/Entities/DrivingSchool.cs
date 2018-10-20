@@ -53,6 +53,10 @@ namespace Gadi.Data.Entities
 
         public double? Longitude { get; set; }
 
+        public decimal? MinimumFeeWithLicense { get; set; }
+
+        public decimal? MinimumFeeWithOutLicense { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
 

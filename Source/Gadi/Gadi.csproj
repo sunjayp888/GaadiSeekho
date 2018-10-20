@@ -5111,6 +5111,7 @@
     <Content Include="Scripts\Angular\Controllers\CarController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverFeedbackController.js" />
+    <Content Include="Scripts\Angular\Controllers\DrivingSchoolProfileController.js" />
     <Content Include="Scripts\Angular\Controllers\HomeController.js" />
     <Content Include="Scripts\Angular\Controllers\DrivingSchoolController.js" />
     <Content Include="Scripts\Angular\Controllers\RegisterController.js" />
@@ -5138,6 +5139,7 @@
     <Content Include="Scripts\Angular\Services\CarService.js" />
     <Content Include="Scripts\Angular\Services\DriverFeedbackService.js" />
     <Content Include="Scripts\Angular\Services\DriverService.js" />
+    <Content Include="Scripts\Angular\Services\DrivingSchoolProfileService.js" />
     <Content Include="Scripts\Angular\Services\GoogleService.js" />
     <Content Include="Scripts\Angular\Services\OrderService.js" />
     <Content Include="Scripts\Angular\Services\DrivingSchoolService.js" />
@@ -5964,7 +5966,10 @@
     <Content Include="Views\Car\_Car.cshtml" />
     <Content Include="Views\Car\Edit.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
-    <Content Include="Views\DrivingSchool\View.cshtml" />
+    <Content Include="Views\DrivingSchool\Detail.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Driver\Create.cshtml" />
+    <Content Include="Views\DrivingSchool\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

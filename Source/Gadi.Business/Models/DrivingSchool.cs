@@ -21,5 +21,7 @@ namespace Gadi.Business.Models
         public DateTime CreatedDate { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
+        public decimal? MinimumFeeWithLicense { get; set; }
+        public decimal? MinimumFeeWithOutLicense { get; set; }
     }
 }

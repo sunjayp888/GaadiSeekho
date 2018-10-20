@@ -216,7 +216,7 @@
         }
 
         function viewDrivingSchool(drivingSchoolId) {
-            $window.location.href = "/DrivingSchool/" + drivingSchoolId + "/View";
+            $window.location.href = "/DrivingSchool/" + drivingSchoolId + "/Detail";
         }
     }
 

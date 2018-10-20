@@ -9,6 +9,9 @@ namespace Gadi.Data.Entities
     [Table("Personnel")]
     public partial class Personnel
     {
+        [NotMapped]
+        public string FullName => Forenames + " " + Surname;
+
         public int PersonnelId { get; set; }
 
         [StringLength(50)]

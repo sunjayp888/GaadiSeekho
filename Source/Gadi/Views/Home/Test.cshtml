@@ -23,29 +23,17 @@
 
     <!-- Animation Css -->
     <link href="~/bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css" rel="stylesheet" />
+    
+    <!-- Range Slider Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="~/bower_components/adminbsb-materialdesign/css/style.css" rel="stylesheet" />
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     @*<link href="../../css/themes/all-themes.css" rel="stylesheet" />*@
 </head>
-<body class="theme-red">
-    @*<div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            Google Maps
-            <div class="block-header">
-                <h2>
-                    GOOGLE MAPS
-                    <small>Taken from <a href="https://developers.google.com/maps/" target="_blank">developers.google.com/maps</a> & <a href="https://hpneo.github.io/gmaps/" target="_blank">hpneo.github.io/gmaps</a></small>
-                </h2>
-            </div>
-            <div class="alert alert-warning">
-                You need to get <b>Google Map API Key</b> for display maps with <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" class="alert-link" target="_blank">this link</a> (Also you can find documentation on same page).
-            </div>
-
-           
-        </div>
-    </div>*@
+<body>
     <section class="content">
         <!-- Markers -->
         <div class="row clearfix">
@@ -76,59 +64,169 @@
         </div>
         <!-- #END# Markers -->
     </section>
-   
 
-            
-
-
-    <div class="row clearfix" ng-controller="HomeController as model" ng-init="model.retrieveDrivingSchools()">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools" ng-click="model.viewDrivingSchool(drivingSchool.DrivingSchoolId)">
-            <div class="card">
-                <div class="header">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-6">
-                            <h2>{{drivingSchool.Name}}</h2><small>{{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} {{drivingSchool.Pincode}}</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="body">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/Images/DrivingTrainingSchool.jpg" />
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-9">
-                            <div class="thumbnail">
-                                @*<img src="http://placehold.it/500x300">*@
-                                <div class="caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                        text ever since the 1500s
-                                    </p>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-4">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-amber">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>Filter</h2><small></small>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-3">
-                                <button type="button" class="btn bg-amber btn-block btn-lg waves-effect">
-                                    With License
-                                    <br />
-                                    ₹ 1500/-
-                                </button>
-                            </div>
-                            <div class="col-sm-6 col-md-3 pull-right">
-                                <button type="button" class="btn bg-amber btn-block btn-lg waves-effect">
-                                    Without License
-                                    <br />
-                                    ₹ 1000/-
-                                </button>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="terms">Wheel Type</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Two Wheeler</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Four Wheeler</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="terms">License</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Required</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Not Required</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="terms">Car Type</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Normal</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">SUV</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">MUV</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">XUV</label>
+                                    </div>
+                                    <div class="irs-demo">
+                                        <b>Driving Fees</b>
+                                        <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">10</span><span class="irs-max" style="visibility: visible;">100</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: -0.263435%;">10</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 0.842993%; width: 0%;"></span><span class="irs-bar-edge"></span><span class="irs-shadow shadow-single" style="display: none;"></span><span class="irs-slider single" style="left: 0%;"></span></span><input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                        <input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Username">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="terms">TO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Username">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="terms">Car</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Maruti 800</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Santro</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Indica</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                                        <label for="terms">Qualis</label>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @*<button type="button" class="btn bg-amber btn-block btn-lg waves-effect"> Show More </button>*@
+        <div class="col-lg-8">
+            <div class="row clearfix" ng-controller="HomeController as model" ng-init="model.retrieveDrivingSchools()">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools" ng-click="model.viewDrivingSchool(drivingSchool.DrivingSchoolId)">
+                    <div class="card">
+                        <div class="header bg-amber">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>{{drivingSchool.Name}} {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</h2><small></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <img src="~/Content/Images/DrivingTrainingSchool.jpg" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-8">
+                                    <div class="thumbnail">
+                                        @*<img src="http://placehold.it/500x300">*@
+                                        <div class="caption">
+                                            <h3>{{drivingSchool.Name}}</h3>
+                                            <p>Address : {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</p>
+                                            <p>Contact No. : {{drivingSchool.Mobile}}</p>
+                                            <p>Email : {{drivingSchool.EmailId}}</p>
+                                            <p>Number of Cars : {{drivingSchool.NumberOfCars}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <button type="button" class="btn bg-amber btn-block btn-lg waves-effect">
+                                            With License
+                                            <br />
+                                            ₹ {{drivingSchool.MinimumFeeWithLicense}}/-
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 pull-right">
+                                        <button type="button" class="btn bg-amber btn-block btn-lg waves-effect bg-black">
+                                            Without License
+                                            <br />
+                                            ₹ {{drivingSchool.MinimumFeeWithOutLicense}}/-
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<button type="button" class="btn bg-amber btn-block btn-lg waves-effect"> Show More </button>*@
+            </div>
+        </div>
     </div>
+</div>
+    
+
 </body>
 </html>
