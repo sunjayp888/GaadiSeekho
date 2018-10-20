@@ -13,14 +13,14 @@
         'wt.responsive',
         'ngBootbox',
         'moment-module',
-        //'angular-img-cropper',
+        'angular-img-cropper',
         'daterangepicker',
         'ui.select',
         'checklist-model',
         //'infinite-scroll',
         //'angularSpinner',
         //'ngGeolocation',
-        //'ngmap'
+        //'ngmap',
     ]);
 
 })();

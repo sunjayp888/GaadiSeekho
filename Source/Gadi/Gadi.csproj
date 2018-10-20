@@ -5111,11 +5111,13 @@
     <Content Include="Scripts\Angular\Controllers\CarController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverFeedbackController.js" />
+    <Content Include="Scripts\Angular\Controllers\DriverProfileController.js" />
     <Content Include="Scripts\Angular\Controllers\DrivingSchoolProfileController.js" />
     <Content Include="Scripts\Angular\Controllers\HomeController.js" />
     <Content Include="Scripts\Angular\Controllers\DrivingSchoolController.js" />
     <Content Include="Scripts\Angular\Controllers\RegisterController.js" />
     <Content Include="Scripts\Angular\Controllers\StudentController.js" />
+    <Content Include="Scripts\Angular\Controllers\StudentProfileController.js" />
     <Content Include="Scripts\Angular\Directives\CheckListModel.js" />
     <Content Include="Scripts\Angular\Directives\custom-marker.js" />
     <Content Include="Scripts\Angular\Directives\DatePickerDirective.js" />
@@ -5138,12 +5140,14 @@
     <Content Include="Scripts\Angular\Helpers\ng-map.js" />
     <Content Include="Scripts\Angular\Services\CarService.js" />
     <Content Include="Scripts\Angular\Services\DriverFeedbackService.js" />
+    <Content Include="Scripts\Angular\Services\DriverProfileService.js" />
     <Content Include="Scripts\Angular\Services\DriverService.js" />
     <Content Include="Scripts\Angular\Services\DrivingSchoolProfileService.js" />
     <Content Include="Scripts\Angular\Services\GoogleService.js" />
     <Content Include="Scripts\Angular\Services\OrderService.js" />
     <Content Include="Scripts\Angular\Services\DrivingSchoolService.js" />
     <Content Include="Scripts\Angular\Services\OTPService.js" />
+    <Content Include="Scripts\Angular\Services\StudentProfileService.js" />
     <Content Include="Scripts\Angular\Services\StudentService.js" />
     <Content Include="Scripts\Angular\Templates\PincodeModal.html" />
     <Content Include="Scripts\App\angular-daterangepicker.js" />
@@ -5194,11 +5198,6 @@
     <Folder Include="bower_components\google-maps-utility-library-v3-markerwithlabel\docs\" />
     <Folder Include="bower_components\markerclustererplus\docs\" />
     <Folder Include="Models\Authorization\Requirements\" />
-    <Folder Include="Scripts\Controllers\" />
-    <Folder Include="Scripts\Directives\" />
-    <Folder Include="Scripts\Filters\" />
-    <Folder Include="Scripts\Prototypes\" />
-    <Folder Include="Scripts\Services\" />
     <Folder Include="Views\OTPController\" />
     <Folder Include="Views\Validation\" />
   </ItemGroup>
