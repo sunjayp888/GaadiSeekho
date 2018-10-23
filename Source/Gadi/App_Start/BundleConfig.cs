@@ -23,7 +23,7 @@ namespace Gadi
                 "~/bower_components/angular-responsive-tables/release/angular-responsive-tables.min.js",
                 "~/bower_components/angular-ui-select/dist/select.min.js",
                 "~/bower_components/angular-ui-uploader/dist/uploader.min.js",
-                //"~/bower_components/angular-img-cropper/dist/angular-img-cropper.min.js",
+                "~/bower_components/angular-img-cropper/dist/angular-img-cropper.min.js",
                 "~/bower_components/angular-ui-mask/dist/mask.min.js",
                 "~/bower_components/Chart.js/dist/Chart.min.js",
                 "~/bower_components/bootbox/bootbox.js",
@@ -38,7 +38,8 @@ namespace Gadi
                 "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.min.js",
                 "~/bower_components/adminbsb-materialdesign/js/admin.js",
                 "~/bower_components/adminbsb-materialdesign/plugins/js/materialize.min.js",
-                "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.min.js"
+                "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.min.js",
+                "~/bower_components/cropper/dist/cropper.min.js"
                 ));
 
             //bundles.Add(new ScriptBundle("~/Scripts/SignalR").Include(
@@ -70,7 +71,8 @@ namespace Gadi
                  "~/bower_components/pnotify/dist/pnotify.css",
                  "~/bower_components/pnotify/dist/pnotify.buttons.css",
                  "~/bower_components/pnotify/dist/pnotify.mobile.css",
-                 "~/bower_components/adminbsb-materialdesign/css/materialize.css"
+                 "~/bower_components/adminbsb-materialdesign/css/materialize.css",
+                 "~/bower_components/cropper/dist/cropper.min.css"
                  ));
 
 
@@ -103,7 +105,6 @@ namespace Gadi
             bundles.Add(new ScriptBundle("~/plugins/jquery-countto").Include(
                 "~/Scripts/plugins/jquery-countto/jquery-countto.js"
             ));
-
 
 
             //BundleTable.EnableOptimizations = true;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using Gadi.Business.Models;
 
 namespace Gadi.Models
 {
@@ -70,6 +71,7 @@ namespace Gadi.Models
 
     public class RegisterViewModel
     {
+        public DrivingSchool DrivingSchool { get; set; }
         //[Required]
         [Display(Name = "Firstname")]
         [StringLength(100, ErrorMessage = "The Firstname field is required.")]

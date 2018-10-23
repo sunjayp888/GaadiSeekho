@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - GadiSeekho</title>
     @Styles.Render("~/Content/Styles")
 </head>
-<body>
+<body ng-app="Gadi" ng-controller="HomeController as model">
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header" style="width: 100%;">
@@ -16,14 +16,27 @@
                         <span class="logo-text">Gaadi Seekho</span>
                     </div>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" name="searchLocation" placeholder="Search location.." aria-required="true">
+                        @*<input type="text" class="form-control" name="searchLocation" placeholder="Search location" aria-required="true">*@
+                        <input type="text" class="form-control" ng-model="searchField" ng-keyup="$event.keyCode == 13 && model.drivingSchoolData(searchField)" placeholder="Search for Driving School...">
                     </div>
                     <div class="col-lg-1">
-                        <button type="button" class="btn bg-black waves-effect waves-light search-button">Search</button>
+                        <button type="button" class="btn bg-black waves-effect waves-light search-button" ng-click="model.drivingSchoolData(searchField)">Search</button>
                     </div>
-                    <div class="col-lg-1">
-                        <a href="/Account/Login" class="btn bg-black waves-effect waves-light search-button">Login</a>
-                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn bg-black waves-effect waves-light search-button">Log off</a>
+                            @Html.ActionLink("Reset Password", "ResetPassword", "Account")
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-lg-1">
+                            <a href="/Account/Login" class="btn bg-black waves-effect waves-light search-button">Login</a>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -32,7 +45,7 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content" ng-app="Gadi">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>

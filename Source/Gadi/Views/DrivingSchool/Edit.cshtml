@@ -15,7 +15,7 @@
             <div class="col-sm-12 col-md-12">
                 <div class="row">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/500x300">
+                        <img alt="image" id="ProfilePicture">
                         <div class="caption">
                             <h3>@Model.DrivingSchool.Name</h3>
                             @*<button type="button" class="btn bg-red waves-effect"><i class="material-icons">file_upload</i> Upload Picture</button>*@
@@ -62,6 +62,189 @@
         </div>
     </div>
 </div>
+<div class="row clearfix" ng-controller="DrivingSchoolCarController as model" ng-init="model.initialise(@Model.DrivingSchool.DrivingSchoolId)">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Driving School Cars<small></small>
+                </h2>
+            </div>
+            <div class="body">
+                <div class="form-horizontal">
+                    <div class="row ng-hide" ng-cloak ng-show="model.drivingSchoolCarError">
+                        <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
+                            <div class="validation-summary-errors row alert alert-error" id="absenceTypeError">
+                                <ul>
+                                    <li>Assign Atleast One Car</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Car", new { @class = "control-label col-md-5 col-sm-5 col-xs-12" })
+                        <input type="hidden" id="drivingSchoolCarCount" ng-value="model.drivingSchoolCarCount" />
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuCar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="fa fa-list fa-fw"></span>
+                                    @*  <span class="square" ng-style="{'background-color' : '#' + model.ddAbsenceType.Colour.Hex }"></span>*@
+                                    <span ng-bind="model.ddCar.Name"></span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                                    <li ng-repeat="car in model.ddCars">
+                                        @*<span class="square" ng-style="{'background-color' : '#' + absenceType.Colour.Hex }"></span>*@
+                                        <span><a ng-click="model.changeCar(car)" ng-bind="car.Name"></a></span>
+                                    </li>
+                                </ul>
+                                @*<button type="button" class="btn btn-success" ng-click="model.assignDrivingSchoolCar()" ng-disabled="model.assigning">Assign</button>*@
+                                <button type="button" class="btn btn-success waves-effect" data-toggle="modal" data-target="#smallModal">Assign</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="smallModalLabel">{{model.ddCar.Name}} - Fees Structure Details</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="With License Fee" ng-model="model.withLicenseFee">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Without License Fee" ng-model="model.withOutLicenseFee">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Discount On Fee" ng-model="model.discountOnFee">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success waves-effect" ng-click="model.assignDrivingSchoolCar()" ng-disabled="model.assigning" data-dismiss="modal">Assign</button>
+                                <button type="button" class="btn btn-primary waves-effect" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <p class="text-muted font-13 m-b-30">
+                        </p>
+                        <div id="datatable_wrapper" class="dataTables_wrapper form-inline">
+                            <div ng-if="model.drivingSchools.length !=0">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        @Html.Partial("Pagination/_pageSize")
+                                    </div>
+                                    <div class="col-xs-8 col-sm-6 align-right">
+                                        <input type="text" ng-model="searchField" ng-keyup="$event.keyCode == 13 && model.searchDrivingSchools(searchField)" class="form-control form-control-w-50" placeholder="Search for Driving School...">
+                                        <button class="btn bg-amber waves-effect align-right" ng-click="model.searchDrivingSchools(searchField)" type="button">Go!</button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table wt-responsive-table class="table table-striped table-bordered table-hover dataTable" role="grid" aria-describedby="datatable-fixed-header_info">
+                                            <thead>
+                                            <tr role="row">
+                                                <th ng-click="model.order('Name')" ng-class="model.orderClass('Name')">Car Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="drivingSchoolCar in model.drivingSchoolCars" class="" ng-click="$event.originalEvent.ngClickHandled">
+                                                <td><span ng-bind="drivingSchoolCar.Car.Name"></span></td>
+                                                <td>
+                                                    <div class="btn-group pull-right">
+                                                        <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-click="$event.originalEvent.ngClickHandled = true;model.isDrivingSchoolCarAssignToDrivingSchool(drivingSchoolCar.CarId);">
+                                                            <i class="fa fa-chevron-down font-15"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu pull-right">
+                                                            <li ng-show="model.loadingActions"><i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw "></i></li>
+                                                            <li ng-hide="model.loadingActions">
+                                                                <a ng-class="model.unassignDrivingSchoolCarClass(drivingSchoolCar)"
+                                                                   ng-bootbox-confirm="Are you sure, you want to unassign - {{drivingSchoolCar.Car.Name}}"
+                                                                   ng-bootbox-confirm-action="model.unassignDrivingSchoolCar(drivingSchoolCar);"
+                                                                   ng-bootbox-confirm-action-cancel=""
+                                                                   ng-click="$event.originalEvent.ngClickHandled = true;">
+                                                                    Unassign
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                @Html.Partial("Pagination/_pagination")
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label ng-bind="model.searchMessage"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="absencePolicyEntitlementModal" ng-hide="model.ShowModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Edit <span ng-bind="model.absenceType"></span></h2>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="form-group" id="absencePolicyEntitlementErrorSummary" hidden>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
+                                <div class="validation-summary-errors row alert alert-error" data-valmsg-summary="false">
+                                    <ul class="errors">
+                                        <li ng-repeat="error in model.Errors"><span ng-bind="error"></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="absencePolicyEntitlementModalBody">
+                        @*@Html.Partial("_AbsencePolicyEntitlement", Model)*@
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
+                        <div class="form-group">
+                            <div class="pull-right col-md-6">
+                                <div class="col-md-3">
+                                    <button type="button" ng-click="model.updateAbsencePolicyEntitlement()" id="buttonAbsencePolicyEntitlement" class="btn btn-success">Submit</button>
+                                </div>
+                                <div class="pull-right col-md-3">
+                                    <button type="button" id="btnCancel" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div>
     <a href="@Url.Action("Index")" class="btn btn-primary" role="button">
         <span class="fa fa-chevron-left"></span>&nbsp;Back to list
@@ -93,7 +276,7 @@
                     <button type="button" class="btn btn-primary waves-effect" data-dismiss="modal">CLOSE</button>
                 </div>
             </form>
-            
+
         </div>
     </div>
 </div>

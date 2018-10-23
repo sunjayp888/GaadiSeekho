@@ -101,6 +101,7 @@
     <Compile Include="Models\DriverFeedbackGrid.cs" />
     <Compile Include="Models\DriverGrid.cs" />
     <Compile Include="Models\DrivingSchool.cs" />
+    <Compile Include="Models\DrivingSchoolCar.cs" />
     <Compile Include="Models\DrivingSchoolCarGrid.cs" />
     <Compile Include="Models\DrivingSchoolGrid.cs" />
     <Compile Include="Models\DrivingSchoolRatingAndReview.cs" />

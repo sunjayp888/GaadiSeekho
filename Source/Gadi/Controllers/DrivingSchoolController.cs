@@ -25,7 +25,7 @@ namespace Gadi.Controllers
         private readonly IDocumentsBusinessService _documentsBusinessService;
         private readonly IDrivingSchoolBusinessService _drivingSchoolBusinessService;
         const string UserNotExist = "User does not exist.";
-        public DrivingSchoolController(IDrivingSchoolBusinessService drivingSchoolBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService,IPersonnelBusinessService personnelBusinessService,IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
+        public DrivingSchoolController(IDrivingSchoolBusinessService drivingSchoolBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService, IPersonnelBusinessService personnelBusinessService, IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
         {
             _drivingSchoolBusinessService = drivingSchoolBusinessService;
             _personnelBusinessService = personnelBusinessService;
@@ -238,6 +238,31 @@ namespace Gadi.Controllers
         public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
         {
             return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
+        }
+
+        public async Task<ActionResult> AssignDrivingSchoolCar(int drivingSchoolId, int carId, decimal withLicenseFee, decimal withOutLicenseFee, decimal discountOnFee)
+        {
+            var data = await _drivingSchoolBusinessService.CreateDrivingSchoolCar(drivingSchoolId, carId, withLicenseFee, withOutLicenseFee, discountOnFee);
+            return this.JsonNet(data);
+        }
+
+        public async Task<ActionResult> UnassignedDrivingSchoolCars(int drivingSchoolId)
+        {
+            var data = await _drivingSchoolBusinessService.RetrieveUnassignedDrivingSchoolCars(drivingSchoolId);
+            return this.JsonNet(data);
+        }
+
+        public async Task<ActionResult> DrivingSchoolCars(int drivingSchoolId)
+        {
+            var data = await _drivingSchoolBusinessService.RetrieveDrivingSchoolCars(drivingSchoolId);
+            return this.JsonNet(data);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UnassignDrivingSchoolCar(int drivingSchoolId, int carId)
+        {
+            var data = await _drivingSchoolBusinessService.DeleteDrivingSchoolCar(drivingSchoolId, carId);
+            return this.JsonNet("");
         }
     }
 }

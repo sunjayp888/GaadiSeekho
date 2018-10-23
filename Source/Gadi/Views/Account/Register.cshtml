@@ -1,7 +1,7 @@
 ﻿@model Gadi.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
-    Layout = null;
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -120,7 +120,78 @@
                     </p>
                     <input type="checkbox" name="IsDrivingSchool" id="IsDrivingSchool" class="filled-in chk-col-pink" ng-change="model.onDrivingSchoolChecked()" , ng-model="model.isDrivingSchool">
                     <label for="IsDrivingSchool">Driving School</label>
-                    <input name="IsDrivingSchool" type="hidden" value="false" />
+                @*<input name="IsDrivingSchool" type="hidden" value="false" />*@
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.Name, new { @class = "form-control", @placeholder = "Driving School Name"})
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.Address1, new { @class = "form-control", @placeholder = "Address Line 1" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.Address1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.Address2, new { @class = "form-control", @placeholder = "Address Line 2" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.Address2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.Address3, new { @class = "form-control", @placeholder = "Address Line 3" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.Address3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.Address4, new { @class = "form-control", @placeholder = "Address Line 4" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.Address4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.Pincode, new { @class = "form-control", @placeholder = "Pincode" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.Pincode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.Telephone, new { @class = "form-control", @placeholder = "Landline Number" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.Telephone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
                     @*<div class="input-group">
                             <span class="input-group-addon">
                                 <i class="material-icons">drive_eta</i>

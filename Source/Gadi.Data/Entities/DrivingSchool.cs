@@ -57,6 +57,8 @@ namespace Gadi.Data.Entities
 
         public decimal? MinimumFeeWithOutLicense { get; set; }
 
+        public int PersonnelId { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
 

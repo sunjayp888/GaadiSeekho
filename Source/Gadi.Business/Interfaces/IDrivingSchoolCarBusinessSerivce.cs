@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Gadi.Common.Dto;
 using Gadi.Business.Models;
-using Gadi.Data.Entities;
 
 namespace Gadi.Business.Interfaces
 {
@@ -15,6 +16,7 @@ namespace Gadi.Business.Interfaces
         Task<ValidationResult<DrivingSchoolCar>> UpdateDrivingSchoolCar(DrivingSchoolCar drivingSchoolCar);
         //Retrieve
         Task<DrivingSchoolCar> RetrieveDrivingSchoolCar(int drivingSchoolCarId);
+        Task<DrivingSchoolCar> RetrieveDrivingSchoolCarByDrivingSchoolIdCarId(int drivingSchoolId, int carId);
         Task<PagedResult<DrivingSchoolCar>> RetrieveDrivingSchoolCars(List<OrderBy> orderBy = null, Paging paging = null);
         //Task<PagedResult<DrivingSchoolCarGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
     }

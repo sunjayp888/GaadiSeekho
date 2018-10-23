@@ -2,12 +2,11 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
-    Layout = null;
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -42,7 +41,7 @@
             <div class="body">
                 @*<form id="sign_in" method="POST">*@
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t", role = "form", @id = "sign_in" }))
-                {
+            {
                     @Html.AntiForgeryToken()
                     if (ViewContext.ViewData.ModelState.Any(x => x.Key == ""))
                     {
@@ -110,5 +109,4 @@
     <script src="~/bower_components/adminbsb-materialdesign/js/admin.js"></script>
     <script src="~/bower_components/adminbsb-materialdesign/js/pages/examples/sign-in.js"></script>
 </body>
-
 </html>

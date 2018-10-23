@@ -7,5 +7,6 @@ namespace Gadi.Models
 {
     public class BaseViewModel
     {
+        public int PersonnelId { get; set; }
     }
 }

@@ -48,18 +48,18 @@ namespace Gadi.Business.Services
             var validationResult = new ValidationResult<Document>();
             var newGuid = Guid.NewGuid();
             var documentCategories = await this.RetrieveDocumentCategoriesAsync();
-            var category = documentCategories.FirstOrDefault(e => e.Name.ToLower() == document.Category.ToLower());
+            var category = documentCategories.FirstOrDefault(e => e.Name.ToLower() == document.Category.ToLower()); //check Category
             if (category == null) return validationResult.Error("Document category not found");
             var productData = _productDataService.RetrieveAll<Data.Entities.Product>();
             var result = _mapper.MapToList<Product>(productData);
             var product = result.Single(p => p.Name.ToLower() == Product.ToLower());
             if (product == null) return validationResult.Error("product not found");
             // this categoryFileName ensures uniqueness of file in folder and is critical
-            var categoryFileName = string.Format("{0}_{1}_{2}", document.Category, newGuid, document.FileName);
+            var categoryFileName = string.Format("{0}_{1}_{2}", document.Category, newGuid, document.FileName); //check Category
             var basePath = product.UncPath;
             // sjp retain compatibility with existing DocumentService
-            var personnelDirectory = CreatePersonnelDirectory(basePath, document.PersonnelName, document.PersonnelId);
-            var categoryDirectory = Path.Combine(personnelDirectory, document.Category);
+            var personnelDirectory = CreatePersonnelDirectory(basePath, document.PersonnelName, document.PersonnelId); //check PersonnelName
+            var categoryDirectory = Path.Combine(personnelDirectory, document.Category); //check Category
             var filePath = Path.Combine(categoryDirectory, categoryFileName);
 
             var documentDetail = new Data.Entities.DocumentDetail
@@ -83,13 +83,13 @@ namespace Gadi.Business.Services
 
             Directory.CreateDirectory(categoryDirectory);
 
-            if (document.Content != null)
+            if (document.Content != null) //check Content
             {
-                File.WriteAllBytes(filePath, document.Content);
+                File.WriteAllBytes(filePath, document.Content); //check Content
             }
-            else if (!string.IsNullOrEmpty(document.ContentBase64))
+            else if (!string.IsNullOrEmpty(document.ContentBase64)) //check ContentBase64
             {
-                byte[] content = Convert.FromBase64String(document.ContentBase64);
+                byte[] content = Convert.FromBase64String(document.ContentBase64); //check ContentBase64
                 File.WriteAllBytes(filePath, content);
             }
 
@@ -99,7 +99,7 @@ namespace Gadi.Business.Services
                 validationResult.Entity = _mapper.Map<Document>(entity);
                 validationResult.Succeeded = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 validationResult.Succeeded = false;
             }

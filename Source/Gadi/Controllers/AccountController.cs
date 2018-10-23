@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -27,12 +28,14 @@ namespace Gadi.Controllers
         //private readonly IEmailBusinessService _emailBusinessService;
         private readonly IOtpBusinessService _otpBusinessService;
         private IPersonnelBusinessService PersonnelBusinessService { get; set; }
-        public AccountController(IConfigurationManager configurationManager, IOtpBusinessService otpBusinessService,IPersonnelBusinessService personnelBusinessService) : base(configurationManager)
+        private readonly IDrivingSchoolBusinessService _drivingSchoolBusinessService;
+        public AccountController(IConfigurationManager configurationManager, IOtpBusinessService otpBusinessService,IPersonnelBusinessService personnelBusinessService,IDrivingSchoolBusinessService drivingSchoolBusinessService) : base(configurationManager)
         {
             //UserManager = userManager;
             //SignInManager = signInManager;
             _otpBusinessService = otpBusinessService;
             PersonnelBusinessService = personnelBusinessService;
+            _drivingSchoolBusinessService = drivingSchoolBusinessService;
         }
 
 
@@ -120,6 +123,21 @@ namespace Gadi.Controllers
             return View(model);
         }
 
+        // POST: /Account/Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logout()
+        {
+            SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        private void SignOut()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
+        }
+
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -178,9 +196,10 @@ namespace Gadi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            model.IsDrivingSchool = true;
+            
             if (ModelState.IsValid)
             {
+                model.IsDrivingSchool = true;
                 model.OtpCreated = true;
                 var otpValidationResult = await _otpBusinessService.IsValidOtp(Convert.ToInt32(model.OTP), Convert.ToDecimal(model.MobileNumber), (int)OtpReason.Login, DateTime.UtcNow);
                 if (!otpValidationResult.Succeeded)
@@ -210,6 +229,21 @@ namespace Gadi.Controllers
                     model.PersonnelId = personnelResult.Entity.PersonnelId;
                     user.PersonnelId = personnelResult.Entity.PersonnelId;
                     await UserManager.UpdateAsync(user);
+                    if (model.IsDrivingSchool)
+                    {
+                        model.DrivingSchool.Mobile = Convert.ToInt64(model.MobileNumber);
+                        model.DrivingSchool.EmailId = model.Email;
+                        var drivingSchool = await _drivingSchoolBusinessService.CreateDrivingSchool(model.DrivingSchool);
+                        if (drivingSchool.Succeeded)
+                        {
+                            return RedirectToAction("Login", "Account");
+                        }
+                        ModelState.AddModelError("", drivingSchool.Exception);
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error);
+                        }
+                    }
                     //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -232,7 +266,8 @@ namespace Gadi.Controllers
                 Surname = model.LastName,
                 Postcode = model.Pincode,
                 UserId = model.AspNetUserId,
-                Mobile = model.MobileNumber
+                Mobile = model.MobileNumber,
+                IsDrivingSchool = model.IsDrivingSchool
             };
             return await PersonnelBusinessService.CreatePersonnel(personnel);
         }

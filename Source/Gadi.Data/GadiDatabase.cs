@@ -415,6 +415,21 @@ namespace Gadi.Data
                .WithRequired(e => e.DrivingSchool)
                .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<DocumentCategory>()
+                .HasMany(e => e.DocumentDetails)
+                .WithRequired(e => e.DocumentCategory)
+                .HasForeignKey(e => e.CategoryId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DocumentDetail>()
+                .Property(e => e.FileName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.DocumentDetails)
+                .WithRequired(e => e.Product)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<DrivingSchoolGrid>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
@@ -454,21 +469,6 @@ namespace Gadi.Data
             modelBuilder.Entity<DrivingSchoolGrid>()
                 .Property(e => e.SearchField)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<DocumentCategory>()
-                .HasMany(e => e.DocumentDetails)
-                .WithRequired(e => e.DocumentCategory)
-                .HasForeignKey(e => e.CategoryId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<DocumentDetail>()
-                .Property(e => e.FileName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.DocumentDetails)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
         }
     }
 }

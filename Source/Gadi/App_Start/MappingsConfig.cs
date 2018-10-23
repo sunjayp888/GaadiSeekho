@@ -16,13 +16,13 @@ namespace Gadi
 
         private static void Configure(IMapperConfigurationExpression config)
         {
-            //config.CreateMap<Entity.DocumentCategory, DocumentCategory>();
-            //config.CreateMap<DocumentCategory, Entity.DocumentCategory>();
+            config.CreateMap< Data.Entities.DocumentCategory, DocumentCategory>();
+            config.CreateMap<DocumentCategory, Data.Entities.DocumentCategory>();
 
-            //config.CreateMap<Document, Entity.DocumentDetail>()
-            //    .ForMember(destination => destination.Description, source => source.MapFrom(s => s.Description));
-            //;
-            //config.CreateMap<Entity.DocumentDetail, Document>();
+            config.CreateMap<Document, Data.Entities.DocumentDetail>()
+                .ForMember(destination => destination.Description, source => source.MapFrom(s => s.Description));
+            ;
+            config.CreateMap<Data.Entities.DocumentDetail, Document>();
             
             //Driving School
             config.CreateMap<Data.Entities.DrivingSchool, DrivingSchool>();
