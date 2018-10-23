@@ -283,6 +283,7 @@
     <Compile Include="Models\DriverFeedbackViewModel.cs" />
     <Compile Include="Models\DriverViewModel.cs" />
     <Compile Include="Models\DrivingSchoolViewModel.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\JsonHttpStatusResult.cs" />
     <Compile Include="Models\JsonNetResult.cs" />
@@ -5112,6 +5113,7 @@
     <Content Include="Scripts\Angular\Controllers\DriverController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverFeedbackController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverProfileController.js" />
+    <Content Include="Scripts\Angular\Controllers\DrivingSchoolCarController.js" />
     <Content Include="Scripts\Angular\Controllers\DrivingSchoolProfileController.js" />
     <Content Include="Scripts\Angular\Controllers\HomeController.js" />
     <Content Include="Scripts\Angular\Controllers\DrivingSchoolController.js" />
@@ -5969,6 +5971,7 @@
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Driver\Create.cshtml" />
     <Content Include="Views\DrivingSchool\Create.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

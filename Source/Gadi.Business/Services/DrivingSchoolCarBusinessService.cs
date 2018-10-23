@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Gadi.Business.Extensions;
 using Gadi.Business.Interfaces;
 using Gadi.Business.Models;
 using Gadi.Common.Dto;
-using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
 
 namespace Gadi.Business.Services
@@ -28,7 +28,7 @@ namespace Gadi.Business.Services
             ValidationResult<DrivingSchoolCar> validationResult = new ValidationResult<DrivingSchoolCar>();
             try
             {
-                var drivingSchoolCarData = _mapper.Map<DrivingSchoolCar>(drivingSchoolCar);
+                var drivingSchoolCarData = _mapper.Map<Data.Entities.DrivingSchoolCar>(drivingSchoolCar);
                 await _dataService.CreateAsync(drivingSchoolCarData);
                 validationResult.Entity = drivingSchoolCar;
                 validationResult.Succeeded = true;
@@ -47,7 +47,8 @@ namespace Gadi.Business.Services
             ValidationResult<DrivingSchoolCar> validationResult = new ValidationResult<DrivingSchoolCar>();
             try
             {
-                await _dataService.UpdateAsync(drivingSchoolCar);
+                var drivingSchoolCarData = _mapper.Map<Data.Entities.DrivingSchoolCar>(drivingSchoolCar);
+                await _dataService.UpdateAsync(drivingSchoolCarData);
                 validationResult.Entity = drivingSchoolCar;
                 validationResult.Succeeded = true;
             }
@@ -62,15 +63,22 @@ namespace Gadi.Business.Services
 
         public async Task<DrivingSchoolCar> RetrieveDrivingSchoolCar(int drivingSchoolCarId)
         {
-            var result = await _dataService.RetrieveAsync<DrivingSchoolCar>(a => a.DrivingSchoolCarId == drivingSchoolCarId);
+            var result = await _dataService.RetrieveAsync<Data.Entities.DrivingSchoolCar>(a => a.DrivingSchoolCarId == drivingSchoolCarId);
+            var drivingSchoolCar = _mapper.MapToList<DrivingSchoolCar>(result);
+            return drivingSchoolCar.FirstOrDefault();
+        }
+
+        public async Task<DrivingSchoolCar> RetrieveDrivingSchoolCarByDrivingSchoolIdCarId(int drivingSchoolId, int carId)
+        {
+            var result = await _dataService.RetrieveAsync<Data.Entities.DrivingSchoolCar>(a => a.DrivingSchoolId==drivingSchoolId && a.CarId==carId);
             var drivingSchoolCar = _mapper.MapToList<DrivingSchoolCar>(result);
             return drivingSchoolCar.FirstOrDefault();
         }
 
         public async Task<PagedResult<DrivingSchoolCar>> RetrieveDrivingSchoolCars(List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var drivingSchoolCars = await _dataService.RetrievePagedResultAsync<DrivingSchoolCar>(a => true, orderBy, paging);
-            return drivingSchoolCars;
+            var drivingSchoolCars = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolCar>(a => true, orderBy, paging);
+            return _mapper.MapToPagedResult<DrivingSchoolCar>(drivingSchoolCars);
         }
 
         //public async Task<PagedResult<DrivingSchoolCarGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)

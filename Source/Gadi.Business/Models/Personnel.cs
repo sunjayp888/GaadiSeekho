@@ -26,5 +26,6 @@ namespace Gadi.Business.Models
         public string Email { get; set; }
         public string UserId { get; set; }
         public string FullName => Forenames + " " + Surname;
+        public bool IsDrivingSchool { get; set; }
     }
 }

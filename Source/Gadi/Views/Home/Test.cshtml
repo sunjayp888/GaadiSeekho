@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -174,12 +174,12 @@
             </div>
         </div>
         <div class="col-lg-8">
-            <div class="row clearfix" ng-controller="HomeController as model" ng-init="model.retrieveDrivingSchools()">
+            <div class="row clearfix" ng-init="model.drivingSchoolData(1)">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools" ng-click="model.viewDrivingSchool(drivingSchool.DrivingSchoolId)">
                     <div class="card">
                         <div class="header bg-amber">
                             <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-12">
                                     <h2>{{drivingSchool.Name}} {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</h2><small></small>
                                 </div>
                             </div>

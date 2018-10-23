@@ -16,7 +16,6 @@ namespace Gadi.Data.Entities
 
         public int DrivingSchoolCarId { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DrivingSchoolId { get; set; }
 
         public int CarId { get; set; }

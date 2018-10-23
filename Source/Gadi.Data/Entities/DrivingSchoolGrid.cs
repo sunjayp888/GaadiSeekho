@@ -62,6 +62,11 @@ namespace Gadi.Data.Entities
 
         public int? NumberOfCars { get; set; }
 
+        [Key]
+        [Column(Order = 6)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int PersonnelId { get; set; }
+
         [StringLength(1180)]
         public string SearchField { get; set; }
     }

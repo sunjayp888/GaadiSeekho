@@ -39,6 +39,10 @@
         vm.paging = new Paging;
         vm.orderBy = new OrderBy;
         vm.viewDrivingSchool = viewDrivingSchool;
+        vm.searchDrivingSchools = searchDrivingSchools;
+        vm.searchKeyword = "";
+        vm.searchMessage = "";
+        vm.drivingSchoolData = drivingSchoolData;
         function addPincode() {
             geoLocation();
         }
@@ -201,6 +205,14 @@
 
         }
 
+        function drivingSchoolData(a) {
+            if (a !== 1) {
+                searchDrivingSchools(a);
+            } else {
+                retrieveDrivingSchools();
+            }
+        }
+
         function retrieveDrivingSchools() {
             vm.orderBy.direction = "Ascending";
             vm.orderBy.class = "asc";
@@ -217,6 +229,21 @@
 
         function viewDrivingSchool(drivingSchoolId) {
             $window.location.href = "/DrivingSchool/" + drivingSchoolId + "/Detail";
+        }
+
+        function searchDrivingSchools(searchKeyword) {
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
+            vm.orderBy.property = "Name";
+            vm.searchKeyword = searchKeyword;
+            return DrivingSchoolService.searchDrivingSchools(vm.searchKeyword, vm.paging, vm.orderBy)
+                .then(function (response) {
+                    vm.drivingSchools = response.data.Items;
+                    vm.paging.totalPages = response.data.TotalPages;
+                    vm.paging.totalResults = response.data.TotalResults;
+                    vm.searchMessage = vm.drivingSchools.length === 0 ? "No Records Found" : "";
+                    return vm.drivingSchools;
+                });
         }
     }
 

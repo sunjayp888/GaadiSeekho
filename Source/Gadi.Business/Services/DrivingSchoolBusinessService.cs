@@ -10,7 +10,9 @@ using Gadi.Common.Dto;
 using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
 using LinqKit;
+using Car = Gadi.Business.Models.Car;
 using DrivingSchool = Gadi.Business.Models.DrivingSchool;
+using DrivingSchoolCar = Gadi.Business.Models.DrivingSchoolCar;
 using DrivingSchoolGrid = Gadi.Business.Models.DrivingSchoolGrid;
 
 
@@ -20,11 +22,13 @@ namespace Gadi.Business.Services
     {
         private readonly IMapper _mapper;
         private readonly IDrivingSchoolDataService _dataService;
+        private readonly IDrivingSchoolCarBusinessService _drivingSchoolCarBusinessService;
 
-        public DrivingSchoolBusinessService(IMapper mapper, IDrivingSchoolDataService dataService)
+        public DrivingSchoolBusinessService(IMapper mapper, IDrivingSchoolDataService dataService, IDrivingSchoolCarBusinessService drivingSchoolCarBusinessService)
         {
             _mapper = mapper;
             _dataService = dataService;
+            _drivingSchoolCarBusinessService = drivingSchoolCarBusinessService;
         }
 
         public async Task<ValidationResult<DrivingSchool>> CreateDrivingSchool(DrivingSchool drivingSchool)
@@ -35,6 +39,40 @@ namespace Gadi.Business.Services
                 var drivingSchoolData = _mapper.Map<Data.Entities.DrivingSchool>(drivingSchool);
                 await _dataService.CreateAsync(drivingSchoolData);
                 validationResult.Entity = drivingSchool;
+                validationResult.Succeeded = true;
+            }
+            catch (Exception ex)
+            {
+                validationResult.Succeeded = false;
+                validationResult.Errors = new List<string> { ex.InnerMessage() };
+                validationResult.Exception = ex;
+            }
+            return validationResult;
+        }
+
+        public async Task<ValidationResult<DrivingSchoolCar>> CreateDrivingSchoolCar(int drivingSchoolId, int carId, decimal withLicenseFee, decimal withOutLicenseFee, decimal discountOnFee)
+        {
+            ValidationResult<DrivingSchoolCar> validationResult = new ValidationResult<Models.DrivingSchoolCar>();
+            var drivingSchoolCar = new DrivingSchoolCar()
+            {
+                DrivingSchoolId = drivingSchoolId,
+                CarId = carId
+            };
+            
+            try
+            {
+                var drivingSchoolCarData = _mapper.Map<Data.Entities.DrivingSchoolCar>(drivingSchoolCar);
+                await _dataService.CreateAsync(drivingSchoolCarData);
+                var drivingSchoolCarFee = new DrivingSchoolCarFee()
+                {
+                    WithLicenseFee = withLicenseFee,
+                    WithoutLicenseFee = withOutLicenseFee,
+                    DiscountAmount = discountOnFee,
+                    DrivingSchoolCarId = drivingSchoolCarData.DrivingSchoolCarId
+                };
+                var drivingSchoolCarFeeData = _mapper.Map<Data.Entities.DrivingSchoolCarFee>(drivingSchoolCarFee);
+                await _dataService.CreateAsync(drivingSchoolCarFeeData);
+                validationResult.Entity = drivingSchoolCar;
                 validationResult.Succeeded = true;
             }
             catch (Exception ex)
@@ -72,6 +110,13 @@ namespace Gadi.Business.Services
             return driver.FirstOrDefault();
         }
 
+        public async Task<DrivingSchool> RetrieveDrivingSchoolByPersonnelId(int personnelId)
+        {
+            var result = await _dataService.RetrieveAsync<Data.Entities.DrivingSchool>(a => a.PersonnelId == personnelId);
+            var driver = _mapper.MapToList<DrivingSchool>(result);
+            return driver.FirstOrDefault();
+        }
+
         public async Task<PagedResult<DrivingSchoolGrid>> RetrieveDrivingSchools(List<OrderBy> orderBy = null, Paging paging = null)
         {
             var data = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolGrid>(e => true, orderBy, paging);
@@ -99,6 +144,34 @@ namespace Gadi.Business.Services
                 predicate = predicate.And(a => a.SearchField.ToLower().Contains(term.ToLower()));
             var drivingSchools = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolGrid>(predicate, orderBy, paging);
             return _mapper.MapToPagedResult<Models.DrivingSchoolGrid>(drivingSchools);
+        }
+
+        public async Task<IEnumerable<Car>> RetrieveUnassignedDrivingSchoolCars(int drivingSchoolId)
+        {
+            var data = await _dataService.RetrievePagedResultAsync<Data.Entities.Car>(e => !e.DrivingSchoolCars.Any(a => a.DrivingSchoolId == drivingSchoolId));
+            var result = data.Items.ToList();
+            return _mapper.MapToList<Models.Car>(result);
+        }
+
+        public async Task<PagedResult<DrivingSchoolCar>> RetrieveDrivingSchoolCars(int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null)
+        {
+            var data = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolCar>(e => e.DrivingSchoolId == drivingSchoolId, orderBy, paging, a => a.DrivingSchool, a => a.Car);
+            return _mapper.MapToPagedResult<DrivingSchoolCar>(data);
+        }
+
+        public async Task<bool> DeleteDrivingSchoolCar(int drivingSchoolId, int carId)
+        {
+            try
+            {
+                var drivingSchoolCar = await _drivingSchoolCarBusinessService.RetrieveDrivingSchoolCarByDrivingSchoolIdCarId(drivingSchoolId, carId);
+                await _dataService.DeleteWhereAsync<DrivingSchoolCarFee>(e => e.DrivingSchoolCarId == drivingSchoolCar.DrivingSchoolCarId);
+                await _dataService.DeleteWhereAsync<Data.Entities.DrivingSchoolCar>(e => e.DrivingSchoolId == drivingSchoolId && e.CarId == carId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

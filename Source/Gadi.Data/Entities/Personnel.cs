@@ -60,5 +60,7 @@ namespace Gadi.Data.Entities
 
         [StringLength(128)]
         public string UserId { get; set; }
+
+        public bool IsDrivingSchool { get; set; }
     }
 }

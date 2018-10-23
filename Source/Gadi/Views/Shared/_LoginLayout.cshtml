@@ -1,4 +1,13 @@
-﻿<nav class="navbar">
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GadiSeekho</title>
+    @Styles.Render("~/Content/Styles")
+</head>
+<body>
+<nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header" style="width: 100%;">
             <div class="row">
@@ -27,7 +36,6 @@
                         <a href="/Account/Login" class="btn bg-black waves-effect waves-light search-button">Login</a>
                     </div>
                 }
-                
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -36,3 +44,16 @@
         </div>
     </div>
 </nav>
+<div ng-app="Gadi">
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - GadiSeekho.Com</p>
+    </footer>
+</div>
+@Scripts.Render("~/Scripts/bower")
+@Scripts.Render("~/Scripts/Application")
+@RenderSection("scripts", required: false)
+</body>
+</html>
+

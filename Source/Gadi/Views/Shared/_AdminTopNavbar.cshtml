@@ -12,9 +12,21 @@
                 <div class="col-lg-1">
                     <button type="button" class="btn bg-black waves-effect waves-light search-button">Search</button>
                 </div>
-                <div class="col-lg-1">
-                    <a href="/Account/Login" class="btn bg-black waves-effect waves-light search-button">Login</a>
-                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="btn bg-black waves-effect waves-light search-button">Log off</a>
+                        @Html.ActionLink("Reset Password", "ResetPassword", "Account")
+                    }
+                }
+                else
+                {
+                    <div class="col-lg-1">
+                        <a href="/Account/Login" class="btn bg-black waves-effect waves-light search-button">Login</a>
+                    </div>
+                }
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
