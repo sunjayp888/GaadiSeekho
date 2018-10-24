@@ -38,14 +38,14 @@
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "sign_up" }))
             {
                     @Html.AntiForgeryToken()
-                    @*<div class="form-group alert alert-danger" ng-if="@Model.HasError.ToString().ToLower() && !model.errorMessages.length>0">
+                    <div class="form-group alert alert-danger" ng-if="@Model.HasError.ToString().ToLower() && !model.errorMessages.length>0">
                             @Html.ValidationSummary(false, null, new { @class = "" })
                         </div>
                         <div class="alert alert-danger alert-dismissable" ng-if="model.errorMessages.length>0">
                             <ul>
                                 <li ng-repeat="message in model.errorMessages track by $index"><span ng-bind="message"></span></li>
                             </ul>
-                        </div>*@
+                        </div>
                     <div class="msg">Register a new membership</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -190,6 +190,26 @@
                         @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
                         @Html.TextBoxFor(m => m.DrivingSchool.Telephone, new { @class = "form-control", @placeholder = "Landline Number" })
                         @Html.ValidationMessageFor(m => m.DrivingSchool.Telephone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.MinimumFeeWithLicense, new { @class = "form-control", @placeholder = "Minimum Fees With License" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.MinimumFeeWithLicense, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="input-group" ng-if="model.isDrivingSchool==true">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="email" class="form-control" name="email" placeholder="Email Address" required>*@
+                        @Html.TextBoxFor(m => m.DrivingSchool.MinimumFeeWithOutLicense, new { @class = "form-control", @placeholder = "Minimum Fees Without License" })
+                        @Html.ValidationMessageFor(m => m.DrivingSchool.MinimumFeeWithOutLicense, "", new { @class = "text-danger" })
                     </div>
                 </div>
                     @*<div class="input-group">

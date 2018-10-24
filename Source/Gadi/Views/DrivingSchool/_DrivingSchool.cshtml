@@ -125,3 +125,31 @@
         </div>
     </div>
 </div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchool.MinimumFeeWithLicense)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchool.MinimumFeeWithLicense, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchool.MinimumFeeWithLicense, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchool.MinimumFeeWithOutLicense)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchool.MinimumFeeWithOutLicense, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchool.MinimumFeeWithOutLicense, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>

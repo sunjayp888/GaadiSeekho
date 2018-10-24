@@ -21,6 +21,7 @@ namespace Gadi.Business.Models
         public decimal? MinimumFeeWithOutLicense { get; set; }
         public int? NumberOfCars { get; set; }
         public int PersonnelId { get; set; }
+        public string RelativePath { get; set; }
         public string SearchField { get; set; }
     }
 }

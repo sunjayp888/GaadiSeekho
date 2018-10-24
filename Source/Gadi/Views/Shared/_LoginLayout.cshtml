@@ -15,13 +15,13 @@
                     <img class="logo" src="~/Content/Images/imageedit_1_3018079433.png" />
                     <span class="logo-text">Gaadi Seekho</span>
                 </div>
-                <div class="col-lg-4">
+                @*<div class="col-lg-4">
                     <input type="text" class="form-control" name="searchLocation" placeholder="Search location.." aria-required="true">
                 </div>
                 <div class="col-lg-1">
                     <button type="button" class="btn bg-black waves-effect waves-light search-button">Search</button>
-                </div>
-                @if (User.Identity.IsAuthenticated)
+                </div>*@
+                @*@if (User.Identity.IsAuthenticated)
                 {
                     using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
                     {
@@ -35,7 +35,7 @@
                     <div class="col-lg-1">
                         <a href="/Account/Login" class="btn bg-black waves-effect waves-light search-button">Login</a>
                     </div>
-                }
+                }*@
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">

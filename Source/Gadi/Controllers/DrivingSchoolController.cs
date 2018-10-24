@@ -114,6 +114,8 @@ namespace Gadi.Controllers
         public async Task<ActionResult> Detail(int drivingSchoolId)
         {
             var drivingSchool = await _drivingSchoolBusinessService.RetrieveDrivingSchool(drivingSchoolId);
+            var drivingSchools = await _drivingSchoolBusinessService.RetrieveDrivingSchools();
+            var drivingSchoolGrid = drivingSchools.Items.FirstOrDefault(e => e.DrivingSchoolId == drivingSchoolId);
             var drivingSchoolCarGridData = await _drivingSchoolBusinessService.RetrieveDrivingSchoolCarGridsByDrivingSchoolId(drivingSchoolId);
             var drivingSchoolRatingAndReviewList = await _drivingSchoolBusinessService.RetrieveDrivingSchoolRatingAndReviewByDrivingSchoolId(drivingSchoolId);
             if (drivingSchool == null)
@@ -124,7 +126,8 @@ namespace Gadi.Controllers
             {
                 DrivingSchool = drivingSchool,
                 DrivingSchoolCarGrid = drivingSchoolCarGridData,
-                DrivingSchoolRatingAndReviewList = drivingSchoolRatingAndReviewList
+                DrivingSchoolRatingAndReviewList = drivingSchoolRatingAndReviewList,
+                DrivingSchoolGrid = drivingSchoolGrid
             };
             return View(viewModel);
         }

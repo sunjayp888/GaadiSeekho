@@ -5,9 +5,9 @@
         .module('Gadi')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$window', 'Paging', 'OrderService', 'DrivingSchoolService', 'OrderBy', 'Order', '$uibModal'];
+    HomeController.$inject = ['$window', 'Paging', 'OrderService', 'DrivingSchoolService', 'DrivingSchoolProfileService', 'OrderBy', 'Order', '$uibModal'];
 
-    function HomeController($window, Paging, OrderService, DrivingSchoolService, OrderBy, Order, $uibModal) {
+    function HomeController($window, Paging, OrderService, DrivingSchoolService, DrivingSchoolProfileService, OrderBy, Order, $uibModal) {
         /* jshint validthis:true */
         var vm = this;
         var country, state, city, pinCode, map, latitude, longitude, count, pin;
@@ -43,6 +43,7 @@
         vm.searchKeyword = "";
         vm.searchMessage = "";
         vm.drivingSchoolData = drivingSchoolData;
+        vm.retrieveProfileImage = retrieveProfileImage;
         function addPincode() {
             geoLocation();
         }
@@ -243,6 +244,17 @@
                     vm.paging.totalResults = response.data.TotalResults;
                     vm.searchMessage = vm.drivingSchools.length === 0 ? "No Records Found" : "";
                     return vm.drivingSchools;
+                });
+        }
+
+        function retrieveProfileImage() {
+            return DrivingSchoolProfileService.retrieveProfileImage(personnelId)
+                .then(function (response) {
+                    //If response is null then default image
+                    if (response.data === "")
+                        document.getElementById('ProfilePicture').setAttribute('src', "");
+                    else
+                        document.getElementById('ProfilePicture').setAttribute('src', response.data.RelativePath);
                 });
         }
     }
