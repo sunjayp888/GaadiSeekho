@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Google Maps | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Waves Effect Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Range Slider Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="~/bower_components/adminbsb-materialdesign/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="~/bower_components/adminbsb-materialdesign/css/style.css" rel="stylesheet" />
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    @*<link href="../../css/themes/all-themes.css" rel="stylesheet" />*@
+</head>
+<body>
+    <section class="content">
+        <!-- Markers -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header bg-amber">
+                        <h2>
+                            Your Current Location
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div id="gmap_markers" class="gmap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Markers -->
+    </section>
+
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-4">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header bg-amber">
+                                <div class="row clearfix">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <h2>Filter</h2><small></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="terms">Wheel Type</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbTwoWheeler" class="filled-in chk-col-amber">
+                                            <label for="cbTwoWheeler">Two Wheeler</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbFourWheeler" class="filled-in chk-col-amber">
+                                            <label for="cbFourWheeler">Four Wheeler</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="terms">License</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbRequired" class="filled-in chk-col-amber">
+                                            <label for="cbRequired">Required</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbNotRequired" class="filled-in chk-col-amber">
+                                            <label for="cbNotRequired">Not Required</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="terms">Car Type</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbkNormal" class="filled-in chk-col-amber">
+                                            <label for="cbkNormal">Normal</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbkSUV" class="filled-in chk-col-amber">
+                                            <label for="cbkSUV">SUV</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbMUV" class="filled-in chk-col-amber">
+                                            <label for="cbMUV">MUV</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbXUV" class="filled-in chk-col-amber">
+                                            <label for="cbXUV">XUV</label>
+                                        </div>
+                                        <div class="irs-demo">
+                                            <b>Driving Fees</b>
+                                            <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">10</span><span class="irs-max" style="visibility: visible;">100</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: -0.263435%;">10</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 0.842993%; width: 0%;"></span><span class="irs-bar-edge"></span><span class="irs-shadow shadow-single" style="display: none;"></span><span class="irs-slider single" style="left: 0%;"></span></span><input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                            <input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="Username">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for="terms">TO</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="Username">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="terms">Car</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbMaruti800" class="filled-in chk-col-amber">
+                                            <label for="cbMaruti800">Maruti 800</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbSantro" class="filled-in chk-col-amber">
+                                            <label for="cbSantro">Santro</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbIndica" class="filled-in chk-col-amber">
+                                            <label for="cbIndica">Indica</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="terms" id="cbQualis" class="filled-in chk-col-amber">
+                                            <label for="cbQualis">Qualis</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 drivingSchool-scroll">
+                <div ng-clock class="row clearfix" infinite-scroll="model.drivingSchoolData(1)" infinite-scroll-distance="3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools">
+                        <div class="card">
+                            <div class="header bg-amber">
+                                <div class="row clearfix">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <h2>{{drivingSchool.Name}} {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</h2><small></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <img alt="image" src="{{drivingSchool.RelativePath}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-8">
+                                        <div class="thumbnail">
+                                            @*<img src="http://placehold.it/500x300">*@
+                                            <div class="caption">
+                                                <h3>{{drivingSchool.Name}}</h3>
+                                                <p>Address : {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</p>
+                                                <p>Contact No. : {{drivingSchool.Mobile}}</p>
+                                                <p>Email : {{drivingSchool.EmailId}}</p>
+                                                <p>Number of Cars : {{drivingSchool.NumberOfCars}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <button type="button" class="btn btn-block btn-lg waves-effect bg-amber">
+                                                With License
+                                                <br />
+                                                ₹ {{drivingSchool.MinimumFeeWithLicense}}/-
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <button type="button" class="btn btn-block btn-lg waves-effect bg-black">
+                                                Without License
+                                                <br />
+                                                ₹ {{drivingSchool.MinimumFeeWithOutLicense}}/-
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <button type="button" class="btn btn-block btn-lg waves-effect bg-amber" ng-click="model.viewDrivingSchool(drivingSchool.DrivingSchoolId)">
+                                                View Driving
+                                                <br />
+                                                School
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<button type="button" class="btn bg-amber btn-block btn-lg waves-effect"> Show More </button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

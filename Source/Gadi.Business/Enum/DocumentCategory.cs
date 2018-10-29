@@ -10,6 +10,7 @@ namespace Gadi.Business.Enum
     {
         DrivingSchoolProfile=1,
         DrivingStudentProfile,
-        DriverProfile
+        DriverProfile,
+        CarProfile
     }
 }

@@ -72,7 +72,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr ng-repeat="drivingSchool in model.drivingSchools" class="" ng-click="$event.originalEvent.ngClickHandled">
-                                                        <td><span ng-cloak><img class="avatar" ng-src="{{ person.Avatar.Url || '/Images/Avatar.png' }}" alt="Avatar" title="avatar"></span><br /></td>
+                                                        <td><span ng-cloak><img class="avatar" ng-src="{{ drivingSchool.RelativePath }}" alt="Avatar" title="avatar" width="100" height="100"></span><br /></td>
                                                         <td><span ng-bind="drivingSchool.Name"></span></td>
                                                         <td><span ng-bind="drivingSchool.Address1"></span></td>
                                                         <td><span ng-bind="drivingSchool.EmailId"></span></td>

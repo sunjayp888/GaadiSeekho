@@ -35,11 +35,6 @@ namespace Gadi.Controllers
             }
             if (User.Identity.IsAuthenticated && User.IsSuperUser())
                 return View();
-            return RedirectToAction("Test", "Home");
-        }
-
-        public ActionResult Test()
-        {
             return View();
         }
 
