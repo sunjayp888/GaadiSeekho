@@ -10,7 +10,7 @@
     function CarProfileController($window, CarProfileService, Paging, OrderService, OrderBy, Order) {
         /* jshint validthis:true */
         var vm = this;
-        vm.carId;
+        vm.drivingSchoolCarId;
         vm.initialise = initialise;
         vm.uploadPhoto = uploadPhoto;
         vm.deletePhoto = deletePhoto;
@@ -53,8 +53,8 @@
         });
         //Cropper
 
-        function initialise(carId) {
-            vm.carId = carId;
+        function initialise(drivingSchoolCarId) {
+            vm.drivingSchoolCarId = drivingSchoolCarId;
             retrieveProfileImage();
         }
 
@@ -73,10 +73,10 @@
                     vm.fileFormatError = false;
                     var base64result = base64String.split(',');
                     var blobImage = new b64toBlob(base64result[1], base64result[0]);
-                    return CarProfileService.UploadPhoto(vm.carId, blobImage)
+                    return CarProfileService.UploadPhoto(vm.drivingSchoolCarId, blobImage)
                         .then(function (response) {
                             var randomNumber = Math.random();//This will force the browsers to reload the image url
-                            angular.element('#ProfilePicture').attr('src', '/Personnel/' + vm.carId + '/Photo?' + randomNumber);
+                            angular.element('#ProfilePicture').attr('src', '/DrivingSchoolCar/' + vm.drivingSchoolCarId + '/Photo?' + randomNumber);
                             angular.element('#ProfilePictureModal').modal('toggle');
                         });
                 } else {
@@ -114,7 +114,7 @@
         }
 
         function deletePhoto() {
-            return CarProfileService.DeletePhoto(vm.carId)
+            return CarProfileService.DeletePhoto(vm.drivingSchoolCarId)
                 .then(function (response) {
                     document.getElementById('ProfilePicture').setAttribute('src', location.protocol + '//' + location.host + '/Images/Avatar.png');
                     $("#ProfilePictureModal").modal("hide");
@@ -122,7 +122,7 @@
         }
 
         function retrieveProfileImage() {
-            return CarProfileService.retrieveProfileImage(vm.carId)
+            return CarProfileService.retrieveProfileImage(vm.drivingSchoolCarId)
                 .then(function (response) {
                     //If response is null then default image
                     if (response.data === "")

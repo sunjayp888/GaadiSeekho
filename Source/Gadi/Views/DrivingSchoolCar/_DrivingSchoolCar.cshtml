@@ -1,0 +1,211 @@
+﻿@model Gadi.Models.DrivingSchoolCarViewModel
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.Name)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.Name, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.CityMileage)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.CityMileage, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.CityMileage, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.ARAIMileage)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.ARAIMileage, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.ARAIMileage, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.FuelType)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.FuelType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.FuelType, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.Engine)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.Engine, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.Engine, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.MaxPower)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.MaxPower, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.MaxPower, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.MaxTorque)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.MaxTorque, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.MaxTorque, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.Seating)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.Seating, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.Seating, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.EngineDescription)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.EngineDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.EngineDescription, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.TransmissionType)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.TransmissionType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.TransmissionType, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.CargoVolume)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.CargoVolume, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.CargoVolume, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCar.WheelType)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCar.WheelType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCar.WheelType, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCarFee.WithLicenseFee)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCarFee.WithLicenseFee, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCarFee.WithLicenseFee, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCarFee.WithoutLicenseFee)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCarFee.WithoutLicenseFee, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCarFee.WithoutLicenseFee, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.DrivingSchoolCarFee.DiscountAmount)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.DrivingSchoolCarFee.DiscountAmount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DrivingSchoolCarFee.DiscountAmount, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>

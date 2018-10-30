@@ -21,13 +21,11 @@ namespace Gadi.Controllers
     public class DriverController : BaseController
     {
         private readonly IDriverBusinessService _driverBusinessService;
-        private readonly IPersonnelBusinessService _personnelBusinessService;
         private readonly IDocumentsBusinessService _documentsBusinessService;
         const string UserNotExist = "User does not exist.";
-        public DriverController(IDriverBusinessService driverBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService, IPersonnelBusinessService personnelBusinessService, IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
+        public DriverController(IDriverBusinessService driverBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService, IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
         {
             _driverBusinessService = driverBusinessService;
-            _personnelBusinessService = personnelBusinessService;
             _documentsBusinessService = documentsBusinessService;
         }
 
@@ -56,6 +54,7 @@ namespace Gadi.Controllers
         {
             if (ModelState.IsValid)
             {
+                driverViewModel.Driver.DrivingSchoolId = UserDrivingSchoolId;
                 var result = await _driverBusinessService.CreateDriver(driverViewModel.Driver);
                 if (result.Succeeded)
                 {
@@ -109,19 +108,19 @@ namespace Gadi.Controllers
         }
 
         [HttpPost]
-        [Route("{personnelId:int}/UploadPhoto")]
-        public async Task<ActionResult> UploadPhoto(int personnelId)
+        [Route("{driverId:int}/UploadPhoto")]
+        public async Task<ActionResult> UploadPhoto(int driverId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
             try
             {
-                var getPersonnelResult = await _personnelBusinessService.RetrievePersonnel(personnelId);
-                if (!getPersonnelResult.Succeeded)
-                    return HttpNotFound(string.Join(";", getPersonnelResult.Errors));
+                var getPersonnelResult = await _driverBusinessService.RetrieveDriver(driverId);
+                if (getPersonnelResult==null)
+                    return HttpNotFound();
 
-                var person = getPersonnelResult.Entity;
+                var driver = getPersonnelResult;
 
                 if (Request.Files.Count > 0)
                 {
@@ -141,11 +140,11 @@ namespace Gadi.Controllers
                         var documentMeta = new Document()
                         {
                             Content = fileData,
-                            Description = string.Format("{0} Profile Image", person.FullName),
+                            Description = string.Format("{0} Profile Image", driver.Name),
                             FileName = file.FileName.Split('\\').Last() + ".png",
-                            PersonnelName = person.FullName,
+                            PersonnelName = driver.Name,
                             CreatedBy = User.Identity.Name,
-                            PersonnelId = person.PersonnelId.ToString(),
+                            PersonnelId = driver.DriverId.ToString(),
                             Category = Business.Enum.DocumentCategory.DriverProfile.ToString(),
                             CategoryId = (int)Business.Enum.DocumentCategory.DriverProfile
                         };
@@ -182,13 +181,13 @@ namespace Gadi.Controllers
 
         }
 
-        [Route("RetrieveProfileImage/{personnelId:int}")]
-        public async Task<ActionResult> RetrieveProfileImage(int personnelId)
+        [Route("RetrieveProfileImage/{driverId:int}")]
+        public async Task<ActionResult> RetrieveProfileImage(int driverId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
-            var personnels = await _documentsBusinessService.RetrieveDocuments(personnelId, DocumentCategory.DriverProfile);
+            var personnels = await _documentsBusinessService.RetrieveDocuments(driverId, DocumentCategory.DriverProfile);
             if (personnels == null)
                 return HttpNotFound(UserNotExist);
 
@@ -201,9 +200,11 @@ namespace Gadi.Controllers
         [Route("List")]
         public async Task<ActionResult> List(Paging paging, List<OrderBy> orderBy)
         {
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
             try
             {
-                var data = await _driverBusinessService.RetrieveDrivers(orderBy, paging);
+                var data = await _driverBusinessService.RetrieveDrivers(isSuperAdmin, drivingSchoolId, orderBy, paging);
                 return this.JsonNet(data);
             }
             catch (Exception ex)
@@ -216,7 +217,34 @@ namespace Gadi.Controllers
         [Route("Search")]
         public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
         {
-            return this.JsonNet(await _driverBusinessService.Search(searchKeyword, orderBy, paging));
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
+            return this.JsonNet(await _driverBusinessService.Search(isSuperAdmin, drivingSchoolId, searchKeyword, orderBy, paging));
+        }
+
+        public async Task<ActionResult> AssignDriverCar(int driverId, int carId)
+        {
+            var data = await _driverBusinessService.CreateDriverCar(driverId, carId);
+            return this.JsonNet(data);
+        }
+
+        public async Task<ActionResult> UnassignedDriverCars(int driverId)
+        {
+            var data = await _driverBusinessService.RetrieveUnassignedDriverCars(driverId);
+            return this.JsonNet(data);
+        }
+
+        public async Task<ActionResult> DriverCars(int driverId)
+        {
+            var data = await _driverBusinessService.RetrieveDriverCars(driverId);
+            return this.JsonNet(data);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UnassignDriverCar(int driverId, int carId)
+        {
+            var data = await _driverBusinessService.DeleteDriverCar(driverId, carId);
+            return this.JsonNet("");
         }
     }
 }

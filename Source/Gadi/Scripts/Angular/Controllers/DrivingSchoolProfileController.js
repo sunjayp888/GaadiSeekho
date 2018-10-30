@@ -10,7 +10,7 @@
     function DrivingSchoolProfileController($window, DrivingSchoolProfileService, Paging, OrderService, OrderBy, Order) {
         /* jshint validthis:true */
         var vm = this;
-        vm.personnelId;
+        vm.drivingSchoolId;
         vm.initialise = initialise;
         vm.uploadPhoto = uploadPhoto;
         vm.deletePhoto = deletePhoto;
@@ -53,8 +53,8 @@
         });
         //Cropper
 
-        function initialise(personnelId) {
-            vm.personnelId = personnelId;
+        function initialise(drivingSchoolId) {
+            vm.drivingSchoolId = drivingSchoolId;
             retrieveProfileImage();
         }
 
@@ -73,10 +73,10 @@
                     vm.fileFormatError = false;
                     var base64result = base64String.split(',');
                     var blobImage = new b64toBlob(base64result[1], base64result[0]);
-                    return DrivingSchoolProfileService.UploadPhoto(vm.personnelId, blobImage)
+                    return DrivingSchoolProfileService.UploadPhoto(vm.drivingSchoolId, blobImage)
                         .then(function (response) {
                             var randomNumber = Math.random();//This will force the browsers to reload the image url
-                            angular.element('#ProfilePicture').attr('src', '/Personnel/' + vm.personnelId + '/Photo?' + randomNumber);
+                            angular.element('#ProfilePicture').attr('src', '/DrivingSchool/' + vm.drivingSchoolId + '/Photo?' + randomNumber);
                             angular.element('#ProfilePictureModal').modal('toggle');
                         });
                 } else {
@@ -114,7 +114,7 @@
         }
 
         function deletePhoto() {
-            return DrivingSchoolProfileService.DeletePhoto(vm.personnelId)
+            return DrivingSchoolProfileService.DeletePhoto(vm.drivingSchoolId)
                 .then(function (response) {
                     document.getElementById('ProfilePicture').setAttribute('src', location.protocol + '//' + location.host + '/Images/Avatar.png');
                     $("#ProfilePictureModal").modal("hide");
@@ -122,7 +122,7 @@
         }
 
         function retrieveProfileImage() {
-            return DrivingSchoolProfileService.retrieveProfileImage(vm.personnelId)
+            return DrivingSchoolProfileService.retrieveProfileImage(vm.drivingSchoolId)
                 .then(function (response) {
                     //If response is null then default image
                     if (response.data === "")

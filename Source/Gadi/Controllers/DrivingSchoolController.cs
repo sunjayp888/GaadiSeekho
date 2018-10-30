@@ -133,19 +133,19 @@ namespace Gadi.Controllers
         }
 
         [HttpPost]
-        [Route("{personnelId:int}/UploadPhoto")]
-        public async Task<ActionResult> UploadPhoto(int personnelId)
+        [Route("{drivingSchoolId:int}/UploadPhoto")]
+        public async Task<ActionResult> UploadPhoto(int drivingSchoolId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
             try
             {
-                var getPersonnelResult = await _personnelBusinessService.RetrievePersonnel(personnelId);
-                if (!getPersonnelResult.Succeeded)
-                    return HttpNotFound(string.Join(";", getPersonnelResult.Errors));
+                var getPersonnelResult = await _drivingSchoolBusinessService.RetrieveDrivingSchool(drivingSchoolId);
+                if (getPersonnelResult==null)
+                    return HttpNotFound();
 
-                var person = getPersonnelResult.Entity;
+                var drivingSchool = getPersonnelResult;
 
                 if (Request.Files.Count > 0)
                 {
@@ -165,11 +165,11 @@ namespace Gadi.Controllers
                         var documentMeta = new Document()
                         {
                             Content = fileData,
-                            Description = string.Format("{0} Profile Image", person.FullName),
+                            Description = string.Format("{0} Profile Image", drivingSchool.Name),
                             FileName = file.FileName.Split('\\').Last() + ".png",
-                            PersonnelName = person.FullName,
+                            PersonnelName = drivingSchool.Name,
                             CreatedBy = User.Identity.Name,
-                            PersonnelId = person.PersonnelId.ToString(),
+                            PersonnelId = drivingSchool.DrivingSchoolId.ToString(),
                             Category = Business.Enum.DocumentCategory.DrivingSchoolProfile.ToString(),
                             CategoryId = (int)Business.Enum.DocumentCategory.DrivingSchoolProfile
                         };
@@ -206,13 +206,13 @@ namespace Gadi.Controllers
 
         }
 
-        [Route("RetrieveProfileImage/{personnelId:int}")]
-        public async Task<ActionResult> RetrieveProfileImage(int personnelId)
+        [Route("RetrieveProfileImage/{drivingSchoolId:int}")]
+        public async Task<ActionResult> RetrieveProfileImage(int drivingSchoolId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
-            var personnels = await _documentsBusinessService.RetrieveDocuments(personnelId, DocumentCategory.DrivingSchoolProfile);
+            var personnels = await _documentsBusinessService.RetrieveDocuments(drivingSchoolId, DocumentCategory.DrivingSchoolProfile);
             if (personnels == null)
                 return HttpNotFound(UserNotExist);
 
@@ -243,29 +243,29 @@ namespace Gadi.Controllers
             return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
         }
 
-        public async Task<ActionResult> AssignDrivingSchoolCar(int drivingSchoolId, int carId, decimal withLicenseFee, decimal withOutLicenseFee, decimal discountOnFee)
-        {
-            var data = await _drivingSchoolBusinessService.CreateDrivingSchoolCar(drivingSchoolId, carId, withLicenseFee, withOutLicenseFee, discountOnFee);
-            return this.JsonNet(data);
-        }
+        //public async Task<ActionResult> AssignDrivingSchoolCar(int drivingSchoolId, int carId, decimal withLicenseFee, decimal withOutLicenseFee, decimal discountOnFee)
+        //{
+        //    var data = await _drivingSchoolBusinessService.CreateDrivingSchoolCar(drivingSchoolId, carId, withLicenseFee, withOutLicenseFee, discountOnFee);
+        //    return this.JsonNet(data);
+        //}
 
-        public async Task<ActionResult> UnassignedDrivingSchoolCars(int drivingSchoolId)
-        {
-            var data = await _drivingSchoolBusinessService.RetrieveUnassignedDrivingSchoolCars(drivingSchoolId);
-            return this.JsonNet(data);
-        }
+        //public async Task<ActionResult> UnassignedDrivingSchoolCars(int drivingSchoolId)
+        //{
+        //    var data = await _drivingSchoolBusinessService.RetrieveUnassignedDrivingSchoolCars(drivingSchoolId);
+        //    return this.JsonNet(data);
+        //}
 
-        public async Task<ActionResult> DrivingSchoolCars(int drivingSchoolId)
-        {
-            var data = await _drivingSchoolBusinessService.RetrieveDrivingSchoolCars(drivingSchoolId);
-            return this.JsonNet(data);
-        }
+        //public async Task<ActionResult> DrivingSchoolCars(int drivingSchoolId)
+        //{
+        //    var data = await _drivingSchoolBusinessService.RetrieveDrivingSchoolCars(drivingSchoolId);
+        //    return this.JsonNet(data);
+        //}
 
-        [HttpPost]
-        public async Task<ActionResult> UnassignDrivingSchoolCar(int drivingSchoolId, int carId)
-        {
-            var data = await _drivingSchoolBusinessService.DeleteDrivingSchoolCar(drivingSchoolId, carId);
-            return this.JsonNet("");
-        }
+        //[HttpPost]
+        //public async Task<ActionResult> UnassignDrivingSchoolCar(int drivingSchoolId, int carId)
+        //{
+        //    var data = await _drivingSchoolBusinessService.DeleteDrivingSchoolCar(drivingSchoolId, carId);
+        //    return this.JsonNet("");
+        //}
     }
 }

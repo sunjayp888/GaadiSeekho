@@ -23,8 +23,8 @@
                 </div>
                 <div class="body">
 
-                    @*@if (User.IsSuperAdmin())
-                    {*@
+                    @if (User.IsDrivingSchool())
+                    {
                         <div class="row">
                             <div class="col-xs-6">
                                 <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "Student")">
@@ -32,7 +32,7 @@
                                 </a>
                             </div>
                         </div>
-                    @*}*@
+                    }
 
                     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
                         <div class="input-group">

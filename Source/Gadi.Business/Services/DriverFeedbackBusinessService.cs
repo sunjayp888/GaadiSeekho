@@ -15,7 +15,7 @@ using DriverFeedbackGrid = Gadi.Business.Models.DriverFeedbackGrid;
 
 namespace Gadi.Business.Services
 {
-    public partial class DriverFeedbackBusinessService:IDriverFeedbackBusinessService
+    public partial class DriverFeedbackBusinessService : IDriverFeedbackBusinessService
     {
         protected IDriverFeedbackDataService _dataService;
         protected IMapper _mapper;
@@ -71,9 +71,9 @@ namespace Gadi.Business.Services
             return driverFeedback.FirstOrDefault();
         }
 
-        public async Task<PagedResult<DriverFeedbackGrid>> RetrieveDriverFeedbacks(List<OrderBy> orderBy = null, Paging paging = null)
+        public async Task<PagedResult<DriverFeedbackGrid>> RetrieveDriverFeedbacks(bool isSuperAdmin, int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var driverFeedbacks = await _dataService.RetrievePagedResultAsync<Data.Entities.DriverFeedbackGrid>(a => true, orderBy, paging);
+            var driverFeedbacks = await _dataService.RetrievePagedResultAsync<Data.Entities.DriverFeedbackGrid>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId, orderBy, paging);
             return _mapper.MapToPagedResult<DriverFeedbackGrid>(driverFeedbacks);
         }
 

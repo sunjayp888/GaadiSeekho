@@ -13,6 +13,7 @@ namespace Gadi.Data.Entities
         public Driver()
         {
             DriverFeedbacks = new HashSet<DriverFeedback>();
+            DriverCars = new HashSet<DriverCar>();
             CreatedDate = DateTime.UtcNow.Date;
         }
 
@@ -55,10 +56,17 @@ namespace Gadi.Data.Entities
 
         public int CreatedBy { get; set; }
 
+        public int DrivingSchoolId { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime CreatedDate { get; set; }
 
+        public virtual DrivingSchool DrivingSchool { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DriverFeedback> DriverFeedbacks { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DriverCar> DriverCars { get; set; }
     }
 }

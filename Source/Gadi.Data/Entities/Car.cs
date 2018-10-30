@@ -10,10 +10,6 @@ namespace Gadi.Data.Entities
     public partial class Car
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Car()
-        {
-            DrivingSchoolCars = new HashSet<DrivingSchoolCar>();
-        }
 
         public int CarId { get; set; }
 
@@ -50,8 +46,5 @@ namespace Gadi.Data.Entities
 
         [StringLength(100)]
         public string CargoVolume { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
     }
 }

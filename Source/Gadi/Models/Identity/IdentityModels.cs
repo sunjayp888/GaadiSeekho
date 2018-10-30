@@ -28,7 +28,8 @@ namespace Gadi.Models.Identity
 
         public string Name { get; set; }
         public int? PersonnelId { get; set; }
-       
+        public int? DrivingSchoolId { get; set; }
+
     }
 
     #region Permissions May possible moved

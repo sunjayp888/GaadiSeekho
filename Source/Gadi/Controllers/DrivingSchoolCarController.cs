@@ -17,19 +17,19 @@ using DocumentCategory = Gadi.Business.Enum.DocumentCategory;
 
 namespace Gadi.Controllers
 {
-    [RoutePrefix("Car")]
-    public class CarController : BaseController
+    [RoutePrefix("DrivingSchoolCar")]
+    public class DrivingSchoolCarController : BaseController
     {
-        private readonly ICarBusinessService _carBusinessService;
+        private readonly IDrivingSchoolCarBusinessService _drivingSchoolCarBusinessService;
         private readonly IDocumentsBusinessService _documentsBusinessService;
         const string UserNotExist = "User does not exist.";
-        public CarController(ICarBusinessService carBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService, IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
+        public DrivingSchoolCarController(IDrivingSchoolCarBusinessService drivingSchoolCarBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService, IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
         {
-            _carBusinessService = carBusinessService;
+            _drivingSchoolCarBusinessService = drivingSchoolCarBusinessService;
             _documentsBusinessService = documentsBusinessService;
         }
 
-        // GET: Car
+        // GET: DrivingSchool
         [Route("")]
         public ActionResult Index()
         {
@@ -37,30 +37,26 @@ namespace Gadi.Controllers
         }
 
         [HttpGet]
-        [Route("{carId:int}/Edit")]
-        public async Task<ActionResult> Edit(int carId)
+        [Route("Create")]
+        public async Task<ActionResult> Create()
         {
-            var car = await _carBusinessService.RetrieveCar(carId);
-            if (car == null)
+            var viewModel = new DrivingSchoolCarViewModel()
             {
-                return HttpNotFound();
-            }
-            var viewModel = new CarViewModel()
-            {
-                Car = car
+                DrivingSchoolCar = new DrivingSchoolCar(),
+                DrivingSchoolCarFee = new DrivingSchoolCarFee()
             };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{carId:int}/Edit")]
-        public async Task<ActionResult> Edit(int carId, CarViewModel carViewModel)
+        [Route("Create")]
+        public async Task<ActionResult> Create(DrivingSchoolCarViewModel drivingSchoolCarViewModel)
         {
             if (ModelState.IsValid)
             {
-                carViewModel.Car.CarId = carId;
-                var result = await _carBusinessService.UpdateCar(carViewModel.Car);
+                drivingSchoolCarViewModel.DrivingSchoolCar.DrivingSchoolId = UserDrivingSchoolId;
+                var result = await _drivingSchoolCarBusinessService.CreateDrivingSchoolCar(drivingSchoolCarViewModel.DrivingSchoolCar, drivingSchoolCarViewModel.DrivingSchoolCarFee);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index");
@@ -71,23 +67,63 @@ namespace Gadi.Controllers
                     ModelState.AddModelError("", error);
                 }
             }
-            return View(carViewModel);
+            return View(drivingSchoolCarViewModel);
+        }
+
+        [HttpGet]
+        [Route("{drivingSchoolCarId:int}/Edit")]
+        public async Task<ActionResult> Edit(int drivingSchoolCarId)
+        {
+            var drivingSchoolCar = await _drivingSchoolCarBusinessService.RetrieveDrivingSchoolCar(drivingSchoolCarId);
+            if (drivingSchoolCar == null)
+            {
+                return HttpNotFound();
+            }
+            var drivingSchoolCarFee = await _drivingSchoolCarBusinessService.RetrieveDrivingSchoolCarFee(drivingSchoolCarId);
+            var viewModel = new DrivingSchoolCarViewModel()
+            {
+                DrivingSchoolCar = drivingSchoolCar,
+                DrivingSchoolCarFee = drivingSchoolCarFee
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        [Route("{carId:int}/UploadPhoto")]
-        public async Task<ActionResult> UploadPhoto(int carId)
+        [ValidateAntiForgeryToken]
+        [Route("{drivingSchoolCarId:int}/Edit")]
+        public async Task<ActionResult> Edit(int drivingSchoolCarId, DrivingSchoolCarViewModel drivingSchoolCarViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                drivingSchoolCarViewModel.DrivingSchoolCar.DrivingSchoolCarId = drivingSchoolCarId;
+                var result = await _drivingSchoolCarBusinessService.UpdateDrivingSchoolCar(drivingSchoolCarViewModel.DrivingSchoolCar, drivingSchoolCarViewModel.DrivingSchoolCarFee);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", result.Exception);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
+            return View(drivingSchoolCarViewModel);
+        }
+
+        [HttpPost]
+        [Route("{drivingSchoolCarId:int}/UploadPhoto")]
+        public async Task<ActionResult> UploadPhoto(int drivingSchoolCarId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
             try
             {
-                var getPersonnelResult = await _carBusinessService.RetrieveCar(carId);
+                var getPersonnelResult = await _drivingSchoolCarBusinessService.RetrieveDrivingSchoolCar(drivingSchoolCarId);
                 if (getPersonnelResult == null)
                     return HttpNotFound();
 
-                var car = getPersonnelResult;
+                var drivingSchoolCar = getPersonnelResult;
 
                 if (Request.Files.Count > 0)
                 {
@@ -107,11 +143,11 @@ namespace Gadi.Controllers
                         var documentMeta = new Document()
                         {
                             Content = fileData,
-                            Description = string.Format("{0} Profile Image", car.Name),
+                            Description = string.Format("{0} Profile Image", drivingSchoolCar.Name),
                             FileName = file.FileName.Split('\\').Last() + ".png",
-                            PersonnelName = car.Name,
+                            PersonnelName = drivingSchoolCar.Name,
                             CreatedBy = User.Identity.Name,
-                            PersonnelId = car.CarId.ToString(),
+                            PersonnelId = drivingSchoolCar.DrivingSchoolCarId.ToString(),
                             Category = Business.Enum.DocumentCategory.CarProfile.ToString(),
                             CategoryId = (int)Business.Enum.DocumentCategory.CarProfile
                         };
@@ -148,13 +184,13 @@ namespace Gadi.Controllers
 
         }
 
-        [Route("RetrieveProfileImage/{carId:int}")]
-        public async Task<ActionResult> RetrieveProfileImage(int carId)
+        [Route("RetrieveProfileImage/{drivingSchoolCarId:int}")]
+        public async Task<ActionResult> RetrieveProfileImage(int drivingSchoolCarId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
-            var personnels = await _documentsBusinessService.RetrieveDocuments(carId, DocumentCategory.CarProfile);
+            var personnels = await _documentsBusinessService.RetrieveDocuments(drivingSchoolCarId, DocumentCategory.CarProfile);
             if (personnels == null)
                 return HttpNotFound(UserNotExist);
 
@@ -167,9 +203,11 @@ namespace Gadi.Controllers
         [Route("List")]
         public async Task<ActionResult> List(Paging paging, List<OrderBy> orderBy)
         {
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
             try
             {
-                var data = await _carBusinessService.RetrieveCars(orderBy, paging);
+                var data = await _drivingSchoolCarBusinessService.RetrieveDrivingSchoolCars(isSuperAdmin, drivingSchoolId, orderBy, paging);
                 return this.JsonNet(data);
             }
             catch (Exception ex)
@@ -182,7 +220,9 @@ namespace Gadi.Controllers
         [Route("Search")]
         public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
         {
-            return this.JsonNet(await _carBusinessService.Search(searchKeyword, orderBy, paging));
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
+            return this.JsonNet(await _drivingSchoolCarBusinessService.Search(isSuperAdmin, drivingSchoolId, searchKeyword, orderBy, paging));
         }
     }
 }

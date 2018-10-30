@@ -11,9 +11,20 @@ namespace Gadi.Business.Models
     {
         public int DrivingSchoolCarId { get; set; }
         public int DrivingSchoolId { get; set; }
-        public int CarId { get; set; }
-        public virtual Car Car { get; set; }
+        public string Name { get; set; }
+        public string CityMileage { get; set; }
+        public string ARAIMileage { get; set; }
+        public string FuelType { get; set; }
+        public int Engine { get; set; }
+        public string MaxPower { get; set; }
+        public string MaxTorque { get; set; }
+        public int? Seating { get; set; }
+        public string EngineDescription { get; set; }
+        public string TransmissionType { get; set; }
+        public string CargoVolume { get; set; }
+        public string WheelType { get; set; }
         public virtual DrivingSchool DrivingSchool { get; set; }
         public virtual ICollection<DrivingSchoolCarFee> DrivingSchoolCarFees { get; set; }
+        public virtual ICollection<DriverCar> DriverCars { get; set; }
     }
 }

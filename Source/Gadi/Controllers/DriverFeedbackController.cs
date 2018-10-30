@@ -35,12 +35,14 @@ namespace Gadi.Controllers
         [Route("{driverFeedbackId:int}/Edit")]
         public async Task<ActionResult> Edit(int driverFeedbackId)
         {
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
             var driverFeedback = await _driverFeedbackBusinessService.RetrieveDriverFeedback(driverFeedbackId);
             if (driverFeedback == null)
             {
                 return HttpNotFound();
             }
-            var driverData = await _driverBusinessService.RetrieveDrivers();
+            var driverData = await _driverBusinessService.RetrieveDrivers(isSuperAdmin, drivingSchoolId);
             var drivers = driverData.Items.ToList();
             var viewModel = new DriverFeedbackViewModel()
             {
@@ -76,9 +78,11 @@ namespace Gadi.Controllers
         [Route("List")]
         public async Task<ActionResult> List(Paging paging, List<OrderBy> orderBy)
         {
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
             try
             {
-                var data = await _driverFeedbackBusinessService.RetrieveDriverFeedbacks(orderBy, paging);
+                var data = await _driverFeedbackBusinessService.RetrieveDriverFeedbacks(isSuperAdmin, drivingSchoolId, orderBy, paging);
                 return this.JsonNet(data);
             }
             catch (Exception ex)

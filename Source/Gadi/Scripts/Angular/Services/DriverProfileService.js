@@ -16,11 +16,11 @@
 
         return service;
 
-        function UploadPhoto(personnelId, blob) {
+        function UploadPhoto(driverId, blob) {
             var formData = new FormData();
             formData.append('croppedImage', blob);
 
-            var url = "/Driver/" + personnelId + "/UploadPhoto";
+            var url = "/Driver/" + driverId + "/UploadPhoto";
 
             return $http.post(url, formData, {
                 withCredentials: true,
@@ -29,13 +29,13 @@
             });
         };
 
-        function DeletePhoto(personnelId) {
-            var url = "/Driver/DeletePhoto/" + personnelId;
+        function DeletePhoto(driverId) {
+            var url = "/Driver/DeletePhoto/" + driverId;
             return $http.post(url);
         };
 
-        function retrieveProfileImage(personnelId) {
-            var url = "/Driver/RetrieveProfileImage/" + personnelId;
+        function retrieveProfileImage(driverId) {
+            var url = "/Driver/RetrieveProfileImage/" + driverId;
             return $http.post(url);
         }
     }

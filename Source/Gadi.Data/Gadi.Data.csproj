@@ -73,6 +73,7 @@
     <Compile Include="Entities\DocumentCategory.cs" />
     <Compile Include="Entities\DocumentDetail.cs" />
     <Compile Include="Entities\Driver.cs" />
+    <Compile Include="Entities\DriverCar.cs" />
     <Compile Include="Entities\DriverFeedback.cs" />
     <Compile Include="Entities\DriverFeedbackGrid.cs" />
     <Compile Include="Entities\DriverGrid.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Extensions\Pagination.cs" />
     <Compile Include="GadiDatabase.cs" />
     <Compile Include="Interfaces\IAuthorizationDataService.cs" />
-    <Compile Include="Interfaces\ICarDataService.cs" />
     <Compile Include="Interfaces\IDatabaseFactory.cs" />
     <Compile Include="Interfaces\IDocumentDataService.cs" />
     <Compile Include="Interfaces\IDocumentTypeDataService.cs" />
@@ -119,7 +119,6 @@
     <Compile Include="Services\ProductDataService.cs" />
     <Compile Include="Services\StudentDataService.cs" />
     <Compile Include="Services\DrivingSchoolCarDataService.cs" />
-    <Compile Include="Services\CarDataService.cs" />
     <Compile Include="Services\EntityFrameworkGenericDataService.cs" />
     <Compile Include="Services\GadiDataService.cs" />
     <Compile Include="Services\DrivingSchoolDataService.cs" />

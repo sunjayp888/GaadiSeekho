@@ -21,6 +21,5 @@ namespace Gadi.Business.Models
         public string EngineDescription { get; set; }
         public string TransmissionType { get; set; }
         public string CargoVolume { get; set; }
-        public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
     }
 }

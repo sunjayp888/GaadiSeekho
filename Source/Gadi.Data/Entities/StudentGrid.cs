@@ -11,6 +11,7 @@ namespace Gadi.Data.Entities
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StudentId { get; set; }
 
         [Key]
@@ -54,50 +55,32 @@ namespace Gadi.Data.Entities
         [StringLength(15)]
         public string Telephone { get; set; }
 
+        [Key]
+        [Column(Order = 7)]
         [StringLength(15)]
         public string Mobile { get; set; }
 
-        [StringLength(10)]
-        public string NINumber { get; set; }
-
-        [StringLength(10)]
-        public string BankAccountNumber { get; set; }
-
-        [StringLength(6)]
-        public string BankSortCode { get; set; }
-
-        [StringLength(100)]
-        public string BankAccountName { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress1 { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress2 { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress3 { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress4 { get; set; }
-
-        [StringLength(12)]
-        public string BankPostcode { get; set; }
-
-        [StringLength(15)]
-        public string BankTelephone { get; set; }
-
         [Key]
-        [Column(Order = 7)]
+        [Column(Order = 8)]
         [StringLength(256)]
         public string Email { get; set; }
 
         [Key]
-        [Column(Order = 8, TypeName = "datetime2")]
+        [Column(Order = 9, TypeName = "datetime2")]
         public DateTime CreatedDate { get; set; }
 
         [Key]
-        [Column(Order = 9)]
+        [Column(Order = 10)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int DrivingSchoolId { get; set; }
+
+        [Key]
+        [Column(Order = 11)]
+        [StringLength(500)]
+        public string DrivingSchoolName { get; set; }
+
+        [Key]
+        [Column(Order = 12)]
         [StringLength(638)]
         public string SearchField { get; set; }
     }

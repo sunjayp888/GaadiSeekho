@@ -10,7 +10,11 @@
     function DriverService($http) {
         var service = {
             retrieveDrivers: retrieveDrivers,
-            searchDriver: searchDriver
+            searchDriver: searchDriver,
+            retrieveUnassignedDriverCars: retrieveUnassignedDriverCars,
+            retrieveDriverCars: retrieveDriverCars,
+            unassignDriverCar: unassignDriverCar,
+            assignDriverCar: assignDriverCar
         };
 
         return service;
@@ -32,6 +36,45 @@
                     orderBy: new Array(OrderBy)
                 };
 
+            return $http.post(url, data);
+        }
+
+        // DriverCar
+
+        function retrieveUnassignedDriverCars(driverId) {
+            var url = "/Driver/UnassignedDriverCars",
+                data = {
+                    driverId: driverId
+                };
+
+            return $http.post(url, data);
+        }
+
+        function retrieveDriverCars(driverId) {
+            var url = "/Driver/DriverCars",
+                data = {
+                    driverId: driverId
+                };
+
+            return $http.post(url, data);
+        }
+
+        function assignDriverCar(driverId, carId) {
+            var url = "/Driver/AssignDriverCar",
+                data = {
+                    driverId: driverId,
+                    carId: carId
+                };
+
+            return $http.post(url, data);
+        }
+
+        function unassignDriverCar(driverId, carId) {
+            var url = "/Driver/UnassignDriverCar",
+                data = {
+                    driverId: driverId,
+                    carId: carId
+                };
             return $http.post(url, data);
         }
     }

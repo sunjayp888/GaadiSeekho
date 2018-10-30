@@ -19,5 +19,6 @@ namespace Gadi.Business.Models
         public DateTime CreatedDate { get; set; }
         public int CreatedBy { get; set; }
         public virtual Driver Driver { get; set; }
+        public virtual DrivingSchool DrivingSchool { get; set; }
     }
 }

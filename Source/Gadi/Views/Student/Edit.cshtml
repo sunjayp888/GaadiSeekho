@@ -68,7 +68,7 @@
         <span class="fa fa-chevron-left"></span>&nbsp;Back to list
     </a>
 </div>
-<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" ng-cloak ng-controller="StudentProfileController as model" ng-init="model.initialise(1)">
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" ng-cloak ng-controller="StudentProfileController as model" ng-init="model.initialise(@Model.Student.StudentId)">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form class="avatar-form" enctype="multipart/form-data" method="post">

@@ -16,7 +16,7 @@
         return service;
 
         function retrieveCars(Paging, OrderBy) {
-            var url = "/Car/List",
+            var url = "/DrivingSchoolCar/List",
                 data = {
                     paging: Paging,
                     orderBy: new Array(OrderBy)
@@ -25,7 +25,7 @@
         }
 
         function searchCar(SearchKeyword, Paging, OrderBy) {
-            var url = "/Car/Search",
+            var url = "/DrivingSchoolCar/Search",
                 data = {
                     searchKeyword: SearchKeyword,
                     paging: Paging,

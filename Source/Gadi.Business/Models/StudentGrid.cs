@@ -20,18 +20,10 @@ namespace Gadi.Business.Models
         public string Postcode { get; set; }
         public string Telephone { get; set; }
         public string Mobile { get; set; }
-        public string NINumber { get; set; }
-        public string BankAccountNumber { get; set; }
-        public string BankSortCode { get; set; }
-        public string BankAccountName { get; set; }
-        public string BankAddress1 { get; set; }
-        public string BankAddress2 { get; set; }
-        public string BankAddress3 { get; set; }
-        public string BankAddress4 { get; set; }
-        public string BankPostcode { get; set; }
-        public string BankTelephone { get; set; }
         public string Email { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int DrivingSchoolId { get; set; }
+        public string DrivingSchoolName { get; set; }
         public string SearchField { get; set; }
     }
 }
