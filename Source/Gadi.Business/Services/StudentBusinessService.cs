@@ -79,7 +79,7 @@ namespace Gadi.Business.Services
 
         public async Task<PagedResult<StudentGrid>> Search(bool isSuperAdmin, int drivingSchoolId, string term, List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var predicate = PredicateBuilder.New<Data.Entities.StudentGrid>(true);
+            var predicate = PredicateBuilder.New<Data.Entities.StudentGrid>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId);
             if (!string.IsNullOrEmpty(term))
                 predicate = predicate.And(a =>(isSuperAdmin || a.DrivingSchoolId == drivingSchoolId) && a.SearchField.ToLower().Contains(term.ToLower()));
             var students = await _dataService.RetrievePagedResultAsync<Data.Entities.StudentGrid>(predicate, orderBy, paging);

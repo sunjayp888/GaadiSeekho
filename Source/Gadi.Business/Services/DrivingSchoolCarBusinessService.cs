@@ -55,7 +55,7 @@ namespace Gadi.Business.Services
                 await _dataService.UpdateAsync(drivingSchoolCarData);
                 var drivingSchoolCarFeeData = _mapper.Map<Data.Entities.DrivingSchoolCarFee>(drivingSchoolCarFee);
                 drivingSchoolCarFeeData.DrivingSchoolCarId = drivingSchoolCarData.DrivingSchoolCarId;
-                await _dataService.CreateAsync(drivingSchoolCarFeeData);
+                await _dataService.UpdateAsync(drivingSchoolCarFeeData);
                 validationResult.Entity = drivingSchoolCar;
                 validationResult.Succeeded = true;
             }
@@ -97,7 +97,7 @@ namespace Gadi.Business.Services
 
         public async Task<PagedResult<DrivingSchoolCarGrid>> Search(bool isSuperAdmin, int drivingSchoolId, string term, List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var predicate = PredicateBuilder.New<Data.Entities.DrivingSchoolCarGrid>(true);
+            var predicate = PredicateBuilder.New<Data.Entities.DrivingSchoolCarGrid>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId);
             if (!string.IsNullOrEmpty(term))
                 predicate = predicate.And(a => (isSuperAdmin || a.DrivingSchoolId == drivingSchoolId) && a.SearchField.ToLower().Contains(term.ToLower()));
             var drivingSchoolCars = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolCarGrid>(predicate, orderBy, paging);

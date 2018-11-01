@@ -43,11 +43,12 @@
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                                    @Html.ValidationSummary(false, null, new {@class = "row alert alert-error"})
+                                    @Html.ValidationSummary(false, null, new {@class = "row alert alert-danger" })
                                 </div>
                             </div>
                         }
                         @Html.HiddenFor(model => Model.Driver.DriverId)
+                        @Html.HiddenFor(model => Model.Driver.DrivingSchoolId)
                         @Html.HiddenFor(model => Model.Driver.CreatedBy)
                         @Html.Partial("_Driver", Model)
                         <div class="row clearfix">
@@ -75,7 +76,7 @@
                 <div class="form-horizontal">
                     <div class="row ng-hide" ng-cloak ng-show="model.driverCarError">
                         <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                            <div class="validation-summary-errors row alert alert-error" id="absenceTypeError">
+                            <div class="validation-summary-errors row alert alert-danger" id="absenceTypeError">
                                 <ul>
                                     <li>Assign Atleast One Car</li>
                                 </ul>
@@ -179,7 +180,7 @@
                     <div class="form-group" id="absencePolicyEntitlementErrorSummary" hidden>
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                                <div class="validation-summary-errors row alert alert-error" data-valmsg-summary="false">
+                                <div class="validation-summary-errors row alert alert-danger" data-valmsg-summary="false">
                                     <ul class="errors">
                                         <li ng-repeat="error in model.Errors"><span ng-bind="error"></span></li>
                                     </ul>

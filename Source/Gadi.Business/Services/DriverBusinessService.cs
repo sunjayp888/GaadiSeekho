@@ -107,7 +107,7 @@ namespace Gadi.Business.Services
 
         public async Task<PagedResult<DriverGrid>> Search(bool isSuperAdmin, int drivingSchoolId, string term, List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var predicate = PredicateBuilder.New<Data.Entities.DriverGrid>(true);
+            var predicate = PredicateBuilder.New<Data.Entities.DriverGrid>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId);
             if (!string.IsNullOrEmpty(term))
                 predicate = predicate.And(a => (isSuperAdmin || a.DrivingSchoolId == drivingSchoolId) && a.SearchField.ToLower().Contains(term.ToLower()));
             var drivers = await _dataService.RetrievePagedResultAsync<Data.Entities.DriverGrid>(predicate, orderBy, paging);
