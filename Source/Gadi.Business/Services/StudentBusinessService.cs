@@ -12,6 +12,7 @@ using Gadi.Data.Entities;
 using Gadi.Data.Interfaces;
 using Student = Gadi.Business.Models.Student;
 using LinqKit;
+using StudentGrid = Gadi.Business.Models.StudentGrid;
 
 namespace Gadi.Business.Services
 {
@@ -70,17 +71,17 @@ namespace Gadi.Business.Services
             return student.FirstOrDefault();
         }
 
-        public async Task<PagedResult<Student>> RetrieveStudents(List<OrderBy> orderBy = null, Paging paging = null)
+        public async Task<PagedResult<Student>> RetrieveStudents(bool isSuperAdmin, int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var students = await _dataService.RetrievePagedResultAsync<Data.Entities.Student>(a => true, orderBy, paging);
+            var students = await _dataService.RetrievePagedResultAsync<Data.Entities.Student>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId, orderBy, paging);
             return _mapper.MapToPagedResult<Student>(students);
         }
 
-        public async Task<PagedResult<Models.StudentGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null)
+        public async Task<PagedResult<StudentGrid>> Search(bool isSuperAdmin, int drivingSchoolId, string term, List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var predicate = PredicateBuilder.New<Data.Entities.StudentGrid>(true);
+            var predicate = PredicateBuilder.New<Data.Entities.StudentGrid>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId);
             if (!string.IsNullOrEmpty(term))
-                predicate = predicate.And(a => a.SearchField.ToLower().Contains(term.ToLower()));
+                predicate = predicate.And(a =>(isSuperAdmin || a.DrivingSchoolId == drivingSchoolId) && a.SearchField.ToLower().Contains(term.ToLower()));
             var students = await _dataService.RetrievePagedResultAsync<Data.Entities.StudentGrid>(predicate, orderBy, paging);
             return _mapper.MapToPagedResult<Models.StudentGrid>(students);
         }

@@ -47,7 +47,7 @@ namespace Gadi.Data.Entities
         [StringLength(100)]
         public string Name { get; set; }
 
-        public int? CentreId { get; set; }
+        public int? DrivingSchoolId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetPermission> AspNetPermissions { get; set; }

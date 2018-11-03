@@ -1,7 +1,6 @@
-﻿@model Gadi.Models.CarViewModel
-
+﻿@model Gadi.Models.DrivingSchoolCarViewModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -9,7 +8,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>@string.Format("{0}",Model.Car.Name)<small> Edit Car</small></h2>
+                <h2>Create Driving School Car<small></small></h2>
             </div>
             <div class="body">
                 @using (Html.BeginForm())
@@ -20,13 +19,11 @@
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                                    @Html.ValidationSummary(false, null, new { @class = "row alert alert-error" })
+                                    @Html.ValidationSummary(false, null, new { @class = "row alert alert-danger" })
                                 </div>
                             </div>
                         }
-                        @Html.HiddenFor(model => Model.Car.CarId)
-
-                        @Html.Partial("_Car", Model)
+                        @Html.Partial("_DrivingSchoolCar", Model)
                         <div class="row clearfix">
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group align-right">

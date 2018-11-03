@@ -1,6 +1,25 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Gadi.Extensions
+
+@{
+    ViewBag.Title = "Home";
+    if (User.Identity.IsAuthenticated && User.IsDrivingSchool())
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    if (!User.Identity.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
 }
 
-@Html.Partial("_AdminHome")
-@*@Html.Partial("_Home")*@
+@{
+    if (User.Identity.IsAuthenticated && User.IsDrivingSchool())
+    {
+        @Html.Partial("_AdminHome")
+    }
+    if (!User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("_User")
+    }
+}

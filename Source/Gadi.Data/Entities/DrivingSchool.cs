@@ -14,6 +14,9 @@ namespace Gadi.Data.Entities
         {
             DrivingSchoolCars = new HashSet<DrivingSchoolCar>();
             DrivingSchoolRatingAndReviews = new HashSet<DrivingSchoolRatingAndReview>();
+            DriverFeedbacks = new HashSet<DriverFeedback>();
+            Students = new HashSet<Student>();
+            Drivers = new HashSet<Driver>();
             CreatedDate = DateTime.UtcNow;
         }
 
@@ -64,5 +67,14 @@ namespace Gadi.Data.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrivingSchoolRatingAndReview> DrivingSchoolRatingAndReviews { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Students { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Driver> Drivers { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DriverFeedback> DriverFeedbacks { get; set; }
     }
 }

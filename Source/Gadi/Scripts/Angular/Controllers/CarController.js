@@ -26,7 +26,7 @@
         function initialise() {
             vm.orderBy.direction = "Ascending";
             vm.orderBy.class = "asc";
-            order("Name");
+            order("DrivingSchoolCarName");
         }
 
         function retrieveCars() {
@@ -76,7 +76,7 @@
         }
 
         function editCar(carId) {
-            $window.location.href = "/Car/" + carId + "/Edit";
+            $window.location.href = "/DrivingSchoolCar/" + carId + "/Edit";
         }
     }
 })();

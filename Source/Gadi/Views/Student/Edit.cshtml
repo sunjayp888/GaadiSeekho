@@ -43,11 +43,12 @@
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                                    @Html.ValidationSummary(false, null, new {@class = "row alert alert-error"})
+                                    @Html.ValidationSummary(false, null, new {@class = "row alert alert-danger" })
                                 </div>
                             </div>
                         }
                         @Html.HiddenFor(model => Model.Student.StudentId)
+                        @Html.HiddenFor(model => Model.Student.DrivingSchoolId)
                         @Html.HiddenFor(model => Model.Student.CreatedDate)
                         @Html.Partial("_Student", Model)
                         <div class="row clearfix">
@@ -68,7 +69,7 @@
         <span class="fa fa-chevron-left"></span>&nbsp;Back to list
     </a>
 </div>
-<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" ng-cloak ng-controller="StudentProfileController as model" ng-init="model.initialise(1)">
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" ng-cloak ng-controller="StudentProfileController as model" ng-init="model.initialise(@Model.Student.StudentId)">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form class="avatar-form" enctype="multipart/form-data" method="post">

@@ -22,6 +22,8 @@ namespace Gadi.Business.Models
         public int Pincode { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int DrivingSchoolId { get; set; }
+        public string DrivingSchoolName { get; set; }
         public string SearchField { get; set; }
     }
 }

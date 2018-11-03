@@ -14,6 +14,9 @@ namespace Gadi.Data.Entities
             CreatedDate = DateTime.UtcNow.Date;
         }
 
+        [NotMapped]
+        public string FullName => Forenames + " " + Surname;
+
         public int StudentId { get; set; }
 
         [Required]
@@ -51,38 +54,9 @@ namespace Gadi.Data.Entities
         [StringLength(15)]
         public string Telephone { get; set; }
 
+        [Required]
         [StringLength(15)]
         public string Mobile { get; set; }
-
-        [StringLength(10)]
-        public string NINumber { get; set; }
-
-        [StringLength(10)]
-        public string BankAccountNumber { get; set; }
-
-        [StringLength(6)]
-        public string BankSortCode { get; set; }
-
-        [StringLength(100)]
-        public string BankAccountName { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress1 { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress2 { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress3 { get; set; }
-
-        [StringLength(100)]
-        public string BankAddress4 { get; set; }
-
-        [StringLength(12)]
-        public string BankPostcode { get; set; }
-
-        [StringLength(15)]
-        public string BankTelephone { get; set; }
 
         [Required]
         [StringLength(256)]
@@ -90,5 +64,9 @@ namespace Gadi.Data.Entities
 
         [Column(TypeName = "datetime2")]
         public DateTime CreatedDate { get; set; }
+
+        public int DrivingSchoolId { get; set; }
+
+        public virtual DrivingSchool DrivingSchool { get; set; }
     }
 }

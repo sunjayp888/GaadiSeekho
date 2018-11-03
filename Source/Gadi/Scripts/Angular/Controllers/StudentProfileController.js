@@ -10,7 +10,7 @@
     function StudentProfileController($window, StudentProfileService, Paging, OrderService, OrderBy, Order) {
         /* jshint validthis:true */
         var vm = this;
-        vm.personnelId;
+        vm.studentId;
         vm.initialise = initialise;
         vm.uploadPhoto = uploadPhoto;
         vm.deletePhoto = deletePhoto;
@@ -53,8 +53,8 @@
         });
         //Cropper
 
-        function initialise(personnelId) {
-            vm.personnelId = personnelId;
+        function initialise(studentId) {
+            vm.studentId = studentId;
              retrieveProfileImage();
         }
 
@@ -73,10 +73,10 @@
                     vm.fileFormatError = false;
                     var base64result = base64String.split(',');
                     var blobImage = new b64toBlob(base64result[1], base64result[0]);
-                    return StudentProfileService.UploadPhoto(vm.personnelId, blobImage)
+                    return StudentProfileService.UploadPhoto(vm.studentId, blobImage)
                         .then(function (response) {
                             var randomNumber = Math.random();//This will force the browsers to reload the image url
-                            angular.element('#ProfilePicture').attr('src', '/Personnel/' + vm.personnelId + '/Photo?' + randomNumber);
+                            angular.element('#ProfilePicture').attr('src', '/Student/' + vm.studentId + '/Photo?' + randomNumber);
                             angular.element('#ProfilePictureModal').modal('toggle');
                         });
                 } else {
@@ -114,7 +114,7 @@
         }
 
         function deletePhoto() {
-            return StudentProfileService.DeletePhoto(vm.personnelId)
+            return StudentProfileService.DeletePhoto(vm.studentId)
                 .then(function (response) {
                     document.getElementById('ProfilePicture').setAttribute('src', location.protocol + '//' + location.host + '/Images/Avatar.png');
                     $("#ProfilePictureModal").modal("hide");
@@ -122,7 +122,7 @@
         }
 
         function retrieveProfileImage() {
-            return StudentProfileService.retrieveProfileImage(vm.personnelId)
+            return StudentProfileService.retrieveProfileImage(vm.studentId)
                 .then(function (response) {
                     //If response is null then default image
                     if (response.data === "")

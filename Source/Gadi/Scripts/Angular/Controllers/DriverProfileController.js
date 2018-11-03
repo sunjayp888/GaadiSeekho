@@ -10,7 +10,7 @@
     function DriverProfileController($window, DriverProfileService, Paging, OrderService, OrderBy, Order) {
         /* jshint validthis:true */
         var vm = this;
-        vm.personnelId;
+        vm.driverId;
         vm.initialise = initialise;
         vm.uploadPhoto = uploadPhoto;
         vm.deletePhoto = deletePhoto;
@@ -53,8 +53,8 @@
         });
         //Cropper
 
-        function initialise(personnelId) {
-            vm.personnelId = personnelId;
+        function initialise(driverId) {
+            vm.driverId = driverId;
              retrieveProfileImage();
         }
 
@@ -73,10 +73,10 @@
                     vm.fileFormatError = false;
                     var base64result = base64String.split(',');
                     var blobImage = new b64toBlob(base64result[1], base64result[0]);
-                    return DriverProfileService.UploadPhoto(vm.personnelId, blobImage)
+                    return DriverProfileService.UploadPhoto(vm.driverId, blobImage)
                         .then(function (response) {
                             var randomNumber = Math.random();//This will force the browsers to reload the image url
-                            angular.element('#ProfilePicture').attr('src', '/Personnel/' + vm.personnelId + '/Photo?' + randomNumber);
+                            angular.element('#ProfilePicture').attr('src', '/Driver/' + vm.driverId + '/Photo?' + randomNumber);
                             angular.element('#ProfilePictureModal').modal('toggle');
                         });
                 } else {
@@ -114,7 +114,7 @@
         }
 
         function deletePhoto() {
-            return DriverProfileService.DeletePhoto(vm.personnelId)
+            return DriverProfileService.DeletePhoto(vm.driverId)
                 .then(function (response) {
                     document.getElementById('ProfilePicture').setAttribute('src', location.protocol + '//' + location.host + '/Images/Avatar.png');
                     $("#ProfilePictureModal").modal("hide");
@@ -122,7 +122,7 @@
         }
 
         function retrieveProfileImage() {
-            return DriverProfileService.retrieveProfileImage(vm.personnelId)
+            return DriverProfileService.retrieveProfileImage(vm.driverId)
                 .then(function (response) {
                     //If response is null then default image
                     if (response.data === "")

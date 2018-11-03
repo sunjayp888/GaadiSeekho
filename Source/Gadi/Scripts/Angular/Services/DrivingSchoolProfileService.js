@@ -16,11 +16,11 @@
 
         return service;
 
-        function UploadPhoto(personnelId, blob) {
+        function UploadPhoto(drivingSchoolId, blob) {
             var formData = new FormData();
             formData.append('croppedImage', blob);
 
-            var url = "/DrivingSchool/" + personnelId + "/UploadPhoto";
+            var url = "/DrivingSchool/" + drivingSchoolId + "/UploadPhoto";
 
             return $http.post(url, formData, {
                 withCredentials: true,
@@ -29,13 +29,13 @@
             });
         };
 
-        function DeletePhoto(personnelId) {
-            var url = "/DrivingSchool/DeletePhoto/" + personnelId;
+        function DeletePhoto(drivingSchoolId) {
+            var url = "/DrivingSchool/DeletePhoto/" + drivingSchoolId;
             return $http.post(url);
         };
 
-        function retrieveProfileImage(personnelId) {
-            var url = "/DrivingSchool/RetrieveProfileImage/" + personnelId;
+        function retrieveProfileImage(drivingSchoolId) {
+            var url = "/DrivingSchool/RetrieveProfileImage/" + drivingSchoolId;
             return $http.post(url);
         }
     }

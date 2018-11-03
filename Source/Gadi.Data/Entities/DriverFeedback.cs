@@ -34,6 +34,10 @@ namespace Gadi.Data.Entities
 
         public int CreatedBy { get; set; }
 
+        public int DrivingSchoolId { get; set; }
+
         public virtual Driver Driver { get; set; }
+
+        public virtual DrivingSchool DrivingSchool { get; set; }
     }
 }

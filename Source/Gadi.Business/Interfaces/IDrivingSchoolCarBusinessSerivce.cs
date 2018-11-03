@@ -10,14 +10,15 @@ namespace Gadi.Business.Interfaces
     public interface IDrivingSchoolCarBusinessService
     {
         //Create
-        Task<ValidationResult<DrivingSchoolCar>> CreateDrivingSchoolCar(DrivingSchoolCar drivingSchoolCar);
+        Task<ValidationResult<DrivingSchoolCar>> CreateDrivingSchoolCar(DrivingSchoolCar drivingSchoolCar,DrivingSchoolCarFee drivingSchoolCarFee);
 
         //Update
-        Task<ValidationResult<DrivingSchoolCar>> UpdateDrivingSchoolCar(DrivingSchoolCar drivingSchoolCar);
+        Task<ValidationResult<DrivingSchoolCar>> UpdateDrivingSchoolCar(DrivingSchoolCar drivingSchoolCar, DrivingSchoolCarFee drivingSchoolCarFee);
         //Retrieve
         Task<DrivingSchoolCar> RetrieveDrivingSchoolCar(int drivingSchoolCarId);
-        Task<DrivingSchoolCar> RetrieveDrivingSchoolCarByDrivingSchoolIdCarId(int drivingSchoolId, int carId);
-        Task<PagedResult<DrivingSchoolCar>> RetrieveDrivingSchoolCars(List<OrderBy> orderBy = null, Paging paging = null);
-        //Task<PagedResult<DrivingSchoolCarGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
+        Task<DrivingSchoolCarFee> RetrieveDrivingSchoolCarFee(int drivingSchoolCarId);
+        Task<DrivingSchoolCar> RetrieveDrivingSchoolCarByDrivingSchoolIdCarId(int drivingSchoolId, int drivingSchoolCarId);
+        Task<PagedResult<DrivingSchoolCarGrid>> RetrieveDrivingSchoolCars(bool isSuperAdmin,int drivingSchoolId,List<OrderBy> orderBy = null, Paging paging = null);
+        Task<PagedResult<DrivingSchoolCarGrid>> Search(bool isSuperAdmin, int drivingSchoolId, string term, List<OrderBy> orderBy = null, Paging paging = null);
     }
 }

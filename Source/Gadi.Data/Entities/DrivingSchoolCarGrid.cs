@@ -12,39 +12,87 @@ namespace Gadi.Data.Entities
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int DrivingSchoolCarId { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DrivingSchoolId { get; set; }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         [StringLength(500)]
         public string DrivingSchoolName { get; set; }
 
         [Key]
-        [Column(Order = 3)]
+        [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CarId { get; set; }
+        public int DrivingSchoolCarId { get; set; }
+
+        [Key]
+        [Column(Order = 3)]
+        [StringLength(500)]
+        public string DrivingSchoolCarName { get; set; }
 
         [Key]
         [Column(Order = 4)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CarTypeId { get; set; }
+
+        [Key]
+        [Column(Order = 5)]
         [StringLength(500)]
-        public string CarName { get; set; }
+        public string CarTypeName { get; set; }
+
+        [StringLength(100)]
+        public string CityMileage { get; set; }
+
+        [StringLength(100)]
+        public string ARAIMileage { get; set; }
+
+        [Key]
+        [Column(Order = 6)]
+        [StringLength(100)]
+        public string FuelType { get; set; }
+
+        [Key]
+        [Column(Order = 7)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Engine { get; set; }
+
+        [StringLength(100)]
+        public string MaxPower { get; set; }
+
+        [StringLength(100)]
+        public string MaxTorque { get; set; }
+
+        public int? Seating { get; set; }
+
+        [Key]
+        [Column(Order = 8)]
+        [StringLength(500)]
+        public string EngineDescription { get; set; }
 
         [StringLength(100)]
         public string TransmissionType { get; set; }
 
+        [StringLength(100)]
+        public string CargoVolume { get; set; }
+
+        [StringLength(50)]
+        public string WheelType { get; set; }
+
         [Key]
-        [Column(Order = 5)]
+        [Column(Order = 9)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int DrivingSchoolCarFeeId { get; set; }
+
+        [Key]
+        [Column(Order = 10)]
         public decimal WithLicenseFee { get; set; }
 
         [Key]
-        [Column(Order = 6)]
+        [Column(Order = 11)]
         public decimal WithoutLicenseFee { get; set; }
 
         public decimal? DiscountAmount { get; set; }
+
+        [StringLength(560)]
+        public string SearchField { get; set; }
     }
 }

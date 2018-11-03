@@ -20,13 +20,11 @@ namespace Gadi.Controllers
     public class StudentController : BaseController
     {
         private readonly IStudentBusinessService _studentBusinessService;
-        private readonly IPersonnelBusinessService _personnelBusinessService;
         private readonly IDocumentsBusinessService _documentsBusinessService;
         const string UserNotExist = "User does not exist.";
-        public StudentController(IStudentBusinessService studentBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService, IPersonnelBusinessService personnelBusinessService, IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
+        public StudentController(IStudentBusinessService studentBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService, IDocumentsBusinessService documentsBusinessService) : base(configurationManager, authorizationService)
         {
             _studentBusinessService = studentBusinessService;
-            _personnelBusinessService = personnelBusinessService;
             _documentsBusinessService = documentsBusinessService;
         }
 
@@ -56,6 +54,7 @@ namespace Gadi.Controllers
         {
             if (ModelState.IsValid)
             {
+                studentViewModel.Student.DrivingSchoolId = UserDrivingSchoolId;
                 var result = await _studentBusinessService.CreateStudent(studentViewModel.Student);
                 if (result.Succeeded)
                 {
@@ -110,19 +109,19 @@ namespace Gadi.Controllers
         }
 
         [HttpPost]
-        [Route("{personnelId:int}/UploadPhoto")]
-        public async Task<ActionResult> UploadPhoto(int personnelId)
+        [Route("{studentId:int}/UploadPhoto")]
+        public async Task<ActionResult> UploadPhoto(int studentId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
             try
             {
-                var getPersonnelResult = await _personnelBusinessService.RetrievePersonnel(personnelId);
-                if (!getPersonnelResult.Succeeded)
-                    return HttpNotFound(string.Join(";", getPersonnelResult.Errors));
+                var getPersonnelResult = await _studentBusinessService.RetrieveStudent(studentId);
+                if (getPersonnelResult == null)
+                    return HttpNotFound();
 
-                var person = getPersonnelResult.Entity;
+                var student = getPersonnelResult;
 
                 if (Request.Files.Count > 0)
                 {
@@ -142,11 +141,11 @@ namespace Gadi.Controllers
                         var documentMeta = new Document()
                         {
                             Content = fileData,
-                            Description = string.Format("{0} Profile Image", person.FullName),
+                            Description = string.Format("{0} Profile Image", student.FullName),
                             FileName = file.FileName.Split('\\').Last() + ".png",
-                            PersonnelName = person.FullName,
+                            PersonnelName = student.FullName,
                             CreatedBy = User.Identity.Name,
-                            PersonnelId = person.PersonnelId.ToString(),
+                            PersonnelId = student.StudentId.ToString(),
                             Category = Business.Enum.DocumentCategory.DrivingStudentProfile.ToString(),
                             CategoryId = (int)Business.Enum.DocumentCategory.DrivingStudentProfile
                         };
@@ -183,13 +182,13 @@ namespace Gadi.Controllers
 
         }
 
-        [Route("RetrieveProfileImage/{personnelId:int}")]
-        public async Task<ActionResult> RetrieveProfileImage(int personnelId)
+        [Route("RetrieveProfileImage/{studentId:int}")]
+        public async Task<ActionResult> RetrieveProfileImage(int studentId)
         {
             //if (!await AuthorizationService.AuthorizeAsync((ClaimsPrincipal)User, personnelId, Policies.Resource.Personnel.ToString()))
             //    return HttpForbidden();
 
-            var personnels = await _documentsBusinessService.RetrieveDocuments(personnelId, DocumentCategory.DrivingStudentProfile);
+            var personnels = await _documentsBusinessService.RetrieveDocuments(studentId, DocumentCategory.DrivingStudentProfile);
             if (personnels == null)
                 return HttpNotFound(UserNotExist);
 
@@ -202,9 +201,11 @@ namespace Gadi.Controllers
         [Route("List")]
         public async Task<ActionResult> List(Paging paging, List<OrderBy> orderBy)
         {
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
             try
             {
-                var data = await _studentBusinessService.RetrieveStudents(orderBy, paging);
+                var data = await _studentBusinessService.RetrieveStudents(isSuperAdmin, drivingSchoolId, orderBy, paging);
                 return this.JsonNet(data);
             }
             catch (Exception ex)
@@ -217,7 +218,9 @@ namespace Gadi.Controllers
         [Route("Search")]
         public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
         {
-            return this.JsonNet(await _studentBusinessService.Search(searchKeyword, orderBy, paging));
+            var isSuperAdmin = User.IsSuperAdmin();
+            var drivingSchoolId = UserDrivingSchoolId;
+            return this.JsonNet(await _studentBusinessService.Search(isSuperAdmin, drivingSchoolId, searchKeyword, orderBy, paging));
         }
     }
 }

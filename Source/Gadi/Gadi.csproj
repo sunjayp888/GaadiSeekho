@@ -256,7 +256,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\DrivingSchoolCarController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DriverFeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -279,7 +279,7 @@
     <Compile Include="Models\Authorization\PermissionsRequirement.cs" />
     <Compile Include="Models\Authorization\UnityAuthorizationDependencies.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
-    <Compile Include="Models\CarViewModel.cs" />
+    <Compile Include="Models\DrivingSchoolCarViewModel.cs" />
     <Compile Include="Models\DriverFeedbackViewModel.cs" />
     <Compile Include="Models\DriverViewModel.cs" />
     <Compile Include="Models\DrivingSchoolViewModel.cs" />
@@ -5110,6 +5110,8 @@
     <Content Include="Content\Less\Site.less" />
     <Content Include="Scripts\Angular\app.js" />
     <Content Include="Scripts\Angular\Controllers\CarController.js" />
+    <Content Include="Scripts\Angular\Controllers\CarProfileController.js" />
+    <Content Include="Scripts\Angular\Controllers\DriverCarController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverFeedbackController.js" />
     <Content Include="Scripts\Angular\Controllers\DriverProfileController.js" />
@@ -5129,6 +5131,7 @@
     <Content Include="Scripts\Angular\Directives\FileUpload.js" />
     <Content Include="Scripts\Angular\Directives\Inject.js" />
     <Content Include="Scripts\Angular\Directives\ionrangeslider.js" />
+    <Content Include="Scripts\Angular\Directives\ng-infinite-scroll.js" />
     <Content Include="Scripts\Angular\Filters\escape-regexp.js" />
     <Content Include="Scripts\Angular\Filters\filters-module.js" />
     <Content Include="Scripts\Angular\Filters\geo-coder.js" />
@@ -5140,6 +5143,7 @@
     <Content Include="Scripts\Angular\Services\BrandService.js" />
     <Content Include="Scripts\Angular\Helpers\ng-map-pool.js" />
     <Content Include="Scripts\Angular\Helpers\ng-map.js" />
+    <Content Include="Scripts\Angular\Services\CarProfileService.js" />
     <Content Include="Scripts\Angular\Services\CarService.js" />
     <Content Include="Scripts\Angular\Services\DriverFeedbackService.js" />
     <Content Include="Scripts\Angular\Services\DriverProfileService.js" />
@@ -5953,7 +5957,7 @@
     <Content Include="Views\Shared\Pagination\_pageSize.cshtml" />
     <Content Include="Views\Shared\Pagination\_pagination.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Car\Index.cshtml" />
+    <Content Include="Views\DrivingSchoolCar\Index.cshtml" />
     <Content Include="Views\DriverFeedback\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Student\_Student.cshtml" />
@@ -5964,14 +5968,17 @@
     <Content Include="Views\DriverFeedback\_DriverFeedback.cshtml" />
     <Content Include="Views\Driver\_Driver.cshtml" />
     <Content Include="Views\Driver\Edit.cshtml" />
-    <Content Include="Views\Car\_Car.cshtml" />
-    <Content Include="Views\Car\Edit.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\DrivingSchoolCar\_DrivingSchoolCar.cshtml" />
+    <Content Include="Views\DrivingSchoolCar\Edit.cshtml" />
     <Content Include="Views\DrivingSchool\Detail.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Driver\Create.cshtml" />
     <Content Include="Views\DrivingSchool\Create.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Home\_User.cshtml" />
+    <Content Include="Views\DrivingSchoolCar\Create.cshtml" />
+    <Content Include="Views\Home\_FilterAndList.cshtml" />
+    <Content Include="Views\Home\DrivingSchool.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

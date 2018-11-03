@@ -42,7 +42,7 @@
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                                    @Html.ValidationSummary(false, null, new {@class = "row alert alert-error"})
+                                    @Html.ValidationSummary(false, null, new {@class = "row alert alert-danger" })
                                 </div>
                             </div>
                         }
@@ -62,7 +62,7 @@
         </div>
     </div>
 </div>
-<div class="row clearfix" ng-controller="DrivingSchoolCarController as model" ng-init="model.initialise(@Model.DrivingSchool.DrivingSchoolId)">
+@*<div class="row clearfix" ng-controller="DrivingSchoolCarController as model" ng-init="model.initialise(@Model.DrivingSchool.DrivingSchoolId)">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
@@ -88,17 +88,14 @@
                             <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuCar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <span class="fa fa-list fa-fw"></span>
-                                    @*  <span class="square" ng-style="{'background-color' : '#' + model.ddAbsenceType.Colour.Hex }"></span>*@
                                     <span ng-bind="model.ddCar.Name"></span>
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
                                     <li ng-repeat="car in model.ddCars">
-                                        @*<span class="square" ng-style="{'background-color' : '#' + absenceType.Colour.Hex }"></span>*@
                                         <span><a ng-click="model.changeCar(car)" ng-bind="car.Name"></a></span>
                                     </li>
                                 </ul>
-                                @*<button type="button" class="btn btn-success" ng-click="model.assignDrivingSchoolCar()" ng-disabled="model.assigning">Assign</button>*@
                                 <button type="button" class="btn btn-success waves-effect" data-toggle="modal" data-target="#smallModal">Assign</button>
                             </div>
                         </div>
@@ -224,7 +221,7 @@
                         </div>
                     </div>
                     <div id="absencePolicyEntitlementModalBody">
-                        @*@Html.Partial("_AbsencePolicyEntitlement", Model)*@
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -244,13 +241,13 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <div>
     <a href="@Url.Action("Index")" class="btn btn-primary" role="button">
         <span class="fa fa-chevron-left"></span>&nbsp;Back to list
     </a>
 </div>
-<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" ng-cloak ng-controller="DrivingSchoolProfileController as model" ng-init="model.initialise(1)">
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" ng-cloak ng-controller="DrivingSchoolProfileController as model" ng-init="model.initialise(@Model.DrivingSchool.DrivingSchoolId)">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form class="avatar-form" enctype="multipart/form-data" method="post">

@@ -39,7 +39,8 @@ namespace Gadi
                 "~/bower_components/adminbsb-materialdesign/js/admin.js",
                 "~/bower_components/adminbsb-materialdesign/plugins/js/materialize.min.js",
                 "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.min.js",
-                "~/bower_components/cropper/dist/cropper.min.js"
+                "~/bower_components/cropper/dist/cropper.min.js",
+                "~/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"
                 ));
 
             //bundles.Add(new ScriptBundle("~/Scripts/SignalR").Include(

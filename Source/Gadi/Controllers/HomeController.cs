@@ -35,11 +35,6 @@ namespace Gadi.Controllers
             }
             if (User.Identity.IsAuthenticated && User.IsSuperUser())
                 return View();
-            return RedirectToAction("Test", "Home");
-        }
-
-        public ActionResult Test()
-        {
             return View();
         }
 
@@ -55,6 +50,17 @@ namespace Gadi.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        //[HttpPost]
+        [Route("Home/DrivingSchool/{searchKeyword}")]
+        public ActionResult DrivingSchool(string searchKeyword)
+        {
+            var viewModel = new HomeViewModel()
+            {
+                SearchKeyword = searchKeyword
+            };
+            return View(viewModel);
         }
 
         [AllowAnonymous]

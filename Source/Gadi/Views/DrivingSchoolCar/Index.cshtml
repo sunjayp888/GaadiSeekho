@@ -23,11 +23,11 @@
                 </div>
                 <div class="body">
 
-                    @if (User.IsSuperAdmin())
+                    @if (User.IsDrivingSchool())
                     {
                         <div class="row">
                             <div class="col-xs-6">
-                                <a class="btn btn-primary btn-lg">
+                                <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "DrivingSchoolCar")">
                                     <i class="fa fa-user"></i> Create
                                 </a>
                             </div>
@@ -62,17 +62,17 @@
                                             <table wt-responsive-table class="table table-striped table-bordered table-hover dataTable" role="grid" aria-describedby="datatable-fixed-header_info">
                                                 <thead>
                                                 <tr role="row">
-                                                    <th ng-click="model.order('Name')" ng-class="model.orderClass('Name')">Name</th>
-                                                    <th ng-click="model.order('FuelType')" ng-class="model.orderClass('FuelType')">Fuel Type</th>
-                                                    <th ng-click="model.order('Engine')" ng-class="model.orderClass('Engine')">Engine</th>
+                                                    <th ng-click="model.order('DrivingSchoolCarName')" ng-class="model.orderClass('DrivingSchoolCarName')">Car Name</th>
+                                                    <th ng-click="model.order('WithLicenseFee')" ng-class="model.orderClass('WithLicenseFee')">With License Fee</th>
+                                                    <th ng-click="model.order('WithoutLicenseFee')" ng-class="model.orderClass('WithoutLicenseFee')">Without License Fee</th>
                                                     <th>Actions</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr ng-repeat="car in model.cars" class="" ng-click="$event.originalEvent.ngClickHandled">
-                                                    <td><span ng-bind="car.Name"></span></td>
-                                                    <td><span ng-bind="car.FuelType"></span></td>
-                                                    <td><span ng-bind="car.Engine"></span></td>
+                                                    <td><span ng-bind="car.DrivingSchoolCarName"></span></td>
+                                                    <td><span ng-bind="car.WithLicenseFee"></span></td>
+                                                    <td><span ng-bind="car.WithoutLicenseFee"></span></td>
                                                     <td>
                                                         <div class="btn-group pull-right">
                                                             <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-click="$event.originalEvent.ngClickHandled = true">
@@ -80,7 +80,7 @@
                                                             </a>
                                                             <ul class="dropdown-menu pull-right">
                                                                 <li>
-                                                                    <a class="waves-effect waves-block" style="cursor: pointer;" ng-click="model.editCar(car.CarId)">
+                                                                    <a class="waves-effect waves-block" style="cursor: pointer;" ng-click="model.editCar(car.DrivingSchoolCarId)">
                                                                         Edit Car
                                                                     </a>
                                                                 </li>

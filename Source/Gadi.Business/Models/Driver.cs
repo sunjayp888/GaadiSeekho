@@ -19,6 +19,9 @@ namespace Gadi.Business.Models
         public int Pincode { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int DrivingSchoolId { get; set; }
+        public virtual DrivingSchool DrivingSchool { get; set; }
         public virtual ICollection<Data.Entities.DriverFeedback> DriverFeedbacks { get; set; }
+        public virtual ICollection<DriverCar> DriverCars { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Gadi.Data.Entities
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DriverId { get; set; }
 
         [Key]
@@ -69,6 +70,16 @@ namespace Gadi.Data.Entities
         [Key]
         [Column(Order = 11, TypeName = "date")]
         public DateTime CreatedDate { get; set; }
+
+        [Key]
+        [Column(Order = 12)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int DrivingSchoolId { get; set; }
+
+        [Key]
+        [Column(Order = 13)]
+        [StringLength(500)]
+        public string DrivingSchoolName { get; set; }
 
         [StringLength(1560)]
         public string SearchField { get; set; }

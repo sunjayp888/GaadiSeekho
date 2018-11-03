@@ -70,6 +70,7 @@ namespace Gadi.Controllers
         }
 
         protected int UserPersonnelId => ApplicationUser?.PersonnelId ?? 0;
+        protected int UserDrivingSchoolId => ApplicationUser?.DrivingSchoolId ?? 0;
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {

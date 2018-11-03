@@ -15,7 +15,7 @@ namespace Gadi.Business.Interfaces
 
         //Retrieve
         Task<DriverFeedback> RetrieveDriverFeedback(int driverFeedbackId);
-        Task<PagedResult<DriverFeedbackGrid>> RetrieveDriverFeedbacks(List<OrderBy> orderBy = null, Paging paging = null);
+        Task<PagedResult<DriverFeedbackGrid>> RetrieveDriverFeedbacks(bool isSuperAdmin, int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null);
         //Task<PagedResult<DriverFeedbackGrid>> Search(string term, List<OrderBy> orderBy = null, Paging paging = null);
     }
 }

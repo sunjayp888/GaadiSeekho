@@ -47,6 +47,19 @@ namespace Gadi.Data.Entities
         [Column(Order = 4, TypeName = "date")]
         public DateTime CreatedDate { get; set; }
 
+        [Key]
+        [Column(Order = 5)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CreatedBy { get; set; }
+
+        [Key]
+        [Column(Order = 6)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int DrivingSchoolId { get; set; }
+
+        [Key]
+        [Column(Order = 7)]
+        [StringLength(500)]
+        public string DrivingSchoolName { get; set; }
     }
 }

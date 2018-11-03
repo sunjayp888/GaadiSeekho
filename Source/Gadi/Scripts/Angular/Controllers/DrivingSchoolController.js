@@ -46,6 +46,7 @@
         function searchDrivingSchools(searchKeyword) {
             vm.orderBy.direction = "Ascending";
             vm.orderBy.class = "asc";
+            vm.orderBy.property = "Name";
             vm.searchKeyword = searchKeyword;
             return DrivingSchoolService.searchDrivingSchools(vm.searchKeyword, vm.paging, vm.orderBy)
               .then(function (response) {

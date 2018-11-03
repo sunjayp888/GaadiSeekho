@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\Filter.cs" />
     <Compile Include="Enum\DocumentCategory.cs" />
     <Compile Include="Enum\OtpReason.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
@@ -76,7 +77,6 @@
     <Compile Include="Helpers\GenerateOtpHelper.cs" />
     <Compile Include="Interfaces\IAuthorizationBusinessService.cs" />
     <Compile Include="Interfaces\ICacheProvider.cs" />
-    <Compile Include="Interfaces\ICarBusinessService.cs" />
     <Compile Include="Interfaces\ICurrentUserResolver.cs" />
     <Compile Include="Interfaces\IDocumentBusinessService.cs" />
     <Compile Include="Interfaces\IDriverBusinessService.cs" />
@@ -97,12 +97,15 @@
     <Compile Include="Models\DocumentCategory.cs" />
     <Compile Include="Models\DocumentDetail.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\DriverCar.cs" />
     <Compile Include="Models\DriverFeedback.cs" />
     <Compile Include="Models\DriverFeedbackGrid.cs" />
     <Compile Include="Models\DriverGrid.cs" />
     <Compile Include="Models\DrivingSchool.cs" />
     <Compile Include="Models\DrivingSchoolCar.cs" />
+    <Compile Include="Models\DrivingSchoolCarFee.cs" />
     <Compile Include="Models\DrivingSchoolCarGrid.cs" />
+    <Compile Include="Models\DrivingSchoolFilterGrid.cs" />
     <Compile Include="Models\DrivingSchoolGrid.cs" />
     <Compile Include="Models\DrivingSchoolRatingAndReview.cs" />
     <Compile Include="Models\HtmlEmail.cs" />
@@ -118,7 +121,6 @@
     <Compile Include="Services\DriverBusinessService.cs" />
     <Compile Include="Services\DriverFeedbackBusinessService.cs" />
     <Compile Include="Services\DrivingSchoolBusinessService.cs" />
-    <Compile Include="Services\CarBusinessService.cs" />
     <Compile Include="Services\DocumentBusinessService.cs" />
     <Compile Include="Services\DrivingSchoolCarBusinessService.cs" />
     <Compile Include="Services\OtpBusinessService.cs" />
