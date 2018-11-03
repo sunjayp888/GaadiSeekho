@@ -23,6 +23,8 @@ namespace Gadi.Data.Entities
         [StringLength(500)]
         public string Name { get; set; }
 
+        public int CarTypeId { get; set; }
+        
         [StringLength(100)]
         public string CityMileage { get; set; }
 
@@ -57,6 +59,8 @@ namespace Gadi.Data.Entities
         public string WheelType { get; set; }
 
         public virtual DrivingSchool DrivingSchool { get; set; }
+
+        public virtual CarType CarType { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrivingSchoolCarFee> DrivingSchoolCarFees { get; set; }

@@ -19,11 +19,12 @@
 
         return service;
 
-        function retrieveDrivingSchools(Paging, OrderBy) {
+        function retrieveDrivingSchools(filter,Paging, OrderBy) {
             var url = "/DrivingSchool/List",
                 data = {
                     paging: Paging,
-                    orderBy: new Array(OrderBy)
+                    orderBy: new Array(OrderBy),
+                    filter: filter
                 };
             return $http.post(url, data);
         }

@@ -29,6 +29,16 @@ namespace Gadi.Data.Entities
         [StringLength(500)]
         public string DrivingSchoolCarName { get; set; }
 
+        [Key]
+        [Column(Order = 4)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CarTypeId { get; set; }
+
+        [Key]
+        [Column(Order = 5)]
+        [StringLength(500)]
+        public string CarTypeName { get; set; }
+
         [StringLength(100)]
         public string CityMileage { get; set; }
 
@@ -36,12 +46,12 @@ namespace Gadi.Data.Entities
         public string ARAIMileage { get; set; }
 
         [Key]
-        [Column(Order = 4)]
+        [Column(Order = 6)]
         [StringLength(100)]
         public string FuelType { get; set; }
 
         [Key]
-        [Column(Order = 5)]
+        [Column(Order = 7)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Engine { get; set; }
 
@@ -54,7 +64,7 @@ namespace Gadi.Data.Entities
         public int? Seating { get; set; }
 
         [Key]
-        [Column(Order = 6)]
+        [Column(Order = 8)]
         [StringLength(500)]
         public string EngineDescription { get; set; }
 
@@ -68,16 +78,16 @@ namespace Gadi.Data.Entities
         public string WheelType { get; set; }
 
         [Key]
-        [Column(Order = 7)]
+        [Column(Order = 9)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DrivingSchoolCarFeeId { get; set; }
 
         [Key]
-        [Column(Order = 8)]
+        [Column(Order = 10)]
         public decimal WithLicenseFee { get; set; }
 
         [Key]
-        [Column(Order = 9)]
+        [Column(Order = 11)]
         public decimal WithoutLicenseFee { get; set; }
 
         public decimal? DiscountAmount { get; set; }

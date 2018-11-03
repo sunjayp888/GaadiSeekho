@@ -52,6 +52,17 @@ namespace Gadi.Controllers
             return View();
         }
 
+        //[HttpPost]
+        [Route("Home/DrivingSchool/{searchKeyword}")]
+        public ActionResult DrivingSchool(string searchKeyword)
+        {
+            var viewModel = new HomeViewModel()
+            {
+                SearchKeyword = searchKeyword
+            };
+            return View(viewModel);
+        }
+
         [AllowAnonymous]
         public ActionResult PrivacyPolicy()
         {

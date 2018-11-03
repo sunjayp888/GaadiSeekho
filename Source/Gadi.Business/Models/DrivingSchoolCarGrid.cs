@@ -12,6 +12,8 @@ namespace Gadi.Business.Models
         public string DrivingSchoolName { get; set; }
         public int DrivingSchoolCarId { get; set; }
         public string DrivingSchoolCarName { get; set; }
+        public int CarTypeId { get; set; }
+        public string CarTypeName { get; set; }
         public string CityMileage { get; set; }
         public string ARAIMileage { get; set; }
         public string FuelType { get; set; }

@@ -1,0 +1,24 @@
+﻿@model Gadi.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "DrivingSchool";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="DrivingSchoolController as model" ng-init="model.searchDrivingSchools('@Model.SearchKeyword')">
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-amber">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    @Html.Partial("_FilterAndList")
+</div>

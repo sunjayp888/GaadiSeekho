@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Gadi.Business.Dto;
 using Gadi.Business.Extensions;
 using Gadi.Business.Interfaces;
 using Gadi.Business.Models;
@@ -13,6 +15,7 @@ using LinqKit;
 using Car = Gadi.Business.Models.Car;
 using DrivingSchool = Gadi.Business.Models.DrivingSchool;
 using DrivingSchoolCar = Gadi.Business.Models.DrivingSchoolCar;
+using DrivingSchoolFilterGrid = Gadi.Business.Models.DrivingSchoolFilterGrid;
 using DrivingSchoolGrid = Gadi.Business.Models.DrivingSchoolGrid;
 
 
@@ -144,6 +147,62 @@ namespace Gadi.Business.Services
                 predicate = predicate.And(a => a.SearchField.ToLower().Contains(term.ToLower()));
             var drivingSchools = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolGrid>(predicate, orderBy, paging);
             return _mapper.MapToPagedResult<Models.DrivingSchoolGrid>(drivingSchools);
+        }
+
+        public async Task<PagedResult<DrivingSchoolFilterGrid>> RetrieveDrivingSchools(Filter filter, List<OrderBy> orderBy = null, Paging paging = null)
+        {
+            var predicate = BuildDrivingSchoolSearchPredicate(filter);
+            var result = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolFilterGrid>(predicate, orderBy, paging);
+            return _mapper.MapToPagedResult<DrivingSchoolFilterGrid>(result);
+        }
+
+        private ExpressionStarter<Data.Entities.DrivingSchoolFilterGrid> BuildDrivingSchoolSearchPredicate(Filter filter)
+        {
+            var predicate = PredicateBuilder.New<Data.Entities.DrivingSchoolFilterGrid>(true);
+            if (filter != null && filter.IsMondayFilter)
+                predicate = predicate.And(e => e.WorkinDays.Contains(filter.Monday));
+            if (filter != null && filter.IsTuesdayFilter)
+                predicate = predicate.And(e => e.WorkinDays.Contains(filter.Tuesday));
+            if (filter != null && filter.IsWednesdayFilter)
+                predicate = predicate.And(e => e.WorkinDays.Contains(filter.Wednesday));
+            if (filter != null && filter.IsThursdayFilter)
+                predicate = predicate.And(e => e.WorkinDays.Contains(filter.Thursday));
+            if (filter != null && filter.IsFridayFilter)
+                predicate = predicate.And(e => e.WorkinDays.Contains(filter.Friday));
+            if (filter != null && filter.IsSaturdayFilter)
+                predicate = predicate.And(e => e.WorkinDays.Contains(filter.Saturday));
+            if (filter != null && filter.IsSundayFilter)
+                predicate = predicate.And(e => e.WorkinDays.Contains(filter.Sunday));
+            if (filter != null && filter.IsTwoWheelerFilter)
+                predicate = predicate.And(e => e.WheelTypes.Contains(filter.Sunday));
+            if (filter != null && filter.IsFourWheelerFilter)
+                predicate = predicate.And(e => e.WheelTypes.Contains(filter.FourWheeler));
+            if (filter != null && filter.IsWithLicenseFilter)
+                predicate = predicate.And(e => e.License.Contains(filter.WithLicense));
+            if (filter != null && filter.IsWithoutLicenseFilter)
+                predicate = predicate.And(e => e.License.Contains(filter.WithoutLicense));
+            if (filter != null && filter.IsNormalFilter)
+                predicate = predicate.And(e => e.CarType.Contains(filter.Normal));
+            if (filter != null && filter.IsSuvFilter)
+                predicate = predicate.And(e => e.CarType.Contains(filter.Suv));
+            if (filter != null && filter.IsMuvFilter)
+                predicate = predicate.And(e => e.CarType.Contains(filter.Muv));
+            if (filter != null && filter.IsXuvFilter)
+                predicate = predicate.And(e => e.CarType.Contains(filter.Xuv));
+            if (filter != null && filter.IsDrivingFeesFilter)
+            {
+                predicate = predicate.And(e => e.MinimumFeeWithLicense >= filter.FromFees && e.MinimumFeeWithLicense <= filter.ToFees);
+                predicate = predicate.And(e => e.MinimumFeeWithOutLicense >= filter.FromFees && e.MinimumFeeWithOutLicense <= filter.ToFees);
+            }
+            if (filter != null && filter.IsMaruti800Filter)
+                predicate = predicate.And(e => e.CarName.Contains(filter.Maruti800));
+            if (filter != null && filter.IsSantroFilter)
+                predicate = predicate.And(e => e.CarName.Contains(filter.Santro));
+            if (filter != null && filter.IsIndicaFilter)
+                predicate = predicate.And(e => e.CarName.Contains(filter.Indica));
+            if (filter != null && filter.IsQualisFilter)
+                predicate = predicate.And(e => e.CarName.Contains(filter.Qualis));
+            return predicate;
         }
 
         //public async Task<IEnumerable<Car>> RetrieveUnassignedDrivingSchoolCars(int drivingSchoolId)

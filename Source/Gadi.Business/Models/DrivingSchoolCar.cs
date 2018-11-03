@@ -12,6 +12,7 @@ namespace Gadi.Business.Models
         public int DrivingSchoolCarId { get; set; }
         public int DrivingSchoolId { get; set; }
         public string Name { get; set; }
+        public int CarTypeId { get; set; }
         public string CityMileage { get; set; }
         public string ARAIMileage { get; set; }
         public string FuelType { get; set; }
@@ -24,6 +25,7 @@ namespace Gadi.Business.Models
         public string CargoVolume { get; set; }
         public string WheelType { get; set; }
         public virtual DrivingSchool DrivingSchool { get; set; }
+        public virtual CarType CarType { get; set; }
         public virtual ICollection<DrivingSchoolCarFee> DrivingSchoolCarFees { get; set; }
         public virtual ICollection<DriverCar> DriverCars { get; set; }
     }

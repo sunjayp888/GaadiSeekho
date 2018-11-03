@@ -44,6 +44,26 @@
         vm.searchMessage = "";
         vm.drivingSchoolData = drivingSchoolData;
         vm.retrieveProfileImage = retrieveProfileImage;
+        vm.onMondayCheckedFilter = onMondayCheckedFilter;
+        vm.onTuesdayCheckedFilter = onTuesdayCheckedFilter;
+        vm.onWednesdayCheckedFilter = onWednesdayCheckedFilter;
+        vm.onThursdayCheckedFilter = onThursdayCheckedFilter;
+        vm.onFridayCheckedFilter = onFridayCheckedFilter;
+        vm.onSaturdayCheckedFilter = onSaturdayCheckedFilter;
+        vm.onSundayCheckedFilter = onSundayCheckedFilter;
+        vm.onTwoWheelerCheckedFilter = onTwoWheelerCheckedFilter;
+        vm.onFourWheelerCheckedFilter = onFourWheelerCheckedFilter;
+        vm.onWithLicenseCheckedFilter = onWithLicenseCheckedFilter;
+        vm.onWithoutLicenseCheckedFilter = onWithoutLicenseCheckedFilter;
+        vm.onNormalCheckedFilter = onNormalCheckedFilter;
+        vm.onSuvCheckedFilter = onSuvCheckedFilter;
+        vm.onMuvCheckedFilter = onMuvCheckedFilter;
+        vm.onXuvCheckedFilter = onXuvCheckedFilter;
+        vm.onMaruti800CheckedFilter = onMaruti800CheckedFilter;
+        vm.onSantroCheckedFilter = onSantroCheckedFilter;
+        vm.onIndicaCheckedFilter = onIndicaCheckedFilter;
+        vm.onQualisCheckedFilter = onQualisCheckedFilter;
+        vm.onDrivingFeesCheckedFilter = onDrivingFeesCheckedFilter;
         function addPincode() {
             geoLocation();
         }
@@ -184,6 +204,196 @@
 
         }
 
+        function onMondayCheckedFilter() {
+            if (document.getElementById('cbMonday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsMondayFilter: true,
+                    Monday: vm.monday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsMondayFilter: false
+                }
+            }
+           
+            retrieveDrivingSchools();
+        }
+
+        function onTuesdayCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsTuedayFilter: true,
+                Tuesday: vm.tuesday
+            }
+            //retrieveMobiles();
+        }
+
+        function onWednesdayCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsWednesdayFilter: true,
+                Wednesday: vm.wednesday
+            }
+            //retrieveMobiles();
+        }
+
+        function onThursdayCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsThursdayFilter: true,
+                Thursday: vm.thursday
+            }
+            //retrieveMobiles();
+        }
+
+        function onFridayCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsFridayFilter: true,
+                Friday: vm.friday
+            }
+            //retrieveMobiles();
+        }
+
+        function onSaturdayCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsSaturdayFilter: true,
+                Saturday: vm.saturday
+            }
+            //retrieveMobiles();
+        }
+
+        function onSundayCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsSundayFilter: true,
+                Sunday: vm.sunday
+            }
+            //retrieveMobiles();
+        }
+
+        function onTwoWheelerCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsTwoWheelerFilter: true,
+                TwoWheeler: vm.twoWheeler
+            }
+            //retrieveMobiles();
+        }
+
+        function onFourWheelerCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsFourWheelerFilter: true,
+                FourWheeler: vm.fourWheeler
+            }
+            //retrieveMobiles();
+        }
+
+        function onWithLicenseCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsWithLicenseFilter: true,
+                WithLicense: vm.withLicense
+            }
+            //retrieveMobiles();
+        }
+
+        function onWithoutLicenseCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsWithoutLicenseFilter: true,
+                WithoutLicense: vm.withoutLicense
+            }
+            //retrieveMobiles();
+        }
+
+        function onNormalCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsNormalFilter: true,
+                Normal: vm.normal
+            }
+            //retrieveMobiles();
+        }
+
+        function onSuvCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsSuvFilter: true,
+                Suv: vm.suv
+            }
+            //retrieveMobiles();
+        }
+
+        function onMuvCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsMuvFilter: true,
+                Muv: vm.muv
+            }
+            //retrieveMobiles();
+        }
+
+        function onXuvCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsXuvFilter: true,
+                Xuv: vm.xuv
+            }
+            //retrieveMobiles();
+        }
+
+        function onMaruti800CheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsMaruti800Filter: true,
+                Maruti800: vm.maruti800
+            }
+            //retrieveMobiles();
+        }
+
+        function onSantroCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsSantroFilter: true,
+                Santro: vm.santro
+            }
+            //retrieveMobiles();
+        }
+
+        function onIndicaCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsIndicaFilter: true,
+                Indica: vm.indica
+            }
+            //retrieveMobiles();
+        }
+
+        function onQualisCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsQualisFilter: true,
+                Qualis: vm.qualis
+            }
+            //retrieveMobiles();
+        }
+
+        function onDrivingFeesCheckedFilter() {
+            vm.filter = {
+                IsFilter: true,
+                IsDrivingFeesFilter: true,
+                FromFees: vm.fromFees,
+                ToFees: vm.toFees
+            }
+            //if(vm.fromFees && vm.toFees)
+            //retrieveMobiles();
+        }
+
         function createForgetPasswordOtp(mobileNumber) {
             vm.showMessage = false;
             vm.errorMessages = [];
@@ -218,12 +428,12 @@
             vm.orderBy.direction = "Ascending";
             vm.orderBy.class = "asc";
             vm.orderBy.property = "Name";
-            return DrivingSchoolService.retrieveDrivingSchools(vm.paging, vm.orderBy)
+            return DrivingSchoolService.retrieveDrivingSchools(vm.filter,vm.paging, vm.orderBy)
                 .then(function (response) {
-                    vm.drivingSchools = response.data.Items;
-                    vm.paging.totalPages = response.data.TotalPages;
-                    vm.paging.totalResults = response.data.TotalResults;
-                    vm.searchMessage = vm.drivingSchools.length === 0 ? "No Records Found" : "";
+                    vm.drivingSchools = response.data.ResponseBody.Items;
+                    vm.paging.totalPages = response.data.ResponseBody.TotalPages;
+                    vm.paging.totalResults = response.data.ResponseBody.TotalResults;
+                    vm.searchMessage = vm.drivingSchools.length === 0 ? "No Driving School Found" : "";
                     return vm.drivingSchools;
                 });
         }
@@ -233,18 +443,20 @@
         }
 
         function searchDrivingSchools(searchKeyword) {
-            vm.orderBy.direction = "Ascending";
-            vm.orderBy.class = "asc";
-            vm.orderBy.property = "Name";
             vm.searchKeyword = searchKeyword;
-            return DrivingSchoolService.searchDrivingSchools(vm.searchKeyword, vm.paging, vm.orderBy)
-                .then(function (response) {
-                    vm.drivingSchools = response.data.Items;
-                    vm.paging.totalPages = response.data.TotalPages;
-                    vm.paging.totalResults = response.data.TotalResults;
-                    vm.searchMessage = vm.drivingSchools.length === 0 ? "No Records Found" : "";
-                    return vm.drivingSchools;
-                });
+            $window.location.href = "/Home/DrivingSchool/" + vm.searchKeyword;
+            //vm.orderBy.direction = "Ascending";
+            //vm.orderBy.class = "asc";
+            //vm.orderBy.property = "Name";
+            //vm.searchKeyword = searchKeyword;
+            //return DrivingSchoolService.searchDrivingSchools(vm.searchKeyword, vm.paging, vm.orderBy)
+            //    .then(function (response) {
+            //        vm.drivingSchools = response.data.Items;
+            //        vm.paging.totalPages = response.data.TotalPages;
+            //        vm.paging.totalResults = response.data.TotalResults;
+            //        vm.searchMessage = vm.drivingSchools.length === 0 ? "No Records Found" : "";
+            //        return vm.drivingSchools;
+            //    });
         }
 
         function retrieveProfileImage() {

@@ -5977,6 +5977,8 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Home\_User.cshtml" />
     <Content Include="Views\DrivingSchoolCar\Create.cshtml" />
+    <Content Include="Views\Home\_FilterAndList.cshtml" />
+    <Content Include="Views\Home\DrivingSchool.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

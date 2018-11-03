@@ -81,6 +81,7 @@
     <Compile Include="Entities\DrivingSchoolCar.cs" />
     <Compile Include="Entities\DrivingSchoolCarFee.cs" />
     <Compile Include="Entities\DrivingSchoolCarGrid.cs" />
+    <Compile Include="Entities\DrivingSchoolFilterGrid.cs" />
     <Compile Include="Entities\DrivingSchoolGrid.cs" />
     <Compile Include="Entities\DrivingSchoolRatingAndReview.cs" />
     <Compile Include="Entities\Personnel.cs" />

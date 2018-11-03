@@ -42,6 +42,7 @@ namespace Gadi.Data
         public virtual DbSet<DocumentCategory> DocumentCategories { get; set; }
         public virtual DbSet<DocumentDetail> DocumentDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<DrivingSchoolFilterGrid> DrivingSchoolFilterGrids { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -385,66 +386,6 @@ namespace Gadi.Data
                 .Property(e => e.WheelType)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.DrivingSchoolName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.DrivingSchoolCarName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.CityMileage)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.ARAIMileage)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.FuelType)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.MaxPower)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.MaxTorque)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.EngineDescription)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.TransmissionType)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.CargoVolume)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.WheelType)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.WithLicenseFee)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.WithoutLicenseFee)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.DiscountAmount)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<DrivingSchoolCarGrid>()
-                .Property(e => e.SearchField)
-                .IsUnicode(false);
-
             modelBuilder.Entity<DriverGrid>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
@@ -519,6 +460,110 @@ namespace Gadi.Data
 
             modelBuilder.Entity<DriverFeedbackGrid>()
                 .Property(e => e.DrivingSchoolName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.DrivingSchoolName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.DrivingSchoolCarName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.CarTypeName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.CityMileage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.ARAIMileage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.FuelType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.MaxPower)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.MaxTorque)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.EngineDescription)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.TransmissionType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.CargoVolume)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.WheelType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.WithLicenseFee)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.WithoutLicenseFee)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.DiscountAmount)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<DrivingSchoolCarGrid>()
+                .Property(e => e.SearchField)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.Address1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.Address2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.Address3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.Address4)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.Telephone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.EmailId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.MinimumFeeWithLicense)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.MinimumFeeWithOutLicense)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<DrivingSchoolFilterGrid>()
+                .Property(e => e.License)
                 .IsUnicode(false);
         }
     }

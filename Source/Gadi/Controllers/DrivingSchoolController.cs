@@ -15,6 +15,7 @@ using Gadi.Models;
 using Gadi.Models.Authorization;
 using Microsoft.Owin.Security.Authorization;
 using DocumentCategory = Gadi.Business.Enum.DocumentCategory;
+using Filter = Gadi.Business.Dto.Filter;
 
 namespace Gadi.Controllers
 {
@@ -142,7 +143,7 @@ namespace Gadi.Controllers
             try
             {
                 var getPersonnelResult = await _drivingSchoolBusinessService.RetrieveDrivingSchool(drivingSchoolId);
-                if (getPersonnelResult==null)
+                if (getPersonnelResult == null)
                     return HttpNotFound();
 
                 var drivingSchool = getPersonnelResult;
@@ -223,11 +224,11 @@ namespace Gadi.Controllers
 
         [HttpPost]
         [Route("List")]
-        public async Task<ActionResult> List(Paging paging, List<OrderBy> orderBy)
+        public async Task<ActionResult> List(Filter filter, Paging paging, List<OrderBy> orderBy)
         {
             try
             {
-                var data = await _drivingSchoolBusinessService.RetrieveDrivingSchools(orderBy, paging);
+                var data = await RetrieveMobiles(filter, paging, orderBy);
                 return this.JsonNet(data);
             }
             catch (Exception ex)
@@ -241,6 +242,13 @@ namespace Gadi.Controllers
         public async Task<ActionResult> Search(string searchKeyword, Paging paging, List<OrderBy> orderBy)
         {
             return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
+        }
+
+        private async Task<ActionResult> RetrieveMobiles(Filter filter, Paging paging = null, List<OrderBy> orderBy = null)
+        {
+            if (filter != null && filter.IsFilter)
+                return this.JsonNet(await _drivingSchoolBusinessService.RetrieveDrivingSchools(filter, orderBy, paging));
+            return this.JsonNet(await _drivingSchoolBusinessService.RetrieveDrivingSchools(orderBy, paging));
         }
 
         //public async Task<ActionResult> AssignDrivingSchoolCar(int drivingSchoolId, int carId, decimal withLicenseFee, decimal withOutLicenseFee, decimal discountOnFee)

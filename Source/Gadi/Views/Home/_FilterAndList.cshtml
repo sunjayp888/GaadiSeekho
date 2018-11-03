@@ -1,0 +1,219 @@
+﻿<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-amber">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-4">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-amber">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>Filter</h2><small></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="terms">Days</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbMonday" class="filled-in chk-col-amber" ng-true-value="'Monday'" ng-false-value="''" ng-model="model.monday" ng-click="model.onMondayCheckedFilter()">
+                                        <label for="cbMonday">Monday</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbTuesday" class="filled-in chk-col-amber" ng-true-value="'Tuesday'" ng-false-value="''" ng-model="model.tuesday" ng-click="model.onTuesdayCheckedFilter()">
+                                        <label for="cbTuesday">Tuesday</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbWednesday" class="filled-in chk-col-amber" ng-true-value="'Wednesday'" ng-false-value="''" ng-model="model.wednesday" ng-click="model.onWednesdayCheckedFilter()">
+                                        <label for="cbWednesday">Wednesday</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbThursday" class="filled-in chk-col-amber" ng-true-value="'Thursday'" ng-false-value="''" ng-model="model.thursday" ng-click="model.onThursdayCheckedFilter()">
+                                        <label for="cbThursday">Thursday</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbFriday" class="filled-in chk-col-amber" ng-true-value="'Friday'" ng-false-value="''" ng-model="model.friday" ng-click="model.onFridayCheckedFilter()">
+                                        <label for="cbFriday">Friday</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbSaturday" class="filled-in chk-col-amber" ng-true-value="'Saturday'" ng-false-value="''" ng-model="model.saturday" ng-click="model.onSaturdayCheckedFilter()">
+                                        <label for="cbSaturday">Saturday</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbSunday" class="filled-in chk-col-amber" ng-true-value="'Sunday'" ng-false-value="''" ng-model="model.sunday" ng-click="model.onSundayCheckedFilter()">
+                                        <label for="cbSunday">Sunday</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="terms">Wheel Type</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbTwoWheeler" class="filled-in chk-col-amber" ng-true-value="'Two Wheeler'" ng-false-value="''" ng-model="model.twoWheeler" ng-click="model.onTwoWheelerCheckedFilter()">
+                                        <label for="cbTwoWheeler">Two Wheeler</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbFourWheeler" class="filled-in chk-col-amber" ng-true-value="'Four Wheeler'" ng-false-value="''" ng-model="model.fourWheeler" ng-click="model.onFourWheelerCheckedFilter()">
+                                        <label for="cbFourWheeler">Four Wheeler</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="terms">License</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbRequired" class="filled-in chk-col-amber" ng-true-value="'Required'" ng-false-value="''" ng-model="model.withLicense" ng-click="model.onWithLicenseCheckedFilter()">
+                                        <label for="cbRequired">Required</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbNotRequired" class="filled-in chk-col-amber" ng-true-value="'Not Required'" ng-false-value="''" ng-model="model.withoutLicense" ng-click="model.onWithoutLicenseCheckedFilter()">
+                                        <label for="cbNotRequired">Not Required</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="terms">Car Type</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbkNormal" class="filled-in chk-col-amber" ng-true-value="'Normal'" ng-false-value="''" ng-model="model.normal" ng-click="model.onNormalCheckedFilter()">
+                                        <label for="cbkNormal">Normal</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbkSUV" class="filled-in chk-col-amber" ng-true-value="'SUV'" ng-false-value="''" ng-model="model.suv" ng-click="model.onSuvCheckedFilter()">
+                                        <label for="cbkSUV">SUV</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbMUV" class="filled-in chk-col-amber" ng-true-value="'MUV'" ng-false-value="''" ng-model="model.muv" ng-click="model.onMuvCheckedFilter()">
+                                        <label for="cbMUV">MUV</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbXUV" class="filled-in chk-col-amber" ng-true-value="'XUV'" ng-false-value="''" ng-model="model.xuv" ng-click="model.onXuvCheckedFilter()">
+                                        <label for="cbXUV">XUV</label>
+                                    </div>
+                                    @*<div class="irs-demo">
+                                        <b>Driving Fees</b>
+                                        <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">10</span><span class="irs-max" style="visibility: visible;">100</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: -0.263435%;">10</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 0.842993%; width: 0%;"></span><span class="irs-bar-edge"></span><span class="irs-shadow shadow-single" style="display: none;"></span><span class="irs-slider single" style="left: 0%;"></span></span><input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                        <input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                    </div>*@
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Minimum" ng-model="model.fromFees" ng-oninput="model.onDrivingFeesCheckedFilter()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label for="terms">TO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Maximum" ng-model="model.toFees" ng-click="model.onDrivingFeesCheckedFilter()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="terms">Car</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbMaruti800" class="filled-in chk-col-amber" ng-true-value="'Maruti 800'" ng-false-value="''" ng-model="model.maruti800" ng-click="model.onMaruti800CheckedFilter()">
+                                        <label for="cbMaruti800">Maruti 800</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbSantro" class="filled-in chk-col-amber" ng-true-value="'Santro'" ng-false-value="''" ng-model="model.santro" ng-click="model.onSantroCheckedFilter()">
+                                        <label for="cbSantro">Santro</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbIndica" class="filled-in chk-col-amber" ng-true-value="'Indica'" ng-false-value="''" ng-model="model.indica" ng-click="model.onIndicaCheckedFilter()">
+                                        <label for="cbIndica">Indica</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="terms" id="cbQualis" class="filled-in chk-col-amber" ng-true-value="'Qualis'" ng-false-value="''" ng-model="model.qualis" ng-click="model.onQualisCheckedFilter()">
+                                        <label for="cbQualis">Qualis</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-lg-8 drivingSchool-scroll">
+            <div ng-clock class="row clearfix" infinite-scroll="model.drivingSchoolData(1)" infinite-scroll-distance="3">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools">
+                    <div class="card">
+                        <div class="header bg-amber">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-12">
+                                    <h2>{{drivingSchool.Name}} {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</h2><small></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <img alt="image" src="{{drivingSchool.RelativePath}}" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-8">
+                                    <div class="thumbnail">
+                                        @*<img src="http://placehold.it/500x300">*@
+                                        <div class="caption">
+                                            <h3>{{drivingSchool.Name}}</h3>
+                                            <p>Address : {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</p>
+                                            <p>Contact No. : {{drivingSchool.Mobile}}</p>
+                                            <p>Email : {{drivingSchool.EmailId}}</p>
+                                            <p>Number of Cars : {{drivingSchool.NumberOfCars}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-block btn-lg waves-effect bg-amber">
+                                            With License
+                                            <br />
+                                            ₹ {{drivingSchool.MinimumFeeWithLicense}}/-
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-block btn-lg waves-effect bg-black">
+                                            Without License
+                                            <br />
+                                            ₹ {{drivingSchool.MinimumFeeWithOutLicense}}/-
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-block btn-lg waves-effect bg-amber" ng-click="model.viewDrivingSchool(drivingSchool.DrivingSchoolId)">
+                                            View Driving
+                                            <br />
+                                            School
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label ng-bind="model.searchMessage"></label>
+                    </div>
+                </div>
+                @*<button type="button" class="btn bg-amber btn-block btn-lg waves-effect"> Show More </button>*@
+            </div>
+        </div>
+    </div>
+</div>
