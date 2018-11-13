@@ -217,179 +217,309 @@
                     IsMondayFilter: false
                 }
             }
-           
             retrieveDrivingSchools();
         }
 
         function onTuesdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsTuedayFilter: true,
-                Tuesday: vm.tuesday
+            if (document.getElementById('cbTuesday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsTuedayFilter: true,
+                    Tuesday: vm.tuesday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsTuedayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onWednesdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsWednesdayFilter: true,
-                Wednesday: vm.wednesday
+            if (document.getElementById('cbWednesday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsWednesdayFilter: true,
+                    Wednesday: vm.wednesday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsWednesdayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onThursdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsThursdayFilter: true,
-                Thursday: vm.thursday
+            if (document.getElementById('cbThursday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsThursdayFilter: true,
+                    Thursday: vm.thursday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsThursdayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onFridayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsFridayFilter: true,
-                Friday: vm.friday
+            if (document.getElementById('cbFriday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsFridayFilter: true,
+                    Friday: vm.friday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsFridayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSaturdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSaturdayFilter: true,
-                Saturday: vm.saturday
+            if (document.getElementById('cbSaturday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSaturdayFilter: true,
+                    Saturday: vm.saturday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSaturdayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSundayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSundayFilter: true,
-                Sunday: vm.sunday
+            if (document.getElementById('cbSunday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSundayFilter: true,
+                    Sunday: vm.sunday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSundayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onTwoWheelerCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsTwoWheelerFilter: true,
-                TwoWheeler: vm.twoWheeler
+            if (document.getElementById('cbTwoWheeler').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsTwoWheelerFilter: true,
+                    TwoWheeler: vm.twoWheeler
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsTwoWheelerFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onFourWheelerCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsFourWheelerFilter: true,
-                FourWheeler: vm.fourWheeler
+            if (document.getElementById('cbFourWheeler').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsFourWheelerFilter: true,
+                    FourWheeler: vm.fourWheeler
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsFourWheelerFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onWithLicenseCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsWithLicenseFilter: true,
-                WithLicense: vm.withLicense
+            if (document.getElementById('cbRequired').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsWithLicenseFilter: true,
+                    WithLicense: vm.withLicense
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsWithLicenseFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onWithoutLicenseCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsWithoutLicenseFilter: true,
-                WithoutLicense: vm.withoutLicense
+            if (document.getElementById('cbNotRequired').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsWithoutLicenseFilter: true,
+                    WithoutLicense: vm.withoutLicense
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsWithoutLicenseFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onNormalCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsNormalFilter: true,
-                Normal: vm.normal
+            if (document.getElementById('cbNormal').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsNormalFilter: true,
+                    Normal: vm.normal
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: true,
+                    IsNormalFilter: true,
+                    Normal: vm.normal
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSuvCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSuvFilter: true,
-                Suv: vm.suv
+            if (document.getElementById('cbSuv').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSuvFilter: true,
+                    Suv: vm.suv
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSuvFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onMuvCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsMuvFilter: true,
-                Muv: vm.muv
+            if (document.getElementById('cbMuv').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsMuvFilter: true,
+                    Muv: vm.muv
+                }
+            } else {
+                    vm.filter = {
+                        IsFilter: false,
+                        IsMuvFilter: false
+                    }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onXuvCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsXuvFilter: true,
-                Xuv: vm.xuv
+            if (document.getElementById('cbXuv').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsXuvFilter: true,
+                    Xuv: vm.xuv
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsXuvFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onMaruti800CheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsMaruti800Filter: true,
-                Maruti800: vm.maruti800
+            if (document.getElementById('cbMaruti800').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsMaruti800Filter: true,
+                    Maruti800: vm.maruti800
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsMaruti800Filter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSantroCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSantroFilter: true,
-                Santro: vm.santro
+            if (document.getElementById('cbSantro').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSantroFilter: true,
+                    Santro: vm.santro
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSantroFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onIndicaCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsIndicaFilter: true,
-                Indica: vm.indica
+            if (document.getElementById('cbIndica').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsIndicaFilter: true,
+                    Indica: vm.indica
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsIndicaFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onQualisCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsQualisFilter: true,
-                Qualis: vm.qualis
+            if (document.getElementById('cbQualis').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsQualisFilter: true,
+                    Qualis: vm.qualis
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsQualisFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onDrivingFeesCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsDrivingFeesFilter: true,
-                FromFees: vm.fromFees,
-                ToFees: vm.toFees
-            }
+            //if (document.getElementById('cbSunday').checked) {
+            //    vm.filter = {
+            //        IsFilter: true,
+            //        IsDrivingFeesFilter: true,
+            //        FromFees: vm.fromFees,
+            //        ToFees: vm.toFees
+            //    }
+            //} else {
+                
+            //}
             //if(vm.fromFees && vm.toFees)
             //retrieveMobiles();
         }

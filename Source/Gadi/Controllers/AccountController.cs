@@ -199,7 +199,6 @@ namespace Gadi.Controllers
             
             if (ModelState.IsValid)
             {
-                model.IsDrivingSchool = true;
                 model.OtpCreated = true;
                 var otpValidationResult = await _otpBusinessService.IsValidOtp(Convert.ToInt32(model.OTP), Convert.ToDecimal(model.MobileNumber), (int)OtpReason.Login, DateTime.UtcNow);
                 if (!otpValidationResult.Succeeded)

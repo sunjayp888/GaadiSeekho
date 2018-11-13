@@ -11,6 +11,7 @@ namespace Gadi.Data.Entities
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DrivingSchoolId { get; set; }
 
         [Key]
@@ -85,6 +86,8 @@ namespace Gadi.Data.Entities
         [Key]
         [Column(Order = 11)]
         public string CarName { get; set; }
+
+        public string RelativePath { get; set; }
 
         [Key]
         [Column(Order = 12)]

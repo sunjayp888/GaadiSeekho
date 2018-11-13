@@ -228,7 +228,7 @@ namespace Gadi.Controllers
         {
             try
             {
-                var data = await RetrieveMobiles(filter, paging, orderBy);
+                var data = await RetrieveDrivingSchools(filter, paging, orderBy);
                 return this.JsonNet(data);
             }
             catch (Exception ex)
@@ -244,7 +244,7 @@ namespace Gadi.Controllers
             return this.JsonNet(await _drivingSchoolBusinessService.Search(searchKeyword, orderBy, paging));
         }
 
-        private async Task<ActionResult> RetrieveMobiles(Filter filter, Paging paging = null, List<OrderBy> orderBy = null)
+        private async Task<ActionResult> RetrieveDrivingSchools(Filter filter, Paging paging = null, List<OrderBy> orderBy = null)
         {
             if (filter != null && filter.IsFilter)
                 return this.JsonNet(await _drivingSchoolBusinessService.RetrieveDrivingSchools(filter, orderBy, paging));

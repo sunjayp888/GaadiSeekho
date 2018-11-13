@@ -5094,7 +5094,11 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="Content\Images\DrivingTrainingSchool.jpg" />
+    <Content Include="Content\Images\ecommerce-development-banner1.png" />
     <Content Include="Content\Images\imageedit_1_3018079433.png" />
+    <Content Include="Content\Images\images.jpg" />
+    <Content Include="Content\Images\no record found.png" />
+    <Content Include="Content\Images\Online-Banner-Maker.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\css\font-awesome.css" />
     <Content Include="Content\fonts\css\font-awesome.min.css" />

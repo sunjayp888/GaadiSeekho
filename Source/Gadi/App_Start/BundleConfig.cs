@@ -73,7 +73,13 @@ namespace Gadi
                  "~/bower_components/pnotify/dist/pnotify.buttons.css",
                  "~/bower_components/pnotify/dist/pnotify.mobile.css",
                  "~/bower_components/adminbsb-materialdesign/css/materialize.css",
-                 "~/bower_components/cropper/dist/cropper.min.css"
+                 "~/bower_components/cropper/dist/cropper.min.css",
+                 "~/bower_components/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css",
+                 "~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.css",
+                 "~/bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css",
+                 "~/bower_components/adminbsb-materialdesign/plugins/ion-rangeslider/css/ion.rangeSlider.css",
+                 "~/bower_components/adminbsb-materialdesign/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css",
+                 "~/bower_components/adminbsb-materialdesign/css/style.css"
                  ));
 
 
