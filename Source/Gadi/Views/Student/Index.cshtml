@@ -62,16 +62,16 @@
                                             <table wt-responsive-table class="table table-striped table-bordered table-hover dataTable" role="grid" aria-describedby="datatable-fixed-header_info">
                                                 <thead>
                                                 <tr role="row">
-                                                    <th ng-click="model.order('Forenames')" ng-class="model.orderClass('Forenames')">Name</th>
-                                                    <th ng-click="model.order('DOB')" ng-class="model.orderClass('DOB')">DOB</th>
+                                                    <th ng-click="model.order('Name')" ng-class="model.orderClass('Name')">Name</th>
+                                                    <th ng-click="model.order('DateOfBirth')" ng-class="model.orderClass('DateOfBirth')">DOB</th>
                                                     <th ng-click="model.order('Email')" ng-class="model.orderClass('Email')">Email</th>
                                                     <th>Actions</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr ng-repeat="student in model.students" class="" ng-click="$event.originalEvent.ngClickHandled || model.viewStudent(student.StudentId)">
-                                                    <td><span ng-bind="student.Title"></span> <span ng-bind="student.Forenames"></span> <span ng-bind="student.Surname"></span></td>
-                                                    <td><span ng-bind="student.DOB|date : format : shortDate"></span></td>
+                                                    <td><span ng-bind="student.Name"></span></td>
+                                                    <td><span ng-bind="student.DateOfBirth|date : format : shortDate"></span></td>
                                                     <td><span ng-bind="student.Email"></span></td>
                                                     <td>
                                                         <div class="btn-group pull-right">
@@ -111,7 +111,7 @@
                                     <div class="col-xs-12">
                                         <label ng-bind="model.searchMessage"></label>
                                     </div>
-                                    <div ng-if="model.searchMessage!=''">
+                                    <div ng-if="model.searchMessage!='' && model.searchMessage!='No Records Found'">
                                         <a href="@Url.Action("Index")" class="btn btn-primary" role="button">
                                             <span class="fa fa-chevron-left"></span>&nbsp;Back to list
                                         </a>

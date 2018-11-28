@@ -4,13 +4,13 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Title)
+        @Html.LabelFor(model => model.Student.Name)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.DropDownListFor(model => model.Student.Title, Model.TitleList, "Select Title", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Title, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.Name, "", new { @class = "error" })
             </div>
         </div>
     </div>
@@ -18,13 +18,13 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Forenames)
+        @Html.LabelFor(model => model.Student.SonWifeDaughterOf)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Forenames, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Forenames, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.SonWifeDaughterOf, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Student.SonWifeDaughterOf, "", new {@class = "error"})
             </div>
         </div>
     </div>
@@ -32,26 +32,12 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Surname)
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-        <div class="form-group">
-            <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Surname, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.Student.Surname, "", new {@class = "error"})
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row clearfix">
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.DOB)
+        @Html.LabelFor(model => model.Student.DateOfBirth)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-line">
             <div class="form-group">
-                <daterange-picker value="@Model.Student.DOB.Formatted()" name="Student.DOB" id="Student_DOB" model="model.DOB"></daterange-picker>
+                <daterange-picker value="@Model.Student.DateOfBirth.Formatted()" name="Student.DateOfBirth" id="Student_DateOfBirth" model="model.DateOfBirth"></daterange-picker>
             </div>
         </div>
     </div>
@@ -59,13 +45,13 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Address1)
+        @Html.LabelFor(model => model.Student.PlaceOfBirth)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Address1, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Address1, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.PlaceOfBirth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.PlaceOfBirth, "", new { @class = "error" })
             </div>
         </div>
     </div>
@@ -73,13 +59,13 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Address2)
+        @Html.LabelFor(model => model.Student.PresentAddress)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Address2, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Address2, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.PresentAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.PresentAddress, "", new { @class = "error" })
             </div>
         </div>
     </div>
@@ -87,13 +73,13 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Address3)
+        @Html.LabelFor(model => model.Student.PermanantAddress)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Address3, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Address3, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.PermanantAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.PermanantAddress, "", new { @class = "error" })
             </div>
         </div>
     </div>
@@ -101,13 +87,13 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Address4)
+        @Html.LabelFor(model => model.Student.OfficialAddress)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Address4, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Address4, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.OfficialAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.OfficialAddress, "", new { @class = "error" })
             </div>
         </div>
     </div>
@@ -115,13 +101,13 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Postcode)
+        @Html.LabelFor(model => model.Student.Education)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Postcode, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Postcode, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.Education, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.Education, "", new { @class = "error" })
             </div>
         </div>
     </div>
@@ -129,13 +115,27 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-        @Html.LabelFor(model => model.Student.Telephone)
+        @Html.LabelFor(model => model.Student.BloodGroup)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
         <div class="form-group">
             <div class="form-line">
-                @Html.TextBoxFor(model => model.Student.Telephone, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Student.Telephone, "", new { @class = "error" })
+                @Html.TextBoxFor(model => model.Student.BloodGroup, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.BloodGroup, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Student.RHFactor)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Student.RHFactor, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.RHFactor, "", new { @class = "error" })
             </div>
         </div>
     </div>
@@ -157,6 +157,34 @@
 
 <div class="row clearfix">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Student.ResidentialPhone)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Student.ResidentialPhone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.ResidentialPhone, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Student.OfficialPhone)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Student.OfficialPhone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.OfficialPhone, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
         @Html.LabelFor(model => model.Student.Email)
     </div>
     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
@@ -164,6 +192,20 @@
             <div class="form-line">
                 @Html.TextBoxFor(model => model.Student.Email, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Student.Email, "", new { @class = "error" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+        @Html.LabelFor(model => model.Student.Nationality)
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+        <div class="form-group">
+            <div class="form-line">
+                @Html.TextBoxFor(model => model.Student.Nationality, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Student.Nationality, "", new { @class = "error" })
             </div>
         </div>
     </div>

@@ -1,0 +1,212 @@
+﻿@using Gadi.Business.Extensions
+@model Gadi.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "DrivingSchoolAvailability";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row clearfix" style="margin-top: 90px" ng-controller="HomeController as model">
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header bg-amber">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-12">
+                        <h2>Check Availability</h2><small></small>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            @Html.LabelFor(model => model.DrivingSchoolAvailabilityFilter.StartDate)
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-line">
+                                <div class="form-group">
+                                    <daterange-picker ng-value="@Model.DrivingSchoolAvailabilityFilter.StartDate.Formatted()" name="DrivingSchoolAvailabilityFilter.StartDate" id="DrivingSchoolAvailabilityFilter_StartDate" , ng-model="model.StartDate"></daterange-picker>
+                                    <input type="hidden" name="DrivingSchoolAvailabilityFilter.StartDate" id="DrivingSchoolAvailabilityFilterStartDate" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            @Html.LabelFor(model => model.DrivingSchoolAvailabilityFilter.StartTime)
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(model => model.DrivingSchoolAvailabilityFilter.StartTime, new {@class = "form-control", ng_model = "model.StartTime"})
+                                    @Html.ValidationMessageFor(model => model.DrivingSchoolAvailabilityFilter.StartTime, "", new {@class = "error"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <b>Days</b>
+                        </div>
+                        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input type="checkbox" name="IsMondayCheckbox" id="IsMondayChkbox" class="filled-in chk-col-amber" ng-change="model.onMondayChecked()" , ng-model="model.isMonday">
+                                <label for="IsMondayChkbox">Monday</label>
+                                <input name="IsMonday" type="hidden" value="{{model.isMonday}}"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="IsTuesdayCheckbox" id="IsTuesdayChkbox" class="filled-in chk-col-amber" ng-change="model.onTuesdayChecked()" , ng-model="model.isTuesday">
+                                <label for="IsTuesdayChkbox">Tuesday</label>
+                                <input name="IsTuesday" type="hidden" value="{{model.isTuesday}}"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="IsWednesdayCheckbox" id="IsWednesdayChkbox" class="filled-in chk-col-amber" ng-change="model.onWednesdayChecked()" , ng-model="model.isWednesday">
+                                <label for="IsWednesdayChkbox">Wednesday</label>
+                                <input name="IsWednesday" type="hidden" value="{{model.isWednesday}}"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="IsThursdayCheckbox" id="IsThursdayChkbox" class="filled-in chk-col-amber" ng-change="model.onThursdayChecked()" , ng-model="model.isThursday">
+                                <label for="IsThursdayChkbox">Thursday</label>
+                                <input name="IsThursday" type="hidden" value="{{model.isThursday}}"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="IsFridayCheckbox" id="IsFridayChkbox" class="filled-in chk-col-amber" ng-change="model.onFridayChecked()" , ng-model="model.isFriday">
+                                <label for="IsFridayChkbox">Friday</label>
+                                <input name="IsFriday" type="hidden" value="{{model.isFriday}}"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="IsSaturdayCheckbox" id="IsSaturdayChkbox" class="filled-in chk-col-amber" ng-change="model.onSaturdayChecked()" , ng-model="model.isSaturday">
+                                <label for="IsSaturdayChkbox">Saturday</label>
+                                <input name="IsSaturday" type="hidden" value="{{model.isSaturday}}"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="IsSundayCheckbox" id="IsSundayChkbox" class="filled-in chk-col-amber" ng-change="model.onSundayChecked()" , ng-model="model.isSunday">
+                                <label for="IsSundayChkbox">Sunday</label>
+                                <input name="IsSunday" type="hidden" value="{{model.isSunday}}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <b>License For</b>
+                        </div>
+
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <input type="checkbox" name="IsTwoWheelerCheckbox" id="IsTwoWheelerChkbox" class="filled-in chk-col-amber" ng-change="model.onTwoWheelerChecked()" , ng-model="model.isTwoWheeler">
+                                <label for="IsTwoWheelerChkbox">Two Wheeler</label>
+                                <input name="IsTwoWheeler" type="hidden" value="{{model.isTwoWheeler}}"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="IsFourWheelerCheckbox" id="IsFourWheelerChkbox" class="filled-in chk-col-amber" ng-change="model.onFourWheelerChecked()" , ng-model="model.isFourWheeler">
+                                <label for="IsFourWheelerChkbox">Four Wheeler</label>
+                                <input name="IsFourWheeler" type="hidden" value="{{model.isFourWheeler}}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label>Cars</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.DropDownListFor(model => model.DrivingSchoolAvailabilityFilter.DrivingSchoolCarId, Model.DrivingSchoolCars, "Select Car", new {@class = "form-control", ng_model = "model.DrivingSchoolCarId"})
+                                    @Html.ValidationMessageFor(model => model.DrivingSchoolAvailabilityFilter.DrivingSchoolCarId, "", new {@class = "error"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group align-right">
+                            <button type="button" class="btn bg-amber" ng-click="model.retrieveDrivinSchoolAvailability()">Check Availability</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+        <div ng-clock class="row clearfix" infinite-scroll-distance="3">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools">
+                <div class="card">
+                    <div class="header bg-amber">
+                        <div class="row clearfix">
+                            <div class="col-xs-12 col-sm-12">
+                                <h2>{{drivingSchool.Name}} {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</h2><small></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <img alt="image" src="{{drivingSchool.RelativePath}}" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-8">
+                                <div class="thumbnail">
+                                    @*<img src="http://placehold.it/500x300">*@
+                                    <div class="caption">
+                                        <h3>{{drivingSchool.Name}}</h3>
+                                        <p>Address : {{drivingSchool.Address1}} {{drivingSchool.Address2}} {{drivingSchool.Address3}} {{drivingSchool.Address4}} - {{drivingSchool.Pincode}}</p>
+                                        <p>Contact No. : {{drivingSchool.Mobile}}</p>
+                                        <p>Email : {{drivingSchool.EmailId}}</p>
+                                        <p>Number of Cars : {{drivingSchool.NumberOfCars}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <button type="button" class="btn btn-block btn-lg waves-effect bg-amber">
+                                        With License
+                                        <br />
+                                        ₹ {{drivingSchool.MinimumFeeWithLicense}}/-
+                                    </button>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <button type="button" class="btn btn-block btn-lg waves-effect bg-black">
+                                        Without License
+                                        <br />
+                                        ₹ {{drivingSchool.MinimumFeeWithOutLicense}}/-
+                                    </button>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <button type="button" class="btn btn-block btn-lg waves-effect bg-amber" ng-click="model.viewDrivingSchool(drivingSchool.DrivingSchoolId)">
+                                        View Driving
+                                        <br />
+                                        School
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12" ng-if="model.searchMessage!=''">
+                <div class="row clearfix">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <img src="~/Content/Images/no record found.png" class="imgCenter"/>
+                                        @*<label ng-bind="model.searchMessage"></label>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<button type="button" class="btn bg-amber btn-block btn-lg waves-effect"> Show More </button>*@
+        </div>
+    </div>
+</div>

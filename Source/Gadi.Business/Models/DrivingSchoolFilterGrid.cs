@@ -29,6 +29,7 @@ namespace Gadi.Business.Models
         public string License { get; set; }
         public string CarType { get; set; }
         public string CarName { get; set; }
+        public string RelativePath { get; set; }
         public string SearchField { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Configuration.Interface;
 using Gadi.Business.Interfaces;
+using Gadi.Business.Models;
 using Gadi.Extensions;
 using Gadi.Models;
 using Microsoft.Owin.Security.Authorization;
@@ -15,11 +16,14 @@ namespace Gadi.Controllers
     public class HomeController : BaseController
     {
         private readonly IDrivingSchoolBusinessService _drivingSchoolBusinessService;
+        private readonly IDrivingSchoolCarBusinessService _drivingSchoolCarBusinessService;
 
-        public HomeController(IDrivingSchoolBusinessService drivingSchoolBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
+        public HomeController(IDrivingSchoolBusinessService drivingSchoolBusinessService, IDrivingSchoolCarBusinessService drivingSchoolCarBusinessService, IConfigurationManager configurationManager, IAuthorizationService authorizationService) : base(configurationManager, authorizationService)
         {
             _drivingSchoolBusinessService = drivingSchoolBusinessService;
+            _drivingSchoolCarBusinessService = drivingSchoolCarBusinessService;
         }
+
         public async Task<ActionResult> Index()
         {
             var viewModel = new HomeViewModel { PersonnelId = UserPersonnelId };
@@ -36,6 +40,19 @@ namespace Gadi.Controllers
             if (User.Identity.IsAuthenticated && User.IsSuperUser())
                 return View();
             return View();
+        }
+
+        public async Task<ActionResult> DrivingSchoolAvailability()
+        {
+            var drivingSchoolCar = await _drivingSchoolCarBusinessService.RetrieveDrivingSchoolCars(false, 0);
+            var drivingSchoolCarList = drivingSchoolCar.Items.ToList();
+            var viewModel = new HomeViewModel()
+            {
+                DrivingSchoolAvailabilityFilter = new DrivingSchoolAvailabilityFilter(),
+                DrivingSchoolCars = new SelectList(drivingSchoolCarList, "DrivingSchoolCarId", "DrivingSchoolCarName")
+
+            };
+            return View(viewModel);
         }
 
         public ActionResult About()

@@ -15,7 +15,7 @@
 </div>
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -102,10 +102,10 @@
                                         <label for="cbXUV">XUV</label>
                                     </div>
                                     @*<div class="irs-demo">
-                                        <b>Driving Fees</b>
-                                        <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">10</span><span class="irs-max" style="visibility: visible;">100</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: -0.263435%;">10</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 0.842993%; width: 0%;"></span><span class="irs-bar-edge"></span><span class="irs-shadow shadow-single" style="display: none;"></span><span class="irs-slider single" style="left: 0%;"></span></span><input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
-                                        <input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
-                                    </div>*@
+                                            <b>Driving Fees</b>
+                                            <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">10</span><span class="irs-max" style="visibility: visible;">100</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: -0.263435%;">10</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 0.842993%; width: 0%;"></span><span class="irs-bar-edge"></span><span class="irs-shadow shadow-single" style="display: none;"></span><span class="irs-slider single" style="left: 0%;"></span></span><input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                            <input type="text" id="range_01" value="" class="irs-hidden-input" readonly="">
+                                        </div>*@
                                     <div class="col-lg-5">
                                         <div class="form-group">
                                             <div class="form-line">
@@ -151,8 +151,8 @@
                 </div>
             </div>
         </div>
-  
-        <div class="col-lg-8 drivingSchool-scroll">
+
+        <div class="col-lg-9 drivingSchool-scroll">
             <div ng-clock class="row clearfix" infinite-scroll="model.drivingSchoolData(1)" infinite-scroll-distance="3">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="drivingSchool in model.drivingSchools">
                     <div class="card">
@@ -207,13 +207,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label ng-bind="model.searchMessage"></label>
+                <div class="col-lg-12" ng-if="model.searchMessage!=''">
+                    <div class="row clearfix">
+                        <div class="col-xs-12">
+                            <div class="card">
+                                <div class="body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <img src="~/Content/Images/no record found.png" class="imgCenter"/>
+                                            @*<label ng-bind="model.searchMessage"></label>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 @*<button type="button" class="btn bg-amber btn-block btn-lg waves-effect"> Show More </button>*@
             </div>
         </div>
+        
     </div>
 </div>

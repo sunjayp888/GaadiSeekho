@@ -16,72 +16,67 @@ namespace Gadi.Data.Entities
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(50)]
-        public string Title { get; set; }
+        [StringLength(500)]
+        public string Name { get; set; }
 
         [Key]
         [Column(Order = 2)]
-        [StringLength(100)]
-        public string Forenames { get; set; }
+        [StringLength(500)]
+        public string SonWifeDaughterOf { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
+        [StringLength(500)]
+        public string PresentAddress { get; set; }
+
+        [StringLength(500)]
+        public string PermanantAddress { get; set; }
+
+        [StringLength(500)]
+        public string OfficialAddress { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? DateOfBirth { get; set; }
+
+        [StringLength(200)]
+        public string PlaceOfBirth { get; set; }
+
+        [StringLength(100)]
+        public string Education { get; set; }
+
         [StringLength(50)]
-        public string Surname { get; set; }
+        public string BloodGroup { get; set; }
 
-        [Key]
-        [Column(Order = 4, TypeName = "datetime2")]
-        public DateTime DOB { get; set; }
+        [StringLength(50)]
+        public string RHFactor { get; set; }
 
-        [Key]
-        [Column(Order = 5)]
-        [StringLength(100)]
-        public string Address1 { get; set; }
+        public long? Mobile { get; set; }
 
-        [StringLength(100)]
-        public string Address2 { get; set; }
+        public long? ResidentialPhone { get; set; }
 
-        [StringLength(100)]
-        public string Address3 { get; set; }
+        public long? OfficialPhone { get; set; }
 
-        [StringLength(100)]
-        public string Address4 { get; set; }
-
-        [Key]
-        [Column(Order = 6)]
-        [StringLength(12)]
-        public string Postcode { get; set; }
-
-        [StringLength(15)]
-        public string Telephone { get; set; }
-
-        [Key]
-        [Column(Order = 7)]
-        [StringLength(15)]
-        public string Mobile { get; set; }
-
-        [Key]
-        [Column(Order = 8)]
         [StringLength(256)]
         public string Email { get; set; }
 
-        [Key]
-        [Column(Order = 9, TypeName = "datetime2")]
-        public DateTime CreatedDate { get; set; }
+        [StringLength(50)]
+        public string Nationality { get; set; }
 
         [Key]
-        [Column(Order = 10)]
+        [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DrivingSchoolId { get; set; }
 
         [Key]
-        [Column(Order = 11)]
+        [Column(Order = 4, TypeName = "datetime2")]
+        public DateTime CreatedDate { get; set; }
+
+        [Key]
+        [Column(Order = 5)]
         [StringLength(500)]
         public string DrivingSchoolName { get; set; }
 
         [Key]
-        [Column(Order = 12)]
-        [StringLength(638)]
+        [Column(Order = 6)]
+        [StringLength(1376)]
         public string SearchField { get; set; }
     }
 }

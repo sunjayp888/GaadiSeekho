@@ -28,5 +28,6 @@ namespace Gadi.Business.Models
         public virtual CarType CarType { get; set; }
         public virtual ICollection<DrivingSchoolCarFee> DrivingSchoolCarFees { get; set; }
         public virtual ICollection<DriverCar> DriverCars { get; set; }
+        public virtual ICollection<StudentDrivingDetail> StudentDrivingDetails { get; set; }
     }
 }

@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -83,12 +84,24 @@
     <Compile Include="Entities\DrivingSchoolCarGrid.cs" />
     <Compile Include="Entities\DrivingSchoolFilterGrid.cs" />
     <Compile Include="Entities\DrivingSchoolGrid.cs" />
+    <Compile Include="Entities\DrivingSchoolPackage.cs" />
     <Compile Include="Entities\DrivingSchoolRatingAndReview.cs" />
+    <Compile Include="Entities\FormEight.cs" />
+    <Compile Include="Entities\FormFive.cs" />
+    <Compile Include="Entities\FormFour.cs" />
+    <Compile Include="Entities\FormFourGrid.cs" />
+    <Compile Include="Entities\FormFourteen.cs" />
+    <Compile Include="Entities\FormOneA.cs" />
     <Compile Include="Entities\Personnel.cs" />
     <Compile Include="Entities\PersonnelDocument.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\StudentDrivingDetail.cs" />
+    <Compile Include="Entities\StudentFee.cs" />
     <Compile Include="Entities\StudentGrid.cs" />
+    <Compile Include="Entities\StudentQuestionGrid.cs" />
+    <Compile Include="Entities\StudentQuestionResponse.cs" />
     <Compile Include="Entities\Template.cs" />
     <Compile Include="Extensions\Ordering.cs" />
     <Compile Include="Extensions\Pagination.cs" />
@@ -123,6 +136,7 @@
     <Compile Include="Services\EntityFrameworkGenericDataService.cs" />
     <Compile Include="Services\GadiDataService.cs" />
     <Compile Include="Services\DrivingSchoolDataService.cs" />
+    <Compile Include="Services\TemplateDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

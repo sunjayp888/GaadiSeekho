@@ -9,6 +9,9 @@ namespace Gadi.Data.Entities
     [Table("Template")]
     public partial class Template
     {
+        [NotMapped]
+        public string FilePath { get; set; }
+
         public int TemplateId { get; set; }
 
         [Required]

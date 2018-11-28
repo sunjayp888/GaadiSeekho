@@ -81,9 +81,10 @@ namespace Gadi.App_Start
             //container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
             //container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
             //container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ICacheProvider, MemoryCacheProvider>(new ContainerControlledLifetimeManager());
             container.RegisterType<IGenericDataService<DbContext>, EntityFrameworkGenericDataService>();
-            container.RegisterType<ICacheProvider, MemoryCacheProvider>();
             container.RegisterType<IConfigurationManager, ConfigurationManagerAdapter>();
+
 
             container.RegisterInstance(MappingsConfig.Initialize(), new ContainerControlledLifetimeManager());
             ////  container.RegisterInstance(LoggingConfig.Initialize(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString(), ConfigurationManager.AppSettings["serilog:write-to:MSSqlServer.tableName"]), new ContainerControlledLifetimeManager());
@@ -96,6 +97,9 @@ namespace Gadi.App_Start
             // container.RegisterType<IClientsAccessService, ClientsAccessService>();
             // API Clients
             container.RegisterType<IDocumentsBusinessService, DocumentBusinessService>();
+            container.RegisterType<IPdfService, PdfService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IRazorService, RazorService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ITemplateBusinessService, TemplateBusinessService>(new ContainerControlledLifetimeManager());
             //container.RegisterType<ITemplateServiceRestClient, TemplateServiceRestClient>(
             //    new InjectionConstructor(
             //        new InjectionParameter<ICacheProvider>(container.Resolve<ICacheProvider>()),

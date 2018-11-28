@@ -64,6 +64,29 @@
         vm.onIndicaCheckedFilter = onIndicaCheckedFilter;
         vm.onQualisCheckedFilter = onQualisCheckedFilter;
         vm.onDrivingFeesCheckedFilter = onDrivingFeesCheckedFilter;
+        //DrivingSchool Availability
+        vm.StartDate;
+        vm.StartTime;
+        vm.isMonday = false;
+        vm.isTuesday = false;
+        vm.isWednesday = false;
+        vm.isThursday = false;
+        vm.isFriday = false;
+        vm.isSaturday = false;
+        vm.isSunday = false;
+        vm.isTwoWheeler = false;
+        vm.isFourWheeler = false;
+        vm.DrivingSchoolCarId;
+        vm.onMondayChecked = onMondayChecked;
+        vm.onTuesdayChecked = onTuesdayChecked;
+        vm.onWednesdayChecked = onWednesdayChecked;
+        vm.onThursdayChecked = onThursdayChecked;
+        vm.onFridayChecked = onFridayChecked;
+        vm.onSaturdayChecked = onSaturdayChecked;
+        vm.onSundayChecked = onSundayChecked;
+        vm.onTwoWheelerChecked = onTwoWheelerChecked;
+        vm.onFourWheelerChecked = onFourWheelerChecked;
+        vm.retrieveDrivinSchoolAvailability = retrieveDrivinSchoolAvailability;
         function addPincode() {
             geoLocation();
         }
@@ -217,179 +240,309 @@
                     IsMondayFilter: false
                 }
             }
-           
             retrieveDrivingSchools();
         }
 
         function onTuesdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsTuedayFilter: true,
-                Tuesday: vm.tuesday
+            if (document.getElementById('cbTuesday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsTuedayFilter: true,
+                    Tuesday: vm.tuesday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsTuedayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onWednesdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsWednesdayFilter: true,
-                Wednesday: vm.wednesday
+            if (document.getElementById('cbWednesday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsWednesdayFilter: true,
+                    Wednesday: vm.wednesday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsWednesdayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onThursdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsThursdayFilter: true,
-                Thursday: vm.thursday
+            if (document.getElementById('cbThursday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsThursdayFilter: true,
+                    Thursday: vm.thursday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsThursdayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onFridayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsFridayFilter: true,
-                Friday: vm.friday
+            if (document.getElementById('cbFriday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsFridayFilter: true,
+                    Friday: vm.friday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsFridayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSaturdayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSaturdayFilter: true,
-                Saturday: vm.saturday
+            if (document.getElementById('cbSaturday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSaturdayFilter: true,
+                    Saturday: vm.saturday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSaturdayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSundayCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSundayFilter: true,
-                Sunday: vm.sunday
+            if (document.getElementById('cbSunday').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSundayFilter: true,
+                    Sunday: vm.sunday
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSundayFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onTwoWheelerCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsTwoWheelerFilter: true,
-                TwoWheeler: vm.twoWheeler
+            if (document.getElementById('cbTwoWheeler').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsTwoWheelerFilter: true,
+                    TwoWheeler: vm.twoWheeler
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsTwoWheelerFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onFourWheelerCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsFourWheelerFilter: true,
-                FourWheeler: vm.fourWheeler
+            if (document.getElementById('cbFourWheeler').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsFourWheelerFilter: true,
+                    FourWheeler: vm.fourWheeler
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsFourWheelerFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onWithLicenseCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsWithLicenseFilter: true,
-                WithLicense: vm.withLicense
+            if (document.getElementById('cbRequired').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsWithLicenseFilter: true,
+                    WithLicense: vm.withLicense
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsWithLicenseFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onWithoutLicenseCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsWithoutLicenseFilter: true,
-                WithoutLicense: vm.withoutLicense
+            if (document.getElementById('cbNotRequired').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsWithoutLicenseFilter: true,
+                    WithoutLicense: vm.withoutLicense
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsWithoutLicenseFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onNormalCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsNormalFilter: true,
-                Normal: vm.normal
+            if (document.getElementById('cbNormal').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsNormalFilter: true,
+                    Normal: vm.normal
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: true,
+                    IsNormalFilter: true,
+                    Normal: vm.normal
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSuvCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSuvFilter: true,
-                Suv: vm.suv
+            if (document.getElementById('cbSuv').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSuvFilter: true,
+                    Suv: vm.suv
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSuvFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onMuvCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsMuvFilter: true,
-                Muv: vm.muv
+            if (document.getElementById('cbMuv').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsMuvFilter: true,
+                    Muv: vm.muv
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsMuvFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onXuvCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsXuvFilter: true,
-                Xuv: vm.xuv
+            if (document.getElementById('cbXuv').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsXuvFilter: true,
+                    Xuv: vm.xuv
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsXuvFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onMaruti800CheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsMaruti800Filter: true,
-                Maruti800: vm.maruti800
+            if (document.getElementById('cbMaruti800').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsMaruti800Filter: true,
+                    Maruti800: vm.maruti800
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsMaruti800Filter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onSantroCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsSantroFilter: true,
-                Santro: vm.santro
+            if (document.getElementById('cbSantro').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsSantroFilter: true,
+                    Santro: vm.santro
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsSantroFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onIndicaCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsIndicaFilter: true,
-                Indica: vm.indica
+            if (document.getElementById('cbIndica').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsIndicaFilter: true,
+                    Indica: vm.indica
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsIndicaFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onQualisCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsQualisFilter: true,
-                Qualis: vm.qualis
+            if (document.getElementById('cbQualis').checked) {
+                vm.filter = {
+                    IsFilter: true,
+                    IsQualisFilter: true,
+                    Qualis: vm.qualis
+                }
+            } else {
+                vm.filter = {
+                    IsFilter: false,
+                    IsQualisFilter: false
+                }
             }
-            //retrieveMobiles();
+            retrieveDrivingSchools();
         }
 
         function onDrivingFeesCheckedFilter() {
-            vm.filter = {
-                IsFilter: true,
-                IsDrivingFeesFilter: true,
-                FromFees: vm.fromFees,
-                ToFees: vm.toFees
-            }
+            //if (document.getElementById('cbSunday').checked) {
+            //    vm.filter = {
+            //        IsFilter: true,
+            //        IsDrivingFeesFilter: true,
+            //        FromFees: vm.fromFees,
+            //        ToFees: vm.toFees
+            //    }
+            //} else {
+
+            //}
             //if(vm.fromFees && vm.toFees)
             //retrieveMobiles();
         }
@@ -428,7 +581,7 @@
             vm.orderBy.direction = "Ascending";
             vm.orderBy.class = "asc";
             vm.orderBy.property = "Name";
-            return DrivingSchoolService.retrieveDrivingSchools(vm.filter,vm.paging, vm.orderBy)
+            return DrivingSchoolService.retrieveDrivingSchools(vm.filter, vm.paging, vm.orderBy)
                 .then(function (response) {
                     vm.drivingSchools = response.data.ResponseBody.Items;
                     vm.paging.totalPages = response.data.ResponseBody.TotalPages;
@@ -467,6 +620,108 @@
                         document.getElementById('ProfilePicture').setAttribute('src', "");
                     else
                         document.getElementById('ProfilePicture').setAttribute('src', response.data.RelativePath);
+                });
+        }
+
+        // Driving School Availability 
+
+        function onMondayChecked() {
+            if (document.getElementById('IsMondayChkbox').checked) {
+                vm.isMonday = true;
+            } else {
+                vm.isMonday = false;
+            }
+        }
+
+        function onTuesdayChecked() {
+            if (document.getElementById('IsTuesdayChkbox').checked) {
+                vm.isTuesday = true;
+            } else {
+                vm.isTuesday = false;
+            }
+        }
+
+        function onWednesdayChecked() {
+            if (document.getElementById('IsWednesdayChkbox').checked) {
+                vm.isWednesday = true;
+            } else {
+                vm.isWednesday = false;
+            }
+        }
+
+        function onThursdayChecked() {
+            if (document.getElementById('IsThursdayChkbox').checked) {
+                vm.isThursday = true;
+            } else {
+                vm.isThursday = false;
+            }
+        }
+
+        function onFridayChecked() {
+            if (document.getElementById('IsFridayChkbox').checked) {
+                vm.isFriday = true;
+            } else {
+                vm.isFriday = false;
+            }
+        }
+
+        function onSaturdayChecked() {
+            if (document.getElementById('IsSaturdayChkbox').checked) {
+                vm.isSaturday = true;
+            } else {
+                vm.isSaturday = false;
+            }
+        }
+
+        function onSundayChecked() {
+            if (document.getElementById('IsSundayChkbox').checked) {
+                vm.isSunday = true;
+            } else {
+                vm.isSunday = false;
+            }
+        }
+
+        function onTwoWheelerChecked() {
+            if (document.getElementById('IsTwoWheelerChkbox').checked) {
+                vm.isTwoWheeler = true;
+            } else {
+                vm.isTwoWheeler = false;
+            }
+        }
+
+        function onFourWheelerChecked() {
+            if (document.getElementById('IsFourWheelerChkbox').checked) {
+                vm.isFourWheeler = true;
+            } else {
+                vm.isFourWheeler = false;
+            }
+        }
+
+        function retrieveDrivinSchoolAvailability() {
+            var drivingSchoolAvailabilityFilter = {
+                StartDate: $('input[type=hidden]').val(),
+                StartTime: vm.StartTime,
+                IsMonday: vm.isMonday,
+                IsTuesday: vm.isTuesday,
+                IsWednesday: vm.isWednesday,
+                IsThursday: vm.isThursday,
+                IsFriday: vm.isFriday,
+                IsSaturday: vm.isSaturday,
+                IsSunday: vm.isSunday,
+                IsTwoWheelerLicense: vm.isTwoWheeler,
+                IsFourWheelerLicense: vm.isFourWheeler,
+                DrivingSchoolCarId: vm.DrivingSchoolCarId
+            }
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
+            vm.orderBy.property = "Name";
+            return DrivingSchoolService.retrieveDrivinSchoolAvailability(drivingSchoolAvailabilityFilter, vm.paging, vm.orderBy)
+                .then(function (response) {
+                    vm.drivingSchools = response.data.Items;
+                    vm.paging.totalPages = response.data.TotalPages;
+                    vm.paging.totalResults = response.data.TotalResults;
+                    vm.searchMessage = vm.drivingSchools.length === 0 ? "No Driving School Found" : "";
+                    return vm.drivingSchools;
                 });
         }
     }

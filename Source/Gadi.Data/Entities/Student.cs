@@ -12,61 +12,91 @@ namespace Gadi.Data.Entities
         public Student()
         {
             CreatedDate = DateTime.UtcNow.Date;
+            StudentDrivingDetails = new HashSet<StudentDrivingDetail>();
+            FormFours = new HashSet<FormFour>();
+            FormFives=new HashSet<FormFive>();
+            FormEights=new HashSet<FormEight>();
+            StudentFees=new HashSet<StudentFee>();
+            FormFourteens=new HashSet<FormFourteen>();
+            StudentQuestionResponses=new HashSet<StudentQuestionResponse>();
+            FormOneAs=new HashSet<FormOneA>();
         }
-
-        [NotMapped]
-        public string FullName => Forenames + " " + Surname;
 
         public int StudentId { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Title { get; set; }
+        [StringLength(500)]
+        public string Name { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string Forenames { get; set; }
+        [StringLength(500)]
+        public string SonWifeDaughterOf { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Surname { get; set; }
+        [StringLength(500)]
+        public string PresentAddress { get; set; }
+
+        [StringLength(500)]
+        public string PermanantAddress { get; set; }
+
+        [StringLength(500)]
+        public string OfficialAddress { get; set; }
 
         [Column(TypeName = "datetime2")]
-        public DateTime DOB { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public string Address1 { get; set; }
-
-        [StringLength(100)]
-        public string Address2 { get; set; }
+        [StringLength(200)]
+        public string PlaceOfBirth { get; set; }
 
         [StringLength(100)]
-        public string Address3 { get; set; }
+        public string Education { get; set; }
 
-        [StringLength(100)]
-        public string Address4 { get; set; }
+        [StringLength(50)]
+        public string BloodGroup { get; set; }
 
-        [Required]
-        [StringLength(12)]
-        public string Postcode { get; set; }
+        [StringLength(50)]
+        public string RHFactor { get; set; }
 
-        [StringLength(15)]
-        public string Telephone { get; set; }
+        public long? Mobile { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        public string Mobile { get; set; }
+        public long? ResidentialPhone { get; set; }
 
-        [Required]
+        public long? OfficialPhone { get; set; }
+
         [StringLength(256)]
         public string Email { get; set; }
+
+        [StringLength(50)]
+        public string Nationality { get; set; }
+
+        public int DrivingSchoolId { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime CreatedDate { get; set; }
 
-        public int DrivingSchoolId { get; set; }
-
         public virtual DrivingSchool DrivingSchool { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentDrivingDetail> StudentDrivingDetails { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormFour> FormFours { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormFive> FormFives { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormEight> FormEights { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentFee> StudentFees { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormFourteen> FormFourteens { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentQuestionResponse> StudentQuestionResponses { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormOneA> FormOneAs { get; set; }
     }
 }
