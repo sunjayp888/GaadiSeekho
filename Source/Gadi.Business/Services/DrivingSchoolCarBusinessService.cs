@@ -91,7 +91,8 @@ namespace Gadi.Business.Services
 
         public async Task<PagedResult<DrivingSchoolCarGrid>> RetrieveDrivingSchoolCars(bool isSuperAdmin, int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null)
         {
-            var drivingSchoolCars = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolCarGrid>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId, orderBy, paging);
+            var predicate=!isSuperAdmin && drivingSchoolId==0 ? PredicateBuilder.New<Data.Entities.DrivingSchoolCarGrid>(a => true): PredicateBuilder.New<Data.Entities.DrivingSchoolCarGrid>(a => isSuperAdmin || a.DrivingSchoolId == drivingSchoolId);
+            var drivingSchoolCars = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolCarGrid>(predicate, orderBy, paging);
             return _mapper.MapToPagedResult<DrivingSchoolCarGrid>(drivingSchoolCars);
         }
 

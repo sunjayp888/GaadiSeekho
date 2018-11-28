@@ -41,12 +41,24 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HiQPdf, Version=10.17.0.0, Culture=neutral, PublicKeyToken=acd8b62594985b24, processorArchitecture=MSIL">
+      <HintPath>..\packages\hiqpdf.10.17.0\lib\net40\HiQPdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LinqKit, Version=1.1.15.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqKit.1.1.15\lib\net45\LinqKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -57,6 +69,10 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -84,11 +100,14 @@
     <Compile Include="Interfaces\IDrivingSchoolBusinessService.cs" />
     <Compile Include="Interfaces\IDrivingSchoolCarBusinessSerivce.cs" />
     <Compile Include="Interfaces\IOtpBusinessService.cs" />
+    <Compile Include="Interfaces\IPdfService.cs" />
     <Compile Include="Interfaces\IPersonnelBusinessService.cs" />
+    <Compile Include="Interfaces\IRazorService.cs" />
     <Compile Include="Interfaces\ISchoolBusinessService.cs" />
     <Compile Include="Interfaces\ISmsBusinessService.cs" />
     <Compile Include="Interfaces\IStudentBusinessService.cs" />
     <Compile Include="Interfaces\ITemplateBusinessService.cs" />
+    <Compile Include="Interfaces\MvcTemplateBase.cs" />
     <Compile Include="MemoryCacheProvider.cs" />
     <Compile Include="Models\AspNetUserMobileOtp.cs" />
     <Compile Include="Models\Car.cs" />
@@ -102,19 +121,32 @@
     <Compile Include="Models\DriverFeedbackGrid.cs" />
     <Compile Include="Models\DriverGrid.cs" />
     <Compile Include="Models\DrivingSchool.cs" />
+    <Compile Include="Models\DrivingSchoolAvailabilityFilter.cs" />
     <Compile Include="Models\DrivingSchoolCar.cs" />
     <Compile Include="Models\DrivingSchoolCarFee.cs" />
     <Compile Include="Models\DrivingSchoolCarGrid.cs" />
     <Compile Include="Models\DrivingSchoolFilterGrid.cs" />
     <Compile Include="Models\DrivingSchoolGrid.cs" />
+    <Compile Include="Models\DrivingSchoolPackage.cs" />
     <Compile Include="Models\DrivingSchoolRatingAndReview.cs" />
+    <Compile Include="Models\FormEight.cs" />
+    <Compile Include="Models\FormFive.cs" />
+    <Compile Include="Models\FormFour.cs" />
+    <Compile Include="Models\FormFourGrid.cs" />
+    <Compile Include="Models\FormFourteen.cs" />
+    <Compile Include="Models\FormOneA.cs" />
     <Compile Include="Models\HtmlEmail.cs" />
     <Compile Include="Models\Personnel.cs" />
     <Compile Include="Models\PersonnelCreatedEmail.cs" />
     <Compile Include="Models\PersonnelDocument.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentDrivingDetail.cs" />
+    <Compile Include="Models\StudentFee.cs" />
     <Compile Include="Models\StudentGrid.cs" />
+    <Compile Include="Models\StudentQuestionGrid.cs" />
+    <Compile Include="Models\StudentQuestionResponse.cs" />
     <Compile Include="Models\ValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorizationBusinessService.cs" />
@@ -124,9 +156,12 @@
     <Compile Include="Services\DocumentBusinessService.cs" />
     <Compile Include="Services\DrivingSchoolCarBusinessService.cs" />
     <Compile Include="Services\OtpBusinessService.cs" />
+    <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\PersonnelBusinessService.cs" />
+    <Compile Include="Services\RazorService.cs" />
     <Compile Include="Services\SmsBusinessService.cs" />
     <Compile Include="Services\StudentBusinessService.cs" />
+    <Compile Include="Services\TemplateBusinessService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

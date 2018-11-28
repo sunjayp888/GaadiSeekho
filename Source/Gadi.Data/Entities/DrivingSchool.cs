@@ -17,7 +17,16 @@ namespace Gadi.Data.Entities
             DriverFeedbacks = new HashSet<DriverFeedback>();
             Students = new HashSet<Student>();
             Drivers = new HashSet<Driver>();
+            StudentDrivingDetails = new HashSet<StudentDrivingDetail>();
+            FormFours = new HashSet<FormFour>();
             CreatedDate = DateTime.UtcNow;
+            FormFives=new HashSet<FormFive>();
+            FormEights=new HashSet<FormEight>();
+            StudentFees=new HashSet<StudentFee>();
+            FormFourteens=new HashSet<FormFourteen>();
+            DrivingSchoolPackages=new HashSet<DrivingSchoolPackage>();
+            StudentQuestionResponses=new HashSet<StudentQuestionResponse>();
+            FormOneAs=new HashSet<FormOneA>();
         }
 
         public int DrivingSchoolId { get; set; }
@@ -62,6 +71,10 @@ namespace Gadi.Data.Entities
 
         public int PersonnelId { get; set; }
 
+        public bool IsTwoWheelerLicense { get; set; }
+
+        public bool IsFourWheelerLicense { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
 
@@ -76,5 +89,32 @@ namespace Gadi.Data.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DriverFeedback> DriverFeedbacks { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentDrivingDetail> StudentDrivingDetails { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormFour> FormFours { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormFive> FormFives { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormEight> FormEights { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormFourteen> FormFourteens { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DrivingSchoolPackage> DrivingSchoolPackages { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentFee> StudentFees { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentQuestionResponse> StudentQuestionResponses { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormOneA> FormOneAs { get; set; }
     }
 }

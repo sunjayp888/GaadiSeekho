@@ -18,7 +18,7 @@
                     <div class="thumbnail">
                         <img alt="image" id="ProfilePicture">
                         <div class="caption">
-                            <h3>@Model.Student.Forenames @Model.Student.Surname</h3>
+                            <h3>@Model.Student.Name</h3>
                             @*<button type="button" class="btn bg-red waves-effect"><i class="material-icons">file_upload</i> Upload Picture</button>*@
                             <button type="button" class="btn bg-amber waves-effect" data-toggle="modal" data-target="#profileModal"><i class="material-icons">file_upload</i> <span>UPLOAD PICTURE</span></button>
                         </div>
@@ -31,7 +31,7 @@
     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>@string.Format("{0} {1}", Model.Student.Forenames, Model.Student.Surname)<small> Edit Student</small>
+                <h2>@string.Format("{0}", Model.Student.Name)<small> Edit Student</small>
                 </h2>
             </div>
             <div class="body">
@@ -64,6 +64,30 @@
         </div>
     </div>
 </div>
+
+@*Panels Start*@
+<div class="row clearfix" ng-controller="StudentController as model">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Multiple Forms
+                    <small><code></code></small>
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                        <div class="panel-group full-body" id="accordion_19" role="tablist" aria-multiselectable="true">
+                            @Html.Partial("_StudentForms", Model)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Panel End*@
 <div>
     <a href="@Url.Action("Index")" class="btn btn-primary" role="button">
         <span class="fa fa-chevron-left"></span>&nbsp;Back to list

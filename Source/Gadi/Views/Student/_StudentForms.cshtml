@@ -1,0 +1,509 @@
+﻿@using Gadi.Business.Extensions
+@model Gadi.Models.StudentViewModel
+@{
+    var model1 = Model.Student;
+}
+
+<div class="panel">
+    <div class="panel-heading bg-amber" role="tab" id="headingOne_19">
+        <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" href="#collapseOne_19" aria-expanded="false" aria-controls="collapseOne_19" class="collapsed">
+                <i class="material-icons">assignment</i> FORM 1A
+                #1
+            </a>
+        </h4>
+    </div>
+    <div id="collapseOne_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_19" aria-expanded="false" style="height: 0px;">
+        <div class="panel-body">
+            <div class="col-lg-12">
+                @foreach (var question in Model.Questions)
+                {
+                    <div class="row clearfix">
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <b>@question.Name</b>
+                            </div>
+                           
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <input name="group_@question.QuestionId" type="radio" id="radioYes_@question.QuestionId" class="radio-col-orange" ng-model="model.studentQuestionResponse">
+                                <label for="radioYes_@question.QuestionId">Yes</label>
+                            </div>
+                            
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <input name="group_@question.QuestionId" type="radio" id="radioNo_@question.QuestionId" class="radio-col-orange" ng-model="model.studentQuestionResponse">
+                                <label for="radioNo_@question.QuestionId">No</label>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormOneA.IdentificationMarks1)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormOneA.IdentificationMarks1, new { @class = "form-control", ng_model = "model.identificationMarks1" })
+                                @Html.ValidationMessageFor(model => model.FormOneA.IdentificationMarks1, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormOneA.IdentificationMarks2)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormOneA.IdentificationMarks2, new { @class = "form-control", ng_model = "model.identificationMarks2" })
+                                @Html.ValidationMessageFor(model => model.FormOneA.IdentificationMarks2, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group align-right">
+                            <button ng-if="@Model.FormOneA.FormOneAId==0" type="button" class="btn btn-success" ng-click="model.createFormOneA(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Submit Form 1A</button>
+                            <button ng-if="@Model.FormOneA.FormOneAId!=0" type="button" class="btn btn-success" ng-click="model.updateFormOneA(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Update Form 1A</button>
+                            <button type="button" class="btn btn-success" ng-click="model.createFormOneAPdf(@Model.Student.StudentId)"><i class="material-icons">file_download</i> Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel" ng-init="model.retrieveFormFour(@Model.Student.StudentId)">
+    <div class="panel-heading bg-amber" role="tab" id="headingTwo_19">
+        <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTwo_19" aria-expanded="false" aria-controls="collapseTwo_19">
+                <i class="material-icons">assignment</i> FORM 4
+                #2
+            </a>
+        </h4>
+    </div>
+    <div id="collapseTwo_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_19" aria-expanded="false" style="height: 0px;">
+        <div class="panel-body">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+
+                    <div class="form-group">
+                        <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <b>Issue / Endorse MDL</b>
+                        </div>
+                        <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                            <input type="checkbox" name="terms" id="cbLMVNT" class="filled-in chk-col-amber" ng-click="model.onLMVNTChecked()" ng-model="model.LMVNT">
+                            <label for="cbLMVNT">LMV / NT</label>
+                            &nbsp;&nbsp;
+                            <input type="checkbox" name="terms" id="cbMCWG" class="filled-in chk-col-amber" ng-click="model.onMCWGChecked()" ng-model="model.MCWG">
+                            <label for="cbMCWG">MCWG</label>
+                            &nbsp;&nbsp;
+                            <input type="checkbox" name="terms" id="cbMCWOG" class="filled-in chk-col-amber" ng-click="model.onMCWOGChecked()" ng-model="model.MCWOG">
+                            <label for="cbMCWOG">MCWOG</label>
+                            &nbsp;&nbsp;
+                            <input type="checkbox" name="terms" id="cbLMVTR" class="filled-in chk-col-amber" ng-click="model.onLMVTRChecked()" ng-model="model.LMVTR">
+                            <label for="cbLMVTR">LMV / TR</label>
+                            &nbsp;&nbsp;
+                            <input type="checkbox" name="terms" id="cbARTR" class="filled-in chk-col-amber" ng-click="model.onARTRChecked()" ng-model="model.ARTR">
+                            <label for="cbARTR">AR / TR</label>
+                            &nbsp;&nbsp;
+                            <input type="checkbox" name="terms" id="cbARNT" class="filled-in chk-col-amber" ng-click="model.onARNTChecked()" ng-model="model.ARNT">
+                            <label for="cbARNT">AR / NT</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                    @Html.LabelFor(model => model.FormFour.DurationOfStayAtPresentAddress)
+                </div>
+                <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                    <div class="form-group">
+                        <div class="form-line">
+                            @Html.TextBoxFor(model => model.FormFour.DurationOfStayAtPresentAddress, new { @class = "form-control", ng_model = "model.durationOfStayAtPresentAddress" })
+                            @Html.ValidationMessageFor(model => model.FormFour.DurationOfStayAtPresentAddress, "", new { @class = "error" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                    @Html.LabelFor(model => model.FormFour.MigratedToIndia)
+                </div>
+                <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                    <div class="form-group">
+                        <div class="form-line">
+                            @Html.TextBoxFor(model => model.FormFour.MigratedToIndia, new { @class = "form-control", ng_model = "model.migratedToIndia" })
+                            @Html.ValidationMessageFor(model => model.FormFour.MigratedToIndia, "", new { @class = "error" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                    <div class="form-group align-right">
+                        <button ng-if="@Model.FormFour.FormFourId==0" type="button" class="btn btn-success" ng-click="model.createFormFour(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Submit Form 4</button>
+                        <button ng-if="@Model.FormFour.FormFourId!=0" type="button" class="btn btn-success" ng-click="model.updateFormFour(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Update Form 4</button>
+                        <button type="button" class="btn btn-success" ng-click="model.createFormFourPdf(@Model.Student.StudentId)"><i class="material-icons">file_download</i> Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel" ng-init="model.retrieveFormFive(@Model.Student.StudentId)">
+    <div class="panel-heading bg-amber" role="tab" id="headingThree_19">
+        <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" href="#collapseThree_19" aria-expanded="false" aria-controls="collapseThree_19">
+                <i class="material-icons">assignment</i> FORM 5
+                #3
+            </a>
+        </h4>
+    </div>
+    <div id="collapseThree_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_19">
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFive.EnrollmentDate)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormFive.EnrollmentDate.Formatted()" name="FormFive.EnrollmentDate" id="FormFive_EnrollmentDate" model="model.enrollmentDateFormFive"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFive.EnrollmentNumber)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormFive.EnrollmentNumber, new { @class = "form-control", ng_model = "model.enrollmentNumber" })
+                                @Html.ValidationMessageFor(model => model.FormFive.EnrollmentNumber, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFive.StartDate)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormFive.StartDate.Formatted()" name="FormFive.StartDate" id="FormFive_StartDate" model="model.startDateFormFive"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFive.EndDate)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormFive.EndDate.Formatted()" name="FormFive.EndDate" id="FormFive_EndDate" model="model.endDateFormFive"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group align-right">
+                            <button ng-if="@Model.FormFive.FormFiveId==0" type="button" class="btn btn-success" ng-click="model.createFormFive(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Submit Form 5</button>
+                            <button ng-if="@Model.FormFive.FormFiveId!=0" type="button" class="btn btn-success" ng-click="model.updateFormFive(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Update Form 5</button>
+                            <button type="button" class="btn btn-success" ng-click="model.createFormFivePdf(@Model.Student.StudentId)"><i class="material-icons">file_download</i> Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel" ng-init="model.retrieveFormEight(@Model.Student.StudentId)">
+    <div class="panel-heading bg-amber" role="tab" id="headingFour_19">
+        <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" href="#collapseFour_19" aria-expanded="false" aria-controls="collapseFour_19">
+                <i class="material-icons">assignment</i> FORM 8
+                #4
+            </a>
+        </h4>
+    </div>
+    <div id="collapseFour_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour_19">
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.TestedAndPassedOn)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormEight.TestedAndPassedOn.Formatted()" name="FormFive.TestedAndPassedOn" id="FormFive_TestedAndPassedOn" model="model.testedAndPassedOn"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.MDLNo)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormEight.MDLNo, new { @class = "form-control", ng_model = "model.mDLNo" })
+                                @Html.ValidationMessageFor(model => model.FormEight.MDLNo, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.MDLFor)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormEight.MDLFor, new { @class = "form-control", ng_model = "model.mDLFor" })
+                                @Html.ValidationMessageFor(model => model.FormEight.MDLFor, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.ValidUpto)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormEight.ValidUpto, new { @class = "form-control", ng_model = "model.validUpto" })
+                                @Html.ValidationMessageFor(model => model.FormEight.ValidUpto, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.Age)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormEight.Age, new { @class = "form-control", ng_model = "model.age" })
+                                @Html.ValidationMessageFor(model => model.FormEight.Age, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.RecommendedMDLNo)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormEight.RecommendedMDLNo, new { @class = "form-control", ng_model = "model.recommendedMDLNo" })
+                                @Html.ValidationMessageFor(model => model.FormEight.RecommendedMDLNo, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.ToEndrossmentFor)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormEight.ToEndrossmentFor, new { @class = "form-control", ng_model = "model.toEndrossmentFor" })
+                                @Html.ValidationMessageFor(model => model.FormEight.ToEndrossmentFor, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormEight.PaidFee)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormEight.PaidFee, new { @class = "form-control", ng_model = "model.paidFee" })
+                                @Html.ValidationMessageFor(model => model.FormEight.PaidFee, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group align-right">
+                            <button ng-if="@Model.FormEight.FormEightId==0" type="button" class="btn btn-success" ng-click="model.createFormEight(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Submit Form 8</button>
+                            <button ng-if="@Model.FormEight.FormEightId!=0" type="button" class="btn btn-success" ng-click="model.updateFormEight(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Update Form 8</button>
+                            <button type="button" class="btn btn-success" ng-click="model.createFormEightPdf(@Model.Student.StudentId)"><i class="material-icons">file_download</i> Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel" ng-init="model.retrieveFormFourteen(@Model.Student.StudentId)">
+    <div class="panel-heading bg-amber" role="tab" id="headingFive_19">
+        <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" href="#collapseFive_19" aria-expanded="false" aria-controls="collapseFive_19">
+                <i class="material-icons">assignment</i> FORM 14
+                #5
+            </a>
+        </h4>
+    </div>
+    <div id="collapseFive_19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive_19">
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.EnrollmentNumber)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormFourteen.EnrollmentNumber, new { @class = "form-control", ng_model = "model.enrollmentNumberFormFourteen" })
+                                @Html.ValidationMessageFor(model => model.FormFourteen.EnrollmentNumber, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.ClassOfVehical)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormFourteen.ClassOfVehical, new { @class = "form-control", ng_model = "model.classOfVehical" })
+                                @Html.ValidationMessageFor(model => model.FormFourteen.ClassOfVehical, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.EnrollmentDate)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormFourteen.EnrollmentDate.Formatted()" name="FormFourteen.EnrollmentDate" id="FormFourteen_EnrollmentDate" model="model.enrollmentDateFormFourteen"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.LLRNumber)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormFourteen.LLRNumber, new { @class = "form-control", ng_model = "model.lLRNumber" })
+                                @Html.ValidationMessageFor(model => model.FormFourteen.LLRNumber, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.EnquiryDate)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormFourteen.EnquiryDate.Formatted()" name="FormFourteen.EnquiryDate" id="FormFourteen_EnquiryDate" model="model.enquiryDate"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.PassingDate)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormFourteen.PassingDate.Formatted()" name="FormFourteen.PassingDate" id="FormFourteen_PassingDate" model="model.passingDate"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.DrivingLicenseNumber)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormFourteen.DrivingLicenseNumber, new { @class = "form-control", ng_model = "model.drivingLicenseNumber" })
+                                @Html.ValidationMessageFor(model => model.FormFourteen.DrivingLicenseNumber, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.IssueDate)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-line">
+                            <div class="form-group">
+                                <daterange-picker value="@Model.FormFourteen.IssueDate.Formatted()" name="FormFourteen.IssueDate" id="FormFourteen_IssueDate" model="model.issueDate"></daterange-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.RNumber)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormFourteen.RNumber, new { @class = "form-control", ng_model = "model.rNumber" })
+                                @Html.ValidationMessageFor(model => model.FormFourteen.RNumber, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        @Html.LabelFor(model => model.FormFourteen.InwardNumber)
+                    </div>
+                    <div class="col-lg-9 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.TextBoxFor(model => model.FormFourteen.InwardNumber, new { @class = "form-control", ng_model = "model.inwardNumber" })
+                                @Html.ValidationMessageFor(model => model.FormFourteen.InwardNumber, "", new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group align-right">
+                            <button ng-if="@Model.FormFourteen.FormFourteenId==0" type="button" class="btn btn-success" ng-click="model.createFormFourteen(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Submit Form 14</button>
+                            <button ng-if="@Model.FormFourteen.FormFourteenId!=0" type="button" class="btn btn-success" ng-click="model.updateFormFourteen(@Model.Student.DrivingSchoolId,@Model.Student.StudentId)">Update Form 14</button>
+                            <button type="button" class="btn btn-success" ng-click="model.createFormFourteenPdf(@Model.Student.StudentId)"><i class="material-icons">file_download</i> Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

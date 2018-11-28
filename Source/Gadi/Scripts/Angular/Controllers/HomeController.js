@@ -64,6 +64,29 @@
         vm.onIndicaCheckedFilter = onIndicaCheckedFilter;
         vm.onQualisCheckedFilter = onQualisCheckedFilter;
         vm.onDrivingFeesCheckedFilter = onDrivingFeesCheckedFilter;
+        //DrivingSchool Availability
+        vm.StartDate;
+        vm.StartTime;
+        vm.isMonday = false;
+        vm.isTuesday = false;
+        vm.isWednesday = false;
+        vm.isThursday = false;
+        vm.isFriday = false;
+        vm.isSaturday = false;
+        vm.isSunday = false;
+        vm.isTwoWheeler = false;
+        vm.isFourWheeler = false;
+        vm.DrivingSchoolCarId;
+        vm.onMondayChecked = onMondayChecked;
+        vm.onTuesdayChecked = onTuesdayChecked;
+        vm.onWednesdayChecked = onWednesdayChecked;
+        vm.onThursdayChecked = onThursdayChecked;
+        vm.onFridayChecked = onFridayChecked;
+        vm.onSaturdayChecked = onSaturdayChecked;
+        vm.onSundayChecked = onSundayChecked;
+        vm.onTwoWheelerChecked = onTwoWheelerChecked;
+        vm.onFourWheelerChecked = onFourWheelerChecked;
+        vm.retrieveDrivinSchoolAvailability = retrieveDrivinSchoolAvailability;
         function addPincode() {
             geoLocation();
         }
@@ -421,10 +444,10 @@
                     Muv: vm.muv
                 }
             } else {
-                    vm.filter = {
-                        IsFilter: false,
-                        IsMuvFilter: false
-                    }
+                vm.filter = {
+                    IsFilter: false,
+                    IsMuvFilter: false
+                }
             }
             retrieveDrivingSchools();
         }
@@ -518,7 +541,7 @@
             //        ToFees: vm.toFees
             //    }
             //} else {
-                
+
             //}
             //if(vm.fromFees && vm.toFees)
             //retrieveMobiles();
@@ -558,7 +581,7 @@
             vm.orderBy.direction = "Ascending";
             vm.orderBy.class = "asc";
             vm.orderBy.property = "Name";
-            return DrivingSchoolService.retrieveDrivingSchools(vm.filter,vm.paging, vm.orderBy)
+            return DrivingSchoolService.retrieveDrivingSchools(vm.filter, vm.paging, vm.orderBy)
                 .then(function (response) {
                     vm.drivingSchools = response.data.ResponseBody.Items;
                     vm.paging.totalPages = response.data.ResponseBody.TotalPages;
@@ -597,6 +620,108 @@
                         document.getElementById('ProfilePicture').setAttribute('src', "");
                     else
                         document.getElementById('ProfilePicture').setAttribute('src', response.data.RelativePath);
+                });
+        }
+
+        // Driving School Availability 
+
+        function onMondayChecked() {
+            if (document.getElementById('IsMondayChkbox').checked) {
+                vm.isMonday = true;
+            } else {
+                vm.isMonday = false;
+            }
+        }
+
+        function onTuesdayChecked() {
+            if (document.getElementById('IsTuesdayChkbox').checked) {
+                vm.isTuesday = true;
+            } else {
+                vm.isTuesday = false;
+            }
+        }
+
+        function onWednesdayChecked() {
+            if (document.getElementById('IsWednesdayChkbox').checked) {
+                vm.isWednesday = true;
+            } else {
+                vm.isWednesday = false;
+            }
+        }
+
+        function onThursdayChecked() {
+            if (document.getElementById('IsThursdayChkbox').checked) {
+                vm.isThursday = true;
+            } else {
+                vm.isThursday = false;
+            }
+        }
+
+        function onFridayChecked() {
+            if (document.getElementById('IsFridayChkbox').checked) {
+                vm.isFriday = true;
+            } else {
+                vm.isFriday = false;
+            }
+        }
+
+        function onSaturdayChecked() {
+            if (document.getElementById('IsSaturdayChkbox').checked) {
+                vm.isSaturday = true;
+            } else {
+                vm.isSaturday = false;
+            }
+        }
+
+        function onSundayChecked() {
+            if (document.getElementById('IsSundayChkbox').checked) {
+                vm.isSunday = true;
+            } else {
+                vm.isSunday = false;
+            }
+        }
+
+        function onTwoWheelerChecked() {
+            if (document.getElementById('IsTwoWheelerChkbox').checked) {
+                vm.isTwoWheeler = true;
+            } else {
+                vm.isTwoWheeler = false;
+            }
+        }
+
+        function onFourWheelerChecked() {
+            if (document.getElementById('IsFourWheelerChkbox').checked) {
+                vm.isFourWheeler = true;
+            } else {
+                vm.isFourWheeler = false;
+            }
+        }
+
+        function retrieveDrivinSchoolAvailability() {
+            var drivingSchoolAvailabilityFilter = {
+                StartDate: $('input[type=hidden]').val(),
+                StartTime: vm.StartTime,
+                IsMonday: vm.isMonday,
+                IsTuesday: vm.isTuesday,
+                IsWednesday: vm.isWednesday,
+                IsThursday: vm.isThursday,
+                IsFriday: vm.isFriday,
+                IsSaturday: vm.isSaturday,
+                IsSunday: vm.isSunday,
+                IsTwoWheelerLicense: vm.isTwoWheeler,
+                IsFourWheelerLicense: vm.isFourWheeler,
+                DrivingSchoolCarId: vm.DrivingSchoolCarId
+            }
+            vm.orderBy.direction = "Ascending";
+            vm.orderBy.class = "asc";
+            vm.orderBy.property = "Name";
+            return DrivingSchoolService.retrieveDrivinSchoolAvailability(drivingSchoolAvailabilityFilter, vm.paging, vm.orderBy)
+                .then(function (response) {
+                    vm.drivingSchools = response.data.Items;
+                    vm.paging.totalPages = response.data.TotalPages;
+                    vm.paging.totalResults = response.data.TotalResults;
+                    vm.searchMessage = vm.drivingSchools.length === 0 ? "No Driving School Found" : "";
+                    return vm.drivingSchools;
                 });
         }
     }

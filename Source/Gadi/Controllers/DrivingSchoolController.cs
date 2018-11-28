@@ -251,6 +251,14 @@ namespace Gadi.Controllers
             return this.JsonNet(await _drivingSchoolBusinessService.RetrieveDrivingSchools(orderBy, paging));
         }
 
+        [HttpPost]
+        [Route("RetrieveDrivingSchoolAvailability")]
+        public async Task<ActionResult> RetrieveDrivingSchoolAvailability(DrivingSchoolAvailabilityFilter drivingSchoolAvailabilityFilter, Paging paging, List<OrderBy> orderBy)
+        {
+            var data = await _drivingSchoolBusinessService.RetrieveDrivingSchoolAvailability(drivingSchoolAvailabilityFilter, orderBy, paging);
+            return this.JsonNet(data);
+        }
+
         //public async Task<ActionResult> AssignDrivingSchoolCar(int drivingSchoolId, int carId, decimal withLicenseFee, decimal withOutLicenseFee, decimal discountOnFee)
         //{
         //    var data = await _drivingSchoolBusinessService.CreateDrivingSchoolCar(drivingSchoolId, carId, withLicenseFee, withOutLicenseFee, discountOnFee);

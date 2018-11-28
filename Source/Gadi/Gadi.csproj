@@ -5983,6 +5983,8 @@
     <Content Include="Views\DrivingSchoolCar\Create.cshtml" />
     <Content Include="Views\Home\_FilterAndList.cshtml" />
     <Content Include="Views\Home\DrivingSchool.cshtml" />
+    <Content Include="Views\Home\DrivingSchoolAvailability.cshtml" />
+    <Content Include="Views\Student\_StudentForms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gadi.Business\Gadi.Business.csproj">

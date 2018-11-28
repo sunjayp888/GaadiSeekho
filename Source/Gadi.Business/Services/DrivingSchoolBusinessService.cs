@@ -61,7 +61,7 @@ namespace Gadi.Business.Services
         //        DrivingSchoolId = drivingSchoolId,
         //        CarId = carId
         //    };
-            
+
         //    try
         //    {
         //        var drivingSchoolCarData = _mapper.Map<Data.Entities.DrivingSchoolCar>(drivingSchoolCar);
@@ -111,6 +111,50 @@ namespace Gadi.Business.Services
             var result = await _dataService.RetrieveAsync<Data.Entities.DrivingSchool>(a => a.DrivingSchoolId == drivingSchoolId);
             var driver = _mapper.MapToList<DrivingSchool>(result);
             return driver.FirstOrDefault();
+        }
+
+        public async Task<PagedResult<DrivingSchoolGrid>> RetrieveDrivingSchoolAvailability(DrivingSchoolAvailabilityFilter drivingSchoolAvailability, List<OrderBy> orderBy = null, Paging paging = null)
+        {
+            var predicate = BuildDrivingSchoolAvailabilityPredicate(drivingSchoolAvailability);
+            var test = await _dataService.RetrievePagedResultAsync<Data.Entities.StudentDrivingDetail>(predicate);
+            var drivingSchoolIds = test.Items.Select(e => e.DrivingSchoolId).ToList();
+            var data = await _dataService.RetrievePagedResultAsync<Data.Entities.DrivingSchoolGrid>(e => !drivingSchoolIds.Contains(e.DrivingSchoolId), orderBy, paging);
+            return _mapper.MapToPagedResult<DrivingSchoolGrid>(data);
+        }
+
+        private ExpressionStarter<Data.Entities.StudentDrivingDetail> BuildDrivingSchoolAvailabilityPredicate(DrivingSchoolAvailabilityFilter drivingSchoolAvailabilityFilter)
+        {
+            var studentDrivingDetailData = _dataService.RetrievePagedResult<Data.Entities.StudentDrivingDetail>(e => true).Items;
+            var test = studentDrivingDetailData.All(e => e.StartDate <= drivingSchoolAvailabilityFilter.StartDate &&
+                                                              e.EndDate >=  drivingSchoolAvailabilityFilter.StartDate &&
+                                                           e.StartTime <= drivingSchoolAvailabilityFilter.StartTime &&
+                                                          e.EndTime >= drivingSchoolAvailabilityFilter.StartTime &&
+                                                         e.DrivingSchoolCarId == drivingSchoolAvailabilityFilter.DrivingSchoolCarId
+                                                         );
+            //bool test = true;
+            var predicate = PredicateBuilder.New<Data.Entities.StudentDrivingDetail>(true);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsSunday)
+                predicate = test ? predicate.Or(e => e.IsSunday == drivingSchoolAvailabilityFilter.IsSunday) : predicate.And(e => e.IsSunday == drivingSchoolAvailabilityFilter.IsSunday);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsMonday)
+                predicate = test ? predicate.Or(e => e.IsMonday == drivingSchoolAvailabilityFilter.IsMonday) : predicate.And(e => e.IsMonday == drivingSchoolAvailabilityFilter.IsMonday);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsTuesday)
+                predicate = test ? predicate.Or(e => e.IsTuesday == drivingSchoolAvailabilityFilter.IsTuesday) : predicate.And(e => e.IsTuesday == drivingSchoolAvailabilityFilter.IsTuesday);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsWednesday)
+                predicate = test ? predicate.Or(e => e.IsWednesday == drivingSchoolAvailabilityFilter.IsWednesday) : predicate.And(e => e.IsWednesday == drivingSchoolAvailabilityFilter.IsWednesday);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsThursday)
+                predicate = test ? predicate.Or(e => e.IsThursday == drivingSchoolAvailabilityFilter.IsThursday) : predicate.And(e => e.IsThursday == drivingSchoolAvailabilityFilter.IsThursday);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsFriday)
+                predicate = test ? predicate.Or(e => e.IsFriday == drivingSchoolAvailabilityFilter.IsFriday) : predicate.And(e => e.IsFriday == drivingSchoolAvailabilityFilter.IsFriday);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsSaturday)
+                predicate = test ? predicate.Or(e => e.IsSaturday == drivingSchoolAvailabilityFilter.IsSaturday) : predicate.And(e => e.IsSaturday == drivingSchoolAvailabilityFilter.IsSaturday);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsTwoWheelerLicense)
+                predicate = test ? predicate.Or(e => e.DrivingSchool.IsTwoWheelerLicense == drivingSchoolAvailabilityFilter.IsTwoWheelerLicense) : predicate.And(e => e.DrivingSchool.IsTwoWheelerLicense == drivingSchoolAvailabilityFilter.IsTwoWheelerLicense);
+            if (drivingSchoolAvailabilityFilter != null && drivingSchoolAvailabilityFilter.IsFourWheelerLicense)
+                predicate = test ? predicate.Or(e => e.DrivingSchool.IsFourWheelerLicense == drivingSchoolAvailabilityFilter.IsFourWheelerLicense) : predicate.And(e => e.DrivingSchool.IsFourWheelerLicense == drivingSchoolAvailabilityFilter.IsFourWheelerLicense);
+            predicate = predicate.And(e => !(e.StartDate >= drivingSchoolAvailabilityFilter.StartDate && e.EndDate <= drivingSchoolAvailabilityFilter.StartDate));
+            predicate = predicate.And(e => !(e.StartTime >= drivingSchoolAvailabilityFilter.StartTime && e.EndTime <= drivingSchoolAvailabilityFilter.StartTime));
+            predicate = predicate.And(e => e.DrivingSchoolCarId == drivingSchoolAvailabilityFilter.DrivingSchoolCarId);
+            return predicate;
         }
 
         public async Task<DrivingSchool> RetrieveDrivingSchoolByPersonnelId(int personnelId)

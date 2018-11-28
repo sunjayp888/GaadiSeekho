@@ -18,6 +18,7 @@ namespace Gadi.Business.Interfaces
 
         //Retrieve
         Task<DrivingSchool> RetrieveDrivingSchool(int drivingSchoolId);
+        Task<PagedResult<DrivingSchoolGrid>> RetrieveDrivingSchoolAvailability(DrivingSchoolAvailabilityFilter drivingSchoolAvailability, List<OrderBy> orderBy = null, Paging paging = null);
         Task<DrivingSchool> RetrieveDrivingSchoolByPersonnelId(int personnelId);
         Task<PagedResult<DrivingSchoolGrid>> RetrieveDrivingSchools(List<OrderBy> orderBy = null, Paging paging = null);
         Task<List<DrivingSchoolCarGrid>> RetrieveDrivingSchoolCarGridsByDrivingSchoolId(int drivingSchoolId, List<OrderBy> orderBy = null, Paging paging = null);

@@ -24,10 +24,21 @@ namespace Gadi.Business.Models
         public decimal? MinimumFeeWithLicense { get; set; }
         public decimal? MinimumFeeWithOutLicense { get; set; }
         public int PersonnelId { get; set; }
+        public bool IsTwoWheelerLicense { get; set; }
+        public bool IsFourWheelerLicense { get; set; }
         public virtual ICollection<DrivingSchoolCar> DrivingSchoolCars { get; set; }
         public virtual ICollection<DrivingSchoolRatingAndReview> DrivingSchoolRatingAndReviews { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Driver> Drivers { get; set; }
         public virtual ICollection<DriverFeedback> DriverFeedbacks { get; set; }
+        public virtual ICollection<StudentDrivingDetail> StudentDrivingDetails { get; set; }
+        public virtual ICollection<FormFour> FormFours { get; set; }
+        public virtual ICollection<FormFive> FormFives { get; set; }
+        public virtual ICollection<FormEight> FormEights { get; set; }
+        public virtual ICollection<FormFourteen> FormFourteens { get; set; }
+        public virtual ICollection<DrivingSchoolPackage> DrivingSchoolPackages { get; set; }
+        public virtual ICollection<StudentFee> StudentFees { get; set; }
+        public virtual ICollection<StudentQuestionResponse> StudentQuestionResponses { get; set; }
+        public virtual ICollection<FormOneA> FormOneAs { get; set; }
     }
 }

@@ -14,7 +14,8 @@
             retrieveUnassignedDrivingSchoolCars: retrieveUnassignedDrivingSchoolCars,
             retrieveDrivingSchoolCars: retrieveDrivingSchoolCars,
             unassignDrivingSchoolCar: unassignDrivingSchoolCar,
-            assignDrivingSchoolCar: assignDrivingSchoolCar
+            assignDrivingSchoolCar: assignDrivingSchoolCar,
+            retrieveDrivinSchoolAvailability: retrieveDrivinSchoolAvailability
         };
 
         return service;
@@ -78,6 +79,16 @@
                 data = {
                     drivingSchoolId: drivingSchoolId,
                     carId: carId
+                };
+            return $http.post(url, data);
+        }
+
+        function retrieveDrivinSchoolAvailability(drivingSchoolAvailabilityFilter, Paging, OrderBy) {
+            var url = "/DrivingSchool/RetrieveDrivingSchoolAvailability",
+                data = {
+                    paging: Paging,
+                    orderBy: new Array(OrderBy),
+                    drivingSchoolAvailabilityFilter: drivingSchoolAvailabilityFilter
                 };
             return $http.post(url, data);
         }
