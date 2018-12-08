@@ -41,6 +41,7 @@ namespace Gadi.Business.Services
                 //SendSellerEmail(personnel);
 
                 validationResult.Entity = personnel;
+                validationResult.Entity.PersonnelId = personnelData.PersonnelId;
                 validationResult.Succeeded = true;
             }
             catch (Exception ex)
