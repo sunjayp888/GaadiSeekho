@@ -28,8 +28,10 @@
                     using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
                     {
                         @Html.AntiForgeryToken()
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="btn bg-black waves-effect waves-light search-button">Log off</a>
-                        @Html.ActionLink("Reset Password", "ResetPassword", "Account")
+                        <div class="col-lg-2">
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn bg-black waves-effect waves-light search-button">Log off</a>
+                            @Html.ActionLink("Reset Password", "ResetPassword", "Account")
+                        </div>
                     }
                 }
                 else

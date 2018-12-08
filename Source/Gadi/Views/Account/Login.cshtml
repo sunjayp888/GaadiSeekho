@@ -32,81 +32,81 @@
 </head>
 
 <body class="login-page">
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);">GadiSeekho<b></b></a>
-            <small>@*Admin BootStrap Based - Material Design*@</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                @*<form id="sign_in" method="POST">*@
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t", role = "form", @id = "sign_in" }))
+<div class="login-box">
+    <div class="logo">
+        <a href="javascript:void(0);"><b></b></a>
+        <small>@*Admin BootStrap Based - Material Design*@</small>
+    </div>
+    <div class="card">
+        <div class="body">
+            @*<form id="sign_in" method="POST">*@
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t", role = "form", @id = "sign_in" }))
             {
-                    @Html.AntiForgeryToken()
-                    if (ViewContext.ViewData.ModelState.Any(x => x.Key == ""))
-                    {
-                        <div class="form-group alert alert-danger">
-                            @Html.ValidationSummary(false, null, new { @class = "" })
-                        </div>
-                    }
-                    <div class="msg">Sign in to start your session</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Email or Mobile Number" })
-                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                            @*<input type="text" class="form-control" name="username" placeholder="Username" required autofocus>*@
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            @*<input type="password" class="form-control" name="password" placeholder="Password" required>*@
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                            @*<input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                                <label for="rememberme">Remember Me</label>*@
-                        </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
-                        </div>
-                    </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            @*<a href="sign-up.html">Register Now!</a>*@
-                            @Html.ActionLink("Create an account", "Register", "Account", null)
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            @Html.ActionLink("Lost your password?", "ResetPassword", "Account", null)
-                            @*<a href="forgot-password.html">Forgot Password?</a>*@
-                        </div>
+                @Html.AntiForgeryToken()
+                if (ViewContext.ViewData.ModelState.Any(x => x.Key == ""))
+                {
+                    <div class="form-group alert alert-danger">
+                        @Html.ValidationSummary(false, null, new { @class = "" })
                     </div>
                 }
+                <div class="msg">Sign in to start your session</div>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Email or Mobile Number" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                        @*<input type="text" class="form-control" name="username" placeholder="Username" required autofocus>*@
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">lock</i>
+                    </span>
+                    <div class="form-line">
+                        @*<input type="password" class="form-control" name="password" placeholder="Password" required>*@
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8 p-t-5">
+                        @*<input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                                <label for="rememberme">Remember Me</label>*@
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                    </div>
+                </div>
+                <div class="row m-t-15 m-b--20">
+                    <div class="col-xs-6">
+                        @*<a href="sign-up.html">Register Now!</a>*@
+                        @Html.ActionLink("Create an account", "Register", "Account", null)
+                    </div>
+                    <div class="col-xs-6 align-right">
+                        @Html.ActionLink("Lost your password?", "ResetPassword", "Account", null)
+                        @*<a href="forgot-password.html">Forgot Password?</a>*@
+                    </div>
+                </div>
+            }
 
-                @*</form>*@
-            </div>
+            @*</form>*@
         </div>
     </div>
+</div>
 
-    <!-- Jquery Core Js -->
-    <script src="~/bower_components/adminbsb-materialdesign/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap Core Js -->
-    <script src="~/bower_components/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js"></script>
-    <!-- Waves Effect Plugin Js -->
-    <script src="~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.js"></script>
-    <!-- Validation Plugin Js -->
-    <script src="~/bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js"></script>
+<!-- Jquery Core Js -->
+<script src="~/bower_components/adminbsb-materialdesign/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core Js -->
+<script src="~/bower_components/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="~/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.js"></script>
+<!-- Validation Plugin Js -->
+<script src="~/bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js"></script>
 
-    <!-- Custom Js -->
-    <script src="~/bower_components/adminbsb-materialdesign/js/admin.js"></script>
-    <script src="~/bower_components/adminbsb-materialdesign/js/pages/examples/sign-in.js"></script>
+<!-- Custom Js -->
+<script src="~/bower_components/adminbsb-materialdesign/js/admin.js"></script>
+<script src="~/bower_components/adminbsb-materialdesign/js/pages/examples/sign-in.js"></script>
 </body>
 </html>

@@ -232,6 +232,7 @@ namespace Gadi.Controllers
                     {
                         model.DrivingSchool.Mobile = Convert.ToInt64(model.MobileNumber);
                         model.DrivingSchool.EmailId = model.Email;
+                        model.DrivingSchool.PersonnelId = model.PersonnelId;
                         var drivingSchool = await _drivingSchoolBusinessService.CreateDrivingSchool(model.DrivingSchool);
                         if (drivingSchool.Succeeded)
                         {
@@ -253,6 +254,53 @@ namespace Gadi.Controllers
                 AddErrors(result);
             }
             // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // POST: /Account/StudentRegister
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> StudentRegister(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.OtpCreated = true;
+                var otpValidationResult = await _otpBusinessService.IsValidOtp(Convert.ToInt32(model.OTP), Convert.ToDecimal(model.MobileNumber), (int)OtpReason.Login, DateTime.UtcNow);
+                if (!otpValidationResult.Succeeded)
+                {
+                    model.HasError = true;
+                    ModelState.AddModelError("", otpValidationResult.Message);
+                    return View(model);
+                }
+                var user = new ApplicationUser { UserName = model.MobileNumber, Email = model.Email };
+                var role = Role.Personnel.ToString();
+                var roleId = RoleManager.Roles.FirstOrDefault(r => r.Name == role).Id;
+                user.Roles.Add(new IdentityUserRole { UserId = user.Id, RoleId = roleId });
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    model.AspNetUserId = user.Id;
+                    var personnelResult = await CreatePersonnel(model);
+                    if (!personnelResult.Succeeded)
+                    {
+                        model.HasError = true;
+                        foreach (var error in personnelResult.Errors)
+                        {
+                            ModelState.AddModelError("", error);
+                        }
+                        return View(model);
+                    }
+                    model.PersonnelId = personnelResult.Entity.PersonnelId;
+                    user.PersonnelId = personnelResult.Entity.PersonnelId;
+                    await UserManager.UpdateAsync(user);
+                    
+                    return RedirectToAction("Login", "Account");
+                }
+                model.HasError = true;
+                AddErrors(result);
+            }
             return View(model);
         }
 
